@@ -1,0 +1,2007 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="description" content="体系的なCISSP復習用参考書。英日併記、比較、判断原則と学習履歴を統合。"><title>CISSP Domain 1 — Security and Risk Management（セキュリティとリスク管理） | CISSP Study Notes</title><link rel="stylesheet" href="../assets/style.css"><script defer src="../assets/app.js"></script></head>
+<body id="top"><a class="skip-link" href="#main">本文へ移動</a><header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">C</span><span>CISSP Study Notes<small>CISSP 復習ノート</small></span></a><div class="header-right"><span class="edition">第1.0版 · 2026-09-12</span><button type="button" class="theme-toggle" hidden aria-label="ダークモードを切り替える" aria-pressed="false">夜間表示</button></div></header><nav class="domain-nav" aria-label="Domainの移動"><a href="index.html" aria-current="page">D1<span>Security and Risk Management（セキュリティとリスク管理）</span></a><span class="unavailable" title="Asset Security（資産のセキュリティ）">D2<small>未作成</small></span><span class="unavailable" title="Security Architecture and Engineering（設計と工学）">D3<small>未作成</small></span><span class="unavailable" title="Communication and Network Security（通信とネットワーク）">D4<small>未作成</small></span><span class="unavailable" title="Identity and Access Management（識別とアクセス管理）">D5<small>未作成</small></span><span class="unavailable" title="Security Assessment and Testing（評価と試験）">D6<small>未作成</small></span><span class="unavailable" title="Security Operations（運用）">D7<small>未作成</small></span><span class="unavailable" title="Software Development Security（ソフトウェア開発）">D8<small>未作成</small></span></nav>
+<div class="reading-layout"><aside class="sidebar" aria-label="学習ナビゲーション"><div class="sidebar-links"><a href="../index.html">全体の入口</a><a href="../coverage/domain1.html">網羅性確認表</a><a href="../references/history.html">問題履歴の反映</a><a href="../references/sources.html">出典・最新性</a><a href="../guide/index.html">使い方・更新方法</a></div><nav class="toc desktop-toc" aria-label="目次"><p class="eyebrow">CONTENTS（目次）</p><ul><li class="toc-level-2"><a href="#d1-00" data-chapter="d1-00">0. 判断の基礎 — Exam Perspective（試験での考え方）</a></li><li class="toc-level-3"><a href="#d1-00-mindset" data-chapter="d1-00">0.1 管理者視点を、設問の条件に結び付ける</a></li><li class="toc-level-3"><a href="#d1-00-questions" data-chapter="d1-00">0.2 FIRST / BEST / MOST / PRIMARYの読み分け</a></li><li class="toc-level-3"><a href="#d1-00-transfer" data-chapter="d1-00">0.3 問題から一般原則を取り出す</a></li><li class="toc-level-2"><a href="#d1-01" data-chapter="d1-01">1. Professional Ethics（職業倫理）</a></li><li class="toc-level-3"><a href="#d1-01-ethics" data-chapter="d1-01">1.1 ISC2の倫理と専門職としての行動</a></li><li class="toc-level-3"><a href="#d1-01-organization" data-chapter="d1-01">1.2 Organizational Code of Ethics（組織の倫理規程）</a></li><li class="toc-level-2"><a href="#d1-02" data-chapter="d1-02">2. Security Concepts（セキュリティの基本概念）</a></li><li class="toc-level-3"><a href="#d1-02-pillars" data-chapter="d1-02">2.1 CIAと追加の保護特性</a></li><li class="toc-level-3"><a href="#d1-02-aaa" data-chapter="d1-02">2.2 Authentication / Authorization / Accountabilityを分ける</a></li><li class="toc-level-3"><a href="#d1-02-history" data-chapter="d1-02">2.3 演習の事例を文脈で読み直す</a></li><li class="toc-level-2"><a href="#d1-03" data-chapter="d1-03">3. Security Governance（セキュリティの統治）</a></li><li class="toc-level-3"><a href="#d1-03-governance" data-chapter="d1-03">3.1 事業戦略と組織の意思決定</a></li><li class="toc-level-3"><a href="#d1-03-roles" data-chapter="d1-03">3.2 誰が決め、誰が実施するか</a></li><li class="toc-level-3"><a href="#d1-03-care" data-chapter="d1-03">3.3 Due Care / Due Diligence（相当な注意／適切な調査・継続確認）</a></li><li class="toc-level-3"><a href="#d1-03-change" data-chapter="d1-03">3.4 買収・売却・組織再編</a></li><li class="toc-level-3"><a href="#d1-03-frameworks" data-chapter="d1-03">3.5 Framework（枠組み）を目的で選ぶ</a></li><li class="toc-level-3"><a href="#d1-03-nist" data-chapter="d1-03">3.6 CSFとRMFの深掘り</a></li><li class="toc-level-2"><a href="#d1-04" data-chapter="d1-04">4. Legal / Regulatory / Compliance（法律・規制・遵守）</a></li><li class="toc-level-3"><a href="#d1-04-scope" data-chapter="d1-04">4.1 適用対象を判断するための地図</a></li><li class="toc-level-3"><a href="#d1-04-us" data-chapter="d1-04">4.2 米国法・業界標準を見分ける</a></li><li class="toc-level-3"><a href="#d1-04-gdpr" data-chapter="d1-04">4.3 GDPRとPrivacy（プライバシー）</a></li><li class="toc-level-3"><a href="#d1-04-global" data-chapter="d1-04">4.4 世界のプライバシー制度と越境移転</a></li><li class="toc-level-3"><a href="#d1-04-ip" data-chapter="d1-04">4.5 Intellectual Property（知的財産）と利用許諾</a></li><li class="toc-level-3"><a href="#d1-04-crime" data-chapter="d1-04">4.6 サイバー犯罪・漏えい・輸出入管理</a></li><li class="toc-level-2"><a href="#d1-05" data-chapter="d1-05">5. Investigation Requirements（調査の要件）</a></li><li class="toc-level-3"><a href="#d1-05-types" data-chapter="d1-05">5.1 調査は目的・権限・基準を先に定める</a></li><li class="toc-level-3"><a href="#d1-05-evidence" data-chapter="d1-05">5.2 証拠を使える状態に保つ</a></li><li class="toc-level-2"><a href="#d1-06" data-chapter="d1-06">6. Security Documentation（方針・標準・手順・指針）</a></li><li class="toc-level-3"><a href="#d1-06-documents" data-chapter="d1-06">6.1 文書の役割を目的と粒度で比較する</a></li><li class="toc-level-3"><a href="#d1-06-lifecycle" data-chapter="d1-06">6.2 文書を実装し維持する</a></li><li class="toc-level-2"><a href="#d1-07" data-chapter="d1-07">7. Business Continuity（事業継続）の要求</a></li><li class="toc-level-3"><a href="#d1-07-plans" data-chapter="d1-07">7.1 BCP / DRP / Incident Responseの関係</a></li><li class="toc-level-3"><a href="#d1-07-bia" data-chapter="d1-07">7.2 BIA（事業影響分析）は業務から資源へ進む</a></li><li class="toc-level-3"><a href="#d1-07-time" data-chapter="d1-07">7.3 RTO / RPO / MTDを時間の意味で区別する</a></li><li class="toc-level-3"><a href="#d1-07-dependencies" data-chapter="d1-07">7.4 外部依存と継続戦略</a></li><li class="toc-level-3"><a href="#d1-07-exercise" data-chapter="d1-07">7.5 要求の実装・演習・改善</a></li><li class="toc-level-2"><a href="#d1-08" data-chapter="d1-08">8. Personnel Security（人的セキュリティ）</a></li><li class="toc-level-3"><a href="#d1-08-lifecycle" data-chapter="d1-08">8.1 雇用・配置・退職を一つのライフサイクルで管理する</a></li><li class="toc-level-3"><a href="#d1-08-sod" data-chapter="d1-08">8.2 職務分離と内部者リスク</a></li><li class="toc-level-3"><a href="#d1-08-contractors" data-chapter="d1-08">8.3 契約者・委託先の人にも統制を適用する</a></li><li class="toc-level-2"><a href="#d1-09" data-chapter="d1-09">9. Risk Management（リスク管理）</a></li><li class="toc-level-3"><a href="#d1-09-terms" data-chapter="d1-09">9.1 Threat / Vulnerability / Riskの因果関係</a></li><li class="toc-level-3"><a href="#d1-09-assessment" data-chapter="d1-09">9.2 Scope（範囲）・基準・評価方法</a></li><li class="toc-level-3"><a href="#d1-09-quant" data-chapter="d1-09">9.3 AV・EF・SLE・ARO・ALEを判断までつなげる</a></li><li class="toc-level-3"><a href="#d1-09-treatment" data-chapter="d1-09">9.4 リスク選好・許容度・対応・残余リスク</a></li><li class="toc-level-3"><a href="#d1-09-controls" data-chapter="d1-09">9.5 Control（管理策）の分類は二つの軸で考える</a></li><li class="toc-level-3"><a href="#d1-09-monitoring" data-chapter="d1-09">9.6 評価・監視・報告・改善を閉じる</a></li><li class="toc-level-3"><a href="#d1-09-frameworks" data-chapter="d1-09">9.7 リスク枠組みの使い分け</a></li><li class="toc-level-2"><a href="#d1-10" data-chapter="d1-10">10. Threat Modeling（脅威モデリング）</a></li><li class="toc-level-3"><a href="#d1-10-process" data-chapter="d1-10">10.1 対象をモデル化し、起こり得る失敗を考える</a></li><li class="toc-level-3"><a href="#d1-10-stride" data-chapter="d1-10">10.2 STRIDEを侵害される性質と対応させる</a></li><li class="toc-level-3"><a href="#d1-10-methods" data-chapter="d1-10">10.3 他の手法との使い分け</a></li><li class="toc-level-2"><a href="#d1-11" data-chapter="d1-11">11. Supply Chain Risk Management（供給網のリスク管理）</a></li><li class="toc-level-3"><a href="#d1-11-risks" data-chapter="d1-11">11.1 購入した製品・サービスにもリスクは残る</a></li><li class="toc-level-3"><a href="#d1-11-lifecycle" data-chapter="d1-11">11.2 選定・契約・監視・終了をつなげる</a></li><li class="toc-level-3"><a href="#d1-11-assurance" data-chapter="d1-11">11.3 SLA・契約・技術的保証を混同しない</a></li><li class="toc-level-2"><a href="#d1-12" data-chapter="d1-12">12. Awareness / Education / Training（啓発・教育・訓練）</a></li><li class="toc-level-3"><a href="#d1-12-learning" data-chapter="d1-12">12.1 気付く・実行できる・理解するを区別する</a></li><li class="toc-level-3"><a href="#d1-12-program" data-chapter="d1-12">12.2 プログラムを作り、対象に合わせる</a></li><li class="toc-level-3"><a href="#d1-12-methods" data-chapter="d1-12">12.3 手法を目的に合わせて選ぶ</a></li><li class="toc-level-3"><a href="#d1-12-effectiveness" data-chapter="d1-12">12.4 効果を測り、内容を更新する</a></li><li class="toc-level-3"><a href="#d1-12-ai" data-chapter="d1-12">12.5 AIをDomain 1の判断へつなげる</a></li><li class="toc-level-2"><a href="#d1-appendix" data-chapter="d1-appendix">付録A. 章をまたぐ判断の練習</a></li><li class="toc-level-3"><a href="#d1-case-saas" data-chapter="d1-appendix">A.1 新しい外部サービスの導入</a></li><li class="toc-level-3"><a href="#d1-case-admin" data-chapter="d1-appendix">A.2 管理者による不正変更</a></li><li class="toc-level-3"><a href="#d1-case-cost" data-chapter="d1-appendix">A.3 安い対策と義務のある対策</a></li><li class="toc-level-2"><a href="#d1-next" data-chapter="d1-next">付録B. 他Domainへの接続と更新</a></li></ul></nav></aside>
+<main id="main" tabindex="-1"><div class="page-tools"><details class="mobile-toc"><summary>このページの目次を開く</summary><nav class="toc" aria-label="モバイル目次"><ul><li class="toc-level-2"><a href="#d1-00" data-chapter="d1-00">0. 判断の基礎 — Exam Perspective（試験での考え方）</a></li><li class="toc-level-3"><a href="#d1-00-mindset" data-chapter="d1-00">0.1 管理者視点を、設問の条件に結び付ける</a></li><li class="toc-level-3"><a href="#d1-00-questions" data-chapter="d1-00">0.2 FIRST / BEST / MOST / PRIMARYの読み分け</a></li><li class="toc-level-3"><a href="#d1-00-transfer" data-chapter="d1-00">0.3 問題から一般原則を取り出す</a></li><li class="toc-level-2"><a href="#d1-01" data-chapter="d1-01">1. Professional Ethics（職業倫理）</a></li><li class="toc-level-3"><a href="#d1-01-ethics" data-chapter="d1-01">1.1 ISC2の倫理と専門職としての行動</a></li><li class="toc-level-3"><a href="#d1-01-organization" data-chapter="d1-01">1.2 Organizational Code of Ethics（組織の倫理規程）</a></li><li class="toc-level-2"><a href="#d1-02" data-chapter="d1-02">2. Security Concepts（セキュリティの基本概念）</a></li><li class="toc-level-3"><a href="#d1-02-pillars" data-chapter="d1-02">2.1 CIAと追加の保護特性</a></li><li class="toc-level-3"><a href="#d1-02-aaa" data-chapter="d1-02">2.2 Authentication / Authorization / Accountabilityを分ける</a></li><li class="toc-level-3"><a href="#d1-02-history" data-chapter="d1-02">2.3 演習の事例を文脈で読み直す</a></li><li class="toc-level-2"><a href="#d1-03" data-chapter="d1-03">3. Security Governance（セキュリティの統治）</a></li><li class="toc-level-3"><a href="#d1-03-governance" data-chapter="d1-03">3.1 事業戦略と組織の意思決定</a></li><li class="toc-level-3"><a href="#d1-03-roles" data-chapter="d1-03">3.2 誰が決め、誰が実施するか</a></li><li class="toc-level-3"><a href="#d1-03-care" data-chapter="d1-03">3.3 Due Care / Due Diligence（相当な注意／適切な調査・継続確認）</a></li><li class="toc-level-3"><a href="#d1-03-change" data-chapter="d1-03">3.4 買収・売却・組織再編</a></li><li class="toc-level-3"><a href="#d1-03-frameworks" data-chapter="d1-03">3.5 Framework（枠組み）を目的で選ぶ</a></li><li class="toc-level-3"><a href="#d1-03-nist" data-chapter="d1-03">3.6 CSFとRMFの深掘り</a></li><li class="toc-level-2"><a href="#d1-04" data-chapter="d1-04">4. Legal / Regulatory / Compliance（法律・規制・遵守）</a></li><li class="toc-level-3"><a href="#d1-04-scope" data-chapter="d1-04">4.1 適用対象を判断するための地図</a></li><li class="toc-level-3"><a href="#d1-04-us" data-chapter="d1-04">4.2 米国法・業界標準を見分ける</a></li><li class="toc-level-3"><a href="#d1-04-gdpr" data-chapter="d1-04">4.3 GDPRとPrivacy（プライバシー）</a></li><li class="toc-level-3"><a href="#d1-04-global" data-chapter="d1-04">4.4 世界のプライバシー制度と越境移転</a></li><li class="toc-level-3"><a href="#d1-04-ip" data-chapter="d1-04">4.5 Intellectual Property（知的財産）と利用許諾</a></li><li class="toc-level-3"><a href="#d1-04-crime" data-chapter="d1-04">4.6 サイバー犯罪・漏えい・輸出入管理</a></li><li class="toc-level-2"><a href="#d1-05" data-chapter="d1-05">5. Investigation Requirements（調査の要件）</a></li><li class="toc-level-3"><a href="#d1-05-types" data-chapter="d1-05">5.1 調査は目的・権限・基準を先に定める</a></li><li class="toc-level-3"><a href="#d1-05-evidence" data-chapter="d1-05">5.2 証拠を使える状態に保つ</a></li><li class="toc-level-2"><a href="#d1-06" data-chapter="d1-06">6. Security Documentation（方針・標準・手順・指針）</a></li><li class="toc-level-3"><a href="#d1-06-documents" data-chapter="d1-06">6.1 文書の役割を目的と粒度で比較する</a></li><li class="toc-level-3"><a href="#d1-06-lifecycle" data-chapter="d1-06">6.2 文書を実装し維持する</a></li><li class="toc-level-2"><a href="#d1-07" data-chapter="d1-07">7. Business Continuity（事業継続）の要求</a></li><li class="toc-level-3"><a href="#d1-07-plans" data-chapter="d1-07">7.1 BCP / DRP / Incident Responseの関係</a></li><li class="toc-level-3"><a href="#d1-07-bia" data-chapter="d1-07">7.2 BIA（事業影響分析）は業務から資源へ進む</a></li><li class="toc-level-3"><a href="#d1-07-time" data-chapter="d1-07">7.3 RTO / RPO / MTDを時間の意味で区別する</a></li><li class="toc-level-3"><a href="#d1-07-dependencies" data-chapter="d1-07">7.4 外部依存と継続戦略</a></li><li class="toc-level-3"><a href="#d1-07-exercise" data-chapter="d1-07">7.5 要求の実装・演習・改善</a></li><li class="toc-level-2"><a href="#d1-08" data-chapter="d1-08">8. Personnel Security（人的セキュリティ）</a></li><li class="toc-level-3"><a href="#d1-08-lifecycle" data-chapter="d1-08">8.1 雇用・配置・退職を一つのライフサイクルで管理する</a></li><li class="toc-level-3"><a href="#d1-08-sod" data-chapter="d1-08">8.2 職務分離と内部者リスク</a></li><li class="toc-level-3"><a href="#d1-08-contractors" data-chapter="d1-08">8.3 契約者・委託先の人にも統制を適用する</a></li><li class="toc-level-2"><a href="#d1-09" data-chapter="d1-09">9. Risk Management（リスク管理）</a></li><li class="toc-level-3"><a href="#d1-09-terms" data-chapter="d1-09">9.1 Threat / Vulnerability / Riskの因果関係</a></li><li class="toc-level-3"><a href="#d1-09-assessment" data-chapter="d1-09">9.2 Scope（範囲）・基準・評価方法</a></li><li class="toc-level-3"><a href="#d1-09-quant" data-chapter="d1-09">9.3 AV・EF・SLE・ARO・ALEを判断までつなげる</a></li><li class="toc-level-3"><a href="#d1-09-treatment" data-chapter="d1-09">9.4 リスク選好・許容度・対応・残余リスク</a></li><li class="toc-level-3"><a href="#d1-09-controls" data-chapter="d1-09">9.5 Control（管理策）の分類は二つの軸で考える</a></li><li class="toc-level-3"><a href="#d1-09-monitoring" data-chapter="d1-09">9.6 評価・監視・報告・改善を閉じる</a></li><li class="toc-level-3"><a href="#d1-09-frameworks" data-chapter="d1-09">9.7 リスク枠組みの使い分け</a></li><li class="toc-level-2"><a href="#d1-10" data-chapter="d1-10">10. Threat Modeling（脅威モデリング）</a></li><li class="toc-level-3"><a href="#d1-10-process" data-chapter="d1-10">10.1 対象をモデル化し、起こり得る失敗を考える</a></li><li class="toc-level-3"><a href="#d1-10-stride" data-chapter="d1-10">10.2 STRIDEを侵害される性質と対応させる</a></li><li class="toc-level-3"><a href="#d1-10-methods" data-chapter="d1-10">10.3 他の手法との使い分け</a></li><li class="toc-level-2"><a href="#d1-11" data-chapter="d1-11">11. Supply Chain Risk Management（供給網のリスク管理）</a></li><li class="toc-level-3"><a href="#d1-11-risks" data-chapter="d1-11">11.1 購入した製品・サービスにもリスクは残る</a></li><li class="toc-level-3"><a href="#d1-11-lifecycle" data-chapter="d1-11">11.2 選定・契約・監視・終了をつなげる</a></li><li class="toc-level-3"><a href="#d1-11-assurance" data-chapter="d1-11">11.3 SLA・契約・技術的保証を混同しない</a></li><li class="toc-level-2"><a href="#d1-12" data-chapter="d1-12">12. Awareness / Education / Training（啓発・教育・訓練）</a></li><li class="toc-level-3"><a href="#d1-12-learning" data-chapter="d1-12">12.1 気付く・実行できる・理解するを区別する</a></li><li class="toc-level-3"><a href="#d1-12-program" data-chapter="d1-12">12.2 プログラムを作り、対象に合わせる</a></li><li class="toc-level-3"><a href="#d1-12-methods" data-chapter="d1-12">12.3 手法を目的に合わせて選ぶ</a></li><li class="toc-level-3"><a href="#d1-12-effectiveness" data-chapter="d1-12">12.4 効果を測り、内容を更新する</a></li><li class="toc-level-3"><a href="#d1-12-ai" data-chapter="d1-12">12.5 AIをDomain 1の判断へつなげる</a></li><li class="toc-level-2"><a href="#d1-appendix" data-chapter="d1-appendix">付録A. 章をまたぐ判断の練習</a></li><li class="toc-level-3"><a href="#d1-case-saas" data-chapter="d1-appendix">A.1 新しい外部サービスの導入</a></li><li class="toc-level-3"><a href="#d1-case-admin" data-chapter="d1-appendix">A.2 管理者による不正変更</a></li><li class="toc-level-3"><a href="#d1-case-cost" data-chapter="d1-appendix">A.3 安い対策と義務のある対策</a></li><li class="toc-level-2"><a href="#d1-next" data-chapter="d1-next">付録B. 他Domainへの接続と更新</a></li></ul></nav></details><div class="search-box" hidden><label for="page-search">本文検索</label><div class="search-row"><input id="page-search" type="search" placeholder="例：残余リスク / RTO" autocomplete="off" aria-controls="search-results"><button id="search-clear" type="button">消去</button></div><p id="search-status" role="status" aria-live="polite"></p><ol id="search-results" hidden></ol></div></div><article class="article"><h1>CISSP Domain 1 — Security and Risk Management（セキュリティとリスク管理）</h1>
+<p>版：1.0 / 調査基準日：2026-09-12 / 用途：普段の復習用参考書</p>
+<p>公式範囲：ISC2の2024年4月15日発効版。確認日の公式掲載ではDomain 1の比重は16%。本書は独自に整理した学習ノートであり、ISC2の公式教材や本試験の採点基準を再現したものではありません。<a href="https://www.isc2.org/certifications/cissp/cissp-certification-exam-outline">公式試験範囲</a></p>
+<p><strong>読み方</strong>：最初は第0章で判断の軸を確認し、第1〜12章を公式範囲の順に読みます。その後は目次・検索・比較表から必要な節へ戻ってください。各章の「説明できるか」は、選択肢を見ずに判断理由を思い出すための問いです。試験直前用の圧縮版ではありません。</p>
+<p><strong>重要度</strong>：Core（中核）は必須の土台、High Priority（重点）は個人の要注意論点または応用上重要な領域、Supporting（補完）は周辺知識です。これは本書の編集上の区分で、ISC2が公表する細目別の出題頻度ではありません。</p>
+<p><strong>履歴の扱い</strong>：個別回答を再確認できたQ95〜98、今回の会話に提供された学習要約、111問完了時の過去の総括を統合しました。全111問の原文・回答を逐一取得できたわけではありません。「誤答・要注意」は要約上の重点を含み、個別の誤答を断定できないものがあります。未確認は未出題と同義ではありません。根拠は<a href="../references/history.html">問題履歴台帳</a>、範囲は<a href="../coverage/domain1.html">網羅性確認表</a>をご覧ください。</p>
+<h2 id="d1-00" tabindex="-1">0. 判断の基礎 — Exam Perspective（試験での考え方）</h2>
+<p>重要度：High Priority（重点） / 関連：全領域</p>
+<h3 id="d1-00-mindset" tabindex="-1">0.1 管理者視点を、設問の条件に結び付ける</h3>
+<p>Managerial Perspective（管理者視点）とは、事業に必要な保護水準を組織として決定・維持する視点です。技術を軽視する意味ではありません。セキュリティは事業目標を達成するための手段であり、停止・費用・使いにくさも含めたリスクを比較します。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 1。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>判断軸</th>
+<th>確認すること</th>
+<th>適用例</th>
+<th>過剰な一般化を避ける</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Business First（事業を踏まえる）</td>
+<td>守る業務と、達成したい結果は何か</td>
+<td>販売停止が致命的なら可用性も重視</td>
+<td>収益のために法令や人命を犠牲にしない</td>
+</tr>
+<tr>
+<td>Risk-based Decision（リスクに基づく判断）</td>
+<td>脅威・影響・既存対策・許容範囲は何か</td>
+<td>評価結果から対策を選ぶ</td>
+<td>評価済みなのに最初から調査をやり直さない</td>
+</tr>
+<tr>
+<td>Policy / Process before Technology（方針・プロセスを先に定める）</td>
+<td>要件・責任・承認・運用があるか</td>
+<td>未定義の権限ルールを製品だけで解決しない</td>
+<td>緊急時は承認済み手順で直ちに封じ込める</td>
+</tr>
+<tr>
+<td>Accountability（説明責任）</td>
+<td>誰が結果を引き受けるか</td>
+<td>事業責任者が残余リスクを受容する</td>
+<td>外注先へ作業を委託しても責任がすべて消えるわけではない</td>
+</tr>
+<tr>
+<td>Proportionality（比例性・釣り合い）</td>
+<td>対策の強さが影響に見合うか</td>
+<td>重要情報へ強い保護、低リスクには簡素な管理</td>
+<td>安さだけで必要な保護を省かない</td>
+</tr>
+</tbody></table></div>
+<p>CISSPの学習上は「経営層が方向性・資源・責任を持つ」を基本にします。ただし、責任者がすべての実務を行うわけではありません。担当者に実行を委任し、承認経路と結果の確認を残すのが管理です。</p>
+<h3 id="d1-00-questions" tabindex="-1">0.2 FIRST / BEST / MOST / PRIMARYの読み分け</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 2。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>設問語</th>
+<th>日本語</th>
+<th>判断の入口</th>
+<th>よくある誤り</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FIRST</td>
+<td>最初に</td>
+<td>現在地点を特定し、次の行為に必要な前提を探す</td>
+<td>最終的に必要な対策を早すぎる段階で選ぶ</td>
+</tr>
+<tr>
+<td>NEXT</td>
+<td>次に</td>
+<td>すでに済んだ工程を除外する</td>
+<td>方針承認後に、方針承認を再び選ぶ</td>
+</tr>
+<tr>
+<td>BEST</td>
+<td>最も適切</td>
+<td>明示された目的・制約・権限を最も満たすもの</td>
+<td>最も強い製品、最も長い選択肢を選ぶ</td>
+</tr>
+<tr>
+<td>MOST effective</td>
+<td>最も効果的</td>
+<td>対象のリスクや原因へ最も効くもの</td>
+<td>実装が簡単な対策と混同する</td>
+</tr>
+<tr>
+<td>PRIMARY</td>
+<td>主たる目的・責任</td>
+<td>直接達成する結果、最終的な責任を探す</td>
+<td>副次的効果を主目的と取り違える</td>
+</tr>
+<tr>
+<td>LEAST / EXCEPT</td>
+<td>最も低い／例外</td>
+<td>否定の向きを先に固定する</td>
+<td>正しい説明を見つけて反射的に選ぶ</td>
+</tr>
+</tbody></table></div>
+<p>実践する読み方は、①役割、②段階、③守る対象と目的、④制約、⑤設問語、の順で短く整理することです。「自分の現場なら」という追加条件は持ち込みません。</p>
+<p><strong>例：新規SaaS（クラウド提供ソフトウェア）を採用したい。</strong> 要件が不明なら、まずデータ・業務・法的要件とリスクを確認します。要件と評価が済み、残余リスクの承認を求められているなら、権限を持つ事業責任者の判断へ進みます。漏えいが進行中で担当者に緊急対応権限があるなら、方針文書の新規作成より、承認済み手順に沿う被害抑制が適切です。同じサービスでも段階によって答えが変わります。</p>
+<blockquote class="callout trap"><p><strong>Common Trap（よくあるひっかけ）</strong>：「常に経営層へ報告」「必ずリスク評価が最初」「技術的な選択肢は誤り」という万能ルールは使いません。安全確保、法的義務、設問の役割、すでに終わった工程を優先して読みます。</p>
+</blockquote>
+<h3 id="d1-00-transfer" tabindex="-1">0.3 問題から一般原則を取り出す</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 3。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>個別の題材</th>
+<th>再利用する原則</th>
+<th>本書の参照先</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年間損失額を計算した</td>
+<td>数値を求めた後に対策後リスクと年間費用を比較する</td>
+<td><a href="#d1-09-quant">9.3</a>・<a href="#d1-09-treatment">9.4</a></td>
+</tr>
+<tr>
+<td>BIAの最初の作業を間違えやすい</td>
+<td>技術の復旧順ではなく業務影響を根拠に優先順位を作る</td>
+<td><a href="#d1-07-bia">7.2</a></td>
+</tr>
+<tr>
+<td>OwnerとCustodianが紛らわしい</td>
+<td>要件・承認を決める側と、実施する側を分ける</td>
+<td><a href="#d1-03-roles">3.2</a></td>
+</tr>
+<tr>
+<td>RAIDやVPNの目的を問われた</td>
+<td>製品名より、その場面で保護する性質を特定する</td>
+<td><a href="#d1-02-pillars">2.1</a></td>
+</tr>
+<tr>
+<td>米国法名を取り違える</td>
+<td>業種だけでなく対象主体・情報・活動・管轄を見る</td>
+<td><a href="#d1-04-us">4.2</a></td>
+</tr>
+</tbody></table></div>
+<p><strong>説明できるか</strong>：承認済みの復旧計画に従う担当者に「経営層の承認を毎回得る」が常に最適とは限らない理由を説明してください。</p>
+<h2 id="d1-01" tabindex="-1">1. Professional Ethics（職業倫理）</h2>
+<p>重要度：Core（中核） / 公式対応：1.1</p>
+<h3 id="d1-01-ethics" tabindex="-1">1.1 ISC2の倫理と専門職としての行動</h3>
+<p>Ethics（倫理）は、法的に許される行動の中でも専門職として何を選ぶかを導きます。法律を守るだけで、利益相反の隠蔽や能力の誇張が正当化されるわけではありません。</p>
+<p>ISC2の4つのCanon（倫理原則）は、学習用に言い換えると、①社会・公共の利益・信頼・基盤を守る、②誠実で公正かつ責任ある合法的行動、③依頼者へ注意深く有能な業務提供、④専門職の発展と信用を支える、です。原文と申立手続は<a href="https://www.isc2.org/ethics">ISC2倫理規程</a>で確認できます。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 4。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>場面</th>
+<th>望ましい判断</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>上司が監査証拠の改ざんを指示</td>
+<td>拒否し、適切な内部経路・法務へ相談する</td>
+<td>忠誠心は不正行為への服従ではない</td>
+</tr>
+<tr>
+<td>診断業務が自分の能力を超える</td>
+<td>能力の限界を説明し、適任者の支援を得る</td>
+<td>Competence（専門能力）に応じた提供責任</td>
+</tr>
+<tr>
+<td>見積審査で候補企業に経済的利害がある</td>
+<td>Conflict of Interest（利益相反）を開示し、審査からの除外等を検討</td>
+<td>判断の公平性と信用を守る</td>
+</tr>
+<tr>
+<td>脆弱性を発見した</td>
+<td>許可範囲と合意した開示経路に従う</td>
+<td>追加の無断侵入は倫理的調査の延長ではない</td>
+</tr>
+</tbody></table></div>
+<h3 id="d1-01-organization" tabindex="-1">1.2 Organizational Code of Ethics（組織の倫理規程）</h3>
+<p>組織の規程は、贈答、利害関係、情報の扱い、相談窓口、違反時の手続を実務へ落とします。経営層の行動、通報者保護、公平な調査、継続的な教育が伴って初めて機能します。違反を報告した人を罰する文化では、問題が隠れ、経営判断に必要な情報が届きません。</p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：顧客・雇用主の利益だけで完結させず、公共の安全・合法性・誠実性も考えます。倫理違反の疑いがあることと、調査なしで有罪扱いすることは区別します。</p>
+</blockquote>
+<blockquote class="callout trap"><p><strong>Common Trap（よくあるひっかけ）</strong>：NDA（秘密保持契約）があれば法定報告義務までなくなる、公益目的なら無許可の攻撃が許される、という選択肢は慎重に扱います。</p>
+</blockquote>
+<p><strong>説明できるか</strong>：正しい報告経路を使うことが、無差別に外部公開することと異なる理由を説明してください。</p>
+<h2 id="d1-02" tabindex="-1">2. Security Concepts（セキュリティの基本概念）</h2>
+<p>重要度：Core（中核）、CIAの文脈判断はHigh Priority（重点） / 公式対応：1.2</p>
+<h3 id="d1-02-pillars" tabindex="-1">2.1 CIAと追加の保護特性</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 5。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>意味と主目的</th>
+<th>主な手段</th>
+<th>問題での見分け方</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Confidentiality（機密性）</td>
+<td>許可のない開示・閲覧を防ぐ</td>
+<td>暗号化、アクセス制限、最小開示</td>
+<td>誰が読めるか、盗聴・漏えい</td>
+</tr>
+<tr>
+<td>Integrity（完全性）</td>
+<td>不正な変更・破壊を防ぎ、正確さを維持する</td>
+<td>変更管理、入力検証、改変検知、署名</td>
+<td>内容が変わっていないか</td>
+</tr>
+<tr>
+<td>Availability（可用性）</td>
+<td>必要時に正当な利用を可能にする</td>
+<td>冗長化、容量確保、復旧、耐障害性</td>
+<td>停止・遅延・使えない</td>
+</tr>
+<tr>
+<td>Authenticity（真正性）</td>
+<td>主体や情報源が本物であること</td>
+<td>本人確認、認証、証明書の検証</td>
+<td>本当にその人・発行元か</td>
+</tr>
+<tr>
+<td>Nonrepudiation（否認防止）</td>
+<td>行為や送受信を後から否認しにくくする</td>
+<td>電子署名、信頼できる時刻・証跡</td>
+<td>「送っていない」と主張されたら証明できるか</td>
+</tr>
+</tbody></table></div>
+<p>同じ対策が複数の特性に貢献することがあります。暗号化だけで完全性が必ず保証されるわけではなく、認証付き暗号など方式・設定に依存します。Digital Signature（電子署名）は改変検出と署名者の確認を支えますが、鍵の安全な管理や身元の結び付きが壊れると、否認防止の証拠力も弱まります。</p>
+<h3 id="d1-02-aaa" tabindex="-1">2.2 Authentication / Authorization / Accountabilityを分ける</h3>
+<p>Identification（識別）は名乗り、Authentication（認証）はその主張の確認、Authorization（認可）は実行してよい行為の決定、Accounting（利用記録）は行為の記録です。Accountability（説明責任）には、個人へ帰属できる識別、適切な認証、改変から保護された記録、責任の割当てが必要です。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 6。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>仕組み</th>
+<th>直接の役割</th>
+<th>単独では足りないこと</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MFA：Multi-Factor Authentication（多要素認証）</td>
+<td>異なる要素で認証を強化する</td>
+<td>業務権限を適切に決めること</td>
+</tr>
+<tr>
+<td>ACL：Access Control List（アクセス制御リスト）</td>
+<td>許可・拒否を実施する</td>
+<td>アクセス権の事業上の妥当性を承認すること</td>
+</tr>
+<tr>
+<td>Audit Log（監査ログ）</td>
+<td>誰が何をしたかの証拠を残す</td>
+<td>共有IDで行われた操作の実行者を確実に識別すること</td>
+</tr>
+<tr>
+<td>Hash（ハッシュ値）</td>
+<td>基準との相違を検出する</td>
+<td>基準値とデータの両方を攻撃者が置換した場合の真正性</td>
+</tr>
+</tbody></table></div>
+<p>MFA（多要素認証）は、パスワードと秘密の質問のように同じKnowledge Factor（知識要素）を二つ使うだけでは成立しません。複数の領域にまたがる詳細は、将来のDomain 5に委ねます。本章では認証と認可の役割を押さえます。</p>
+<h3 id="d1-02-history" tabindex="-1">2.3 演習の事例を文脈で読み直す</h3>
+<blockquote class="callout insight"><p><strong>Problem-derived Insights（問題演習由来の知見）</strong>：提供された履歴要約ではQ28はランサムウェアと可用性が要注意、Q47はVPNと機密性、Q48はRAIDと耐障害性、Q49は定期的な完全性検証が正解した論点です。</p>
+</blockquote>
+<p>ランサムウェアで「ファイルが使えない」と書かれていれば可用性が直接の論点です。しかしデータを盗んで脅迫する場面なら機密性、不正書換えを問うなら完全性も関係します。「ランサムウェア＝必ず可用性」と固定しません。</p>
+<p>RAID：Redundant Array of Independent Disks（複数ディスクによる構成）は、冗長性を持つ方式ならディスク故障への耐性を高めます。<strong>RAID 0には冗長性がなく、RAID全般がバックアップの代わりになるわけでもありません。</strong> 誤削除・不正暗号化は複製先にも反映され得るためです。</p>
+<p>VPN：Virtual Private Network（仮想プライベートネットワーク）は、暗号化を伴う構成なら通信の機密性を守ります。VPNという名称だけで端末の健全性、利用者の適切な権限、利用可能時間まで保証するわけではありません。</p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：対策の名称を見て分類する前に、設問が「盗聴防止」「改変検知」「業務停止の回避」のどれを聞いているかを特定します。</p>
+</blockquote>
+<p><strong>説明できるか</strong>：署名されたデータを誰でも読める場合でも、完全性と真正性の保護が成立し得る理由を説明してください。</p>
+<h2 id="d1-03" tabindex="-1">3. Security Governance（セキュリティの統治）</h2>
+<p>重要度：Core（中核）、役割・注意義務はHigh Priority（重点） / 公式対応：1.3</p>
+<h3 id="d1-03-governance" tabindex="-1">3.1 事業戦略と組織の意思決定</h3>
+<p>Governance（統治）は、方向・優先順位・責任・監督を定めることです。Management（管理）はその方向に沿って計画し、資源を配分し、実行・測定することです。Security Strategy（セキュリティ戦略）は事業のMission（使命）、Goals（目標）、Objectives（具体的な到達点）へ結び付けます。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 7。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>階層</th>
+<th>典型的な内容</th>
+<th>セキュリティの例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Strategic（戦略）</td>
+<td>長期の方向・投資判断</td>
+<td>安全に海外事業へ進出する</td>
+</tr>
+<tr>
+<td>Tactical（戦術）</td>
+<td>戦略を実現する計画・プログラム</td>
+<td>越境データ移転とアクセス管理を整備する</td>
+</tr>
+<tr>
+<td>Operational（運用）</td>
+<td>日々の実施・監視</td>
+<td>権限を付与し、ログと例外を確認する</td>
+</tr>
+</tbody></table></div>
+<p>Steering Committee（運営委員会）は事業・IT・法務・人事などの利害調整に有効です。報告では「重大脆弱性100件」だけでなく、「どの事業が、どれだけの期間、どの影響にさらされるか」「誰の判断が必要か」を示します。</p>
+<h3 id="d1-03-roles" tabindex="-1">3.2 誰が決め、誰が実施するか</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 8。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>役割</th>
+<th>主に決める・担うこと</th>
+<th>実施・連携</th>
+<th>試験での境界</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Senior Management（経営層）</td>
+<td>方針、リスクの方向、資源、最終的な監督</td>
+<td>事業責任者・CISOと判断</td>
+<td>セキュリティ部門だけへ全責任を押し付けない</td>
+</tr>
+<tr>
+<td>Board（取締役会）</td>
+<td>経営の監督、重大リスクの監視</td>
+<td>経営層から報告を受ける</td>
+<td>日々の設定変更担当ではない</td>
+</tr>
+<tr>
+<td>CISO（情報セキュリティ責任者）</td>
+<td>プログラムの企画・調整・助言・報告</td>
+<td>技術・法務・人事・事業と協働</td>
+<td>すべての事業リスクの受容権限を自動的に持たない</td>
+</tr>
+<tr>
+<td>Risk Owner（リスク所有者）</td>
+<td>担当リスクの対応と、権限内の受容</td>
+<td>対策担当へ実施を依頼</td>
+<td>リスクを負う業務の責任者を探す</td>
+</tr>
+<tr>
+<td>Data Owner（データ所有者）</td>
+<td>分類、保護要件、アクセス承認</td>
+<td>事業上の価値を理解し要件を提示</td>
+<td>要件・判断・承認が中心</td>
+</tr>
+<tr>
+<td>Data Custodian（データ管理担当者）</td>
+<td>所有者の要件に従う保管・運用</td>
+<td>バックアップ、設定、技術的保護</td>
+<td>実装・維持が中心</td>
+</tr>
+<tr>
+<td>System Owner（システム所有者）</td>
+<td>システムのライフサイクルと保護の責任</td>
+<td>運用・開発・情報所有者と連携</td>
+<td>Data Ownerと同一とは限らない</td>
+</tr>
+<tr>
+<td>User（利用者）</td>
+<td>許可された利用、ルール遵守、異常報告</td>
+<td>教育受講・適切な取扱い</td>
+<td>自分に権限があることと再配布の許可は別</td>
+</tr>
+<tr>
+<td>Auditor（監査人）</td>
+<td>独立した評価と報告</td>
+<td>証拠を調査し、是正を追跡</td>
+<td>自分が運用する統制を独立監査したとしない</td>
+</tr>
+</tbody></table></div>
+<p>RACI（責任分担表）では、Responsible（実行責任）、Accountable（最終的な説明責任）、Consulted（相談先）、Informed（報告先）を分けます。一つの決定で最終責任を曖昧にしないため、Accountable（説明責任者）を明確に置きます。組織によって役職の名称は違っても、意思決定権限と実施責任の区別は変わりません。</p>
+<blockquote class="callout insight"><p><strong>Problem-derived Insights（問題演習由来の知見）</strong>：Q36の要注意点を、「データを毎日扱う人ほどOwner」という誤解から切り離します。管理担当者が分類ラベルを設定しても、その分類基準と業務上の許可を決めるのは通常Owner（所有者）です。GDPRのController（処理目的・手段の決定主体）は法律上の役割で、社内のData Ownerと自動的に一致しません。</p>
+</blockquote>
+<h3 id="d1-03-care" tabindex="-1">3.3 Due Care / Due Diligence（相当な注意／適切な調査・継続確認）</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 9。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>焦点</th>
+<th>例</th>
+<th>見分ける問い</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Due Care（相当な注意）</td>
+<td>合理的に求められる保護を実際に行う</td>
+<td>適切な権限管理、承認済みの保護措置</td>
+<td>必要な注意を払って行動したか</td>
+</tr>
+<tr>
+<td>Due Diligence（適切な調査・継続確認）</td>
+<td>判断前の調査と、保護の有効性の継続確認</td>
+<td>買収前の評価、対策状況の監査、リスク再評価</td>
+<td>十分に調べ、機能し続けるか確かめたか</td>
+</tr>
+<tr>
+<td>Negligence（過失）</td>
+<td>必要な注意義務に反したこと</td>
+<td>既知の重大リスクを権限も根拠もなく放置</td>
+<td>義務・違反・因果関係・損害を文脈で見る</td>
+</tr>
+</tbody></table></div>
+<p>「実施」と「確認」の対比は学習に役立ちますが、法的な意味は管轄や事案に依存し、二つの活動は重なります。Due Diligence（適切な調査）は導入後の確認だけに限定しません。買収前・委託前の調査も代表例です。</p>
+<h3 id="d1-03-change" tabindex="-1">3.4 買収・売却・組織再編</h3>
+<p>Acquisition（買収）では価格・製品機能だけでなく、過去の事故、契約、知財、データの利用目的、負債となるシステム、ID連携、既存の統制を調べます。統合時にネットワークを直結すると、未評価の相手側リスクを自社へ持ち込む可能性があります。</p>
+<p>Divestiture（事業売却）では、残す情報・渡す情報、権利、保管義務、アカウント、暗号鍵、再委託、移行中のサービス水準を定義します。「売却したから全部削除」「便利だから共有IDを残す」は両極端です。法務・事業・ITで移行と終了条件を合意します。</p>
+<h3 id="d1-03-frameworks" tabindex="-1">3.5 Framework（枠組み）を目的で選ぶ</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 10。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>枠組み・規格</th>
+<th>主な使い道</th>
+<th>混同しない対象</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ISO/IEC 27001:2022（ISMS要求事項）</td>
+<td>ISMS：Information Security Management System（情報セキュリティ管理体系）を構築・改善し、適合を評価</td>
+<td>製品の安全性認証ではない</td>
+</tr>
+<tr>
+<td>ISO/IEC 27002:2022（管理策の指針）</td>
+<td>管理策の選択・実施を理解する</td>
+<td>27001と同じ認証要求事項ではない</td>
+</tr>
+<tr>
+<td>ISO/IEC 27005:2022（情報セキュリティリスク管理指針）</td>
+<td>リスクの評価・対応を支える</td>
+<td>特定の計算式だけを強制する規格ではない</td>
+</tr>
+<tr>
+<td>NIST CSF 2.0（サイバーセキュリティ枠組み）</td>
+<td>経営と現場が目標・現状・差を共有する</td>
+<td>技術設定一覧や単一の認証制度ではない</td>
+</tr>
+<tr>
+<td>NIST RMF（リスク管理枠組み）</td>
+<td>システムの管理策と運用承認をライフサイクルへ組み込む</td>
+<td>CSFと同じ手順ではない</td>
+</tr>
+<tr>
+<td>NIST SP 800-53（セキュリティ・プライバシー管理策集）</td>
+<td>管理策を選び、調整する際の参照</td>
+<td>全項目を全システムへ無条件適用しない</td>
+</tr>
+<tr>
+<td>COBIT 2019（企業の情報・技術の統治と管理）</td>
+<td>事業目標とITの統治・管理を接続する</td>
+<td>個別製品の設定標準ではない</td>
+</tr>
+<tr>
+<td>SABSA（事業に基づくセキュリティアーキテクチャ）</td>
+<td>事業要件から設計・サービス・測定へ追跡可能にする</td>
+<td>製品名や脅威一覧ではない</td>
+</tr>
+<tr>
+<td>PCI DSS（決済カード情報の保護基準）</td>
+<td>カード情報環境の保護と適合</td>
+<td>一般的な法律そのものではない</td>
+</tr>
+<tr>
+<td>FedRAMP（米国連邦クラウドのリスク・承認プログラム）</td>
+<td>連邦機関で使うクラウドの評価・承認に関係する</td>
+<td>どの顧客のどの業務でも安全を保証するものではない</td>
+</tr>
+</tbody></table></div>
+<p>ISOは公開された概要・版情報を参照しました。有料規格全文を取得して条項ごとに照合したわけではありません。<a href="https://www.iso.org/standard/27001">ISO 27001</a>、<a href="https://www.iso.org/standard/75652.html">27002</a>、<a href="https://www.iso.org/standard/80585.html">27005</a>、<a href="https://www.isaca.org/resources/cobit">COBIT</a>、<a href="https://sabsa.org/sabsa-executive-summary/">SABSA</a>、<a href="https://tts.gsa.gov/">GSAのFedRAMP紹介</a></p>
+<h3 id="d1-03-nist" tabindex="-1">3.6 CSFとRMFの深掘り</h3>
+<p>CSF 2.0は、Govern（統治）、Identify（特定）、Protect（保護）、Detect（検知）、Respond（対応）、Recover（復旧）の6機能で成果を整理します。順番に一度ずつ終える工程表ではなく、継続して働く機能です。Current Profile（現状プロファイル）とTarget Profile（目標プロファイル）の差を、事業上の優先順位に従って埋めます。Tier（実践の段階）はリスク統治・管理の厳密さを表し、単純な点数や認証合否ではありません。<a href="https://doi.org/10.6028/NIST.CSWP.29">NIST CSF 2.0</a></p>
+<p>RMFは、Prepare（準備）→Categorize（分類）→Select（選定）→Implement（実装）→Assess（評価）→Authorize（承認）→Monitor（監視）で理解します。評価者は管理策を調べ、Authorizing Official（承認権限者）は証拠と残余リスクを基に運用を承認します。技術者が「問題なし」と言うだけでは承認になりません。<a href="https://csrc.nist.gov/pubs/sp/800/37/r2/final">NIST SP 800-37 Rev.2</a></p>
+<blockquote class="callout note"><p><strong>Currency（最新性）</strong>：古い教材の「CSFは5機能」「RMFは準備を含まない6段階」を、現在版の説明として使いません。ISO 27001は2022版に2024年の気候変動関連追補があります。本書で追補の詳細暗記は求めません。</p>
+</blockquote>
+<p><strong>説明できるか</strong>：管理策の評価に合格したシステムでも、リスクの受容判断が別に必要な理由を説明してください。</p>
+<h2 id="d1-04" tabindex="-1">4. Legal / Regulatory / Compliance（法律・規制・遵守）</h2>
+<p>重要度：Core（中核）、法の適用対象・GDPRはHigh Priority（重点） / 公式対応：1.4</p>
+<h3 id="d1-04-scope" tabindex="-1">4.1 適用対象を判断するための地図</h3>
+<p>法律名を見たら、①Jurisdiction（管轄）、②対象主体、③対象情報、④対象の活動、⑤契約上の義務、を分けます。組織の所在地だけでは決まりません。顧客の所在地、処理対象、越境移転、委託関係で追加の義務が生じ得ます。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 11。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>義務の種類</th>
+<th>成り立ち</th>
+<th>例</th>
+<th>誰と確認するか</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Law（法律）</td>
+<td>立法に基づく義務</td>
+<td>個人情報保護、犯罪、知財</td>
+<td>法務</td>
+</tr>
+<tr>
+<td>Regulation（規則・規制）</td>
+<td>法に基づく監督機関の詳細要件など</td>
+<td>業種別の保護義務</td>
+<td>法務・コンプライアンス</td>
+</tr>
+<tr>
+<td>Contract（契約）</td>
+<td>当事者が合意した義務</td>
+<td>SLA、通知、監査権、損害責任</td>
+<td>法務・調達・事業</td>
+</tr>
+<tr>
+<td>Industry Standard（業界標準）</td>
+<td>業界の共通基準</td>
+<td>PCI DSS</td>
+<td>契約当事者・適合担当</td>
+</tr>
+<tr>
+<td>Internal Policy（内部方針）</td>
+<td>組織の意思決定</td>
+<td>情報分類、持出し制限</td>
+<td>経営層・規程管理者</td>
+</tr>
+</tbody></table></div>
+<p>Compliance（遵守）は必要な条件を満たすこと、Security（セキュリティ）はリスクを適切に管理することです。チェック項目に適合しても、範囲外のサービスや新しい攻撃で損害が起きることがあります。反対に、技術的に安全でも無許可の個人情報利用が合法になるわけではありません。</p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：「一番厳しい規則を選べばよい」だけでは解けません。規則が衝突する場合、法務と管轄・優先関係・合法的な代替案を整理します。契約で強行法規を消すことはできません。</p>
+</blockquote>
+<h3 id="d1-04-us" tabindex="-1">4.2 米国法・業界標準を見分ける</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 12。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>主な対象・目的</th>
+<th>判断の手がかり</th>
+<th>よくある取り違え</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FISMA：Federal Information Security Modernization Act（連邦情報セキュリティ近代化法）</td>
+<td>米国連邦機関の情報・情報システムのセキュリティ管理</td>
+<td>連邦機関や、そのために運用するシステム</td>
+<td>金融機関全般を対象とする法ではない</td>
+</tr>
+<tr>
+<td>HIPAA：Health Insurance Portability and Accountability Act（医療保険の相互運用性と説明責任に関する法）</td>
+<td>対象医療主体などのPHI：Protected Health Information（保護対象の健康情報）</td>
+<td>対象主体と委託関係、情報の性質</td>
+<td>健康に関する情報なら全企業に一律適用、ではない</td>
+</tr>
+<tr>
+<td>GLBA：Gramm-Leach-Bliley Act（グラム・リーチ・ブライリー法）</td>
+<td>対象金融機関の顧客情報のプライバシー・保護</td>
+<td>金融商品・サービスと顧客情報</td>
+<td>FISMAと混同しない</td>
+</tr>
+<tr>
+<td>SOX：Sarbanes-Oxley Act（サーベンス・オクスリー法）</td>
+<td>対象上場企業等の財務報告・内部統制</td>
+<td>財務報告の信頼性、経営者の認証</td>
+<td>全情報の機密性を直接規定する一般法ではない</td>
+</tr>
+<tr>
+<td>COPPA：Children’s Online Privacy Protection Act（児童オンラインプライバシー保護法）</td>
+<td>13歳未満向け等の対象オンラインサービスでの個人情報</td>
+<td>子ども、オンライン、保護者の同意</td>
+<td>「18歳未満」や全オフライン活動と固定しない</td>
+</tr>
+<tr>
+<td>PCI DSS：Payment Card Industry Data Security Standard（決済カード業界データセキュリティ基準）</td>
+<td>カード会員情報等を扱う対象環境と、その安全へ影響する構成</td>
+<td>カード処理・保存・伝送、関係するサービス</td>
+<td>政府が制定した法律そのものではない</td>
+</tr>
+</tbody></table></div>
+<p>FISMAは2002年のManagement（管理）法を2014年のModernization（近代化）法が更新した経緯があります。委託先を含む場合でも、「政府と契約する企業の全システムが無条件で同じ対象」と拡張しないでください。<a href="https://csrc.nist.gov/topics/laws-and-regulations/laws/fisma">NIST FISMA</a></p>
+<p>HIPAAのCovered Entity（対象主体）は医療保険制度、医療情報の標準化処理機関、特定の標準電子取引を行う医療提供者などです。Business Associate（業務委託先）の関係も確認します。Privacy Rule（プライバシー規則）は保護対象情報の利用・開示等、Security Rule（セキュリティ規則）はePHI（電子的な保護対象健康情報）の安全管理を扱います。<a href="https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html">HHSの対象主体</a>、<a href="https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html">Security Ruleの概要</a></p>
+<p>GLBAでは、プライバシー通知と情報共有の規律、Safeguards Rule（保護措置規則）などを区別します。監督する機関・適用規則は対象事業によって異なります。<a href="https://www.ftc.gov/business-guidance/privacy-security/gramm-leach-bliley-act">FTC GLBA</a> SOXでは、財務報告に関わるシステムの変更・アクセス・証跡が内部統制を支える点を押さえます。<a href="https://www.sec.gov/rule-release/33-8238">SECの内部統制規則</a></p>
+<blockquote class="callout note"><p><strong>Currency（最新性）</strong>：PCI SSCの確認時の掲載はDSS v4.0.1です。古い3.2.1を現行版としません。COPPAのFAQ自体が2025年改正への参照を促しているため、旧FAQの細かな要件を現行の全要件と扱いません。本書では対象年齢・主体・目的を学習の中心に置きます。<a href="https://www.pcisecuritystandards.org/document_library/">PCI SSC資料</a>、<a href="https://www.ftc.gov/legal-library/browse/rules/childrens-online-privacy-protection-rule-coppa">FTC COPPA規則</a></p>
+</blockquote>
+<blockquote class="callout insight"><p><strong>Problem-derived Insights（問題演習由来の知見）</strong>：Q11・Q34の要約からFISMAの適用対象を重点化しました。選択肢で「Federal（連邦）」「Healthcare（医療）」「Financial（金融）」「Cardholder（カード会員）」が見えたら、まず主体と情報を対応させ、名称の似た響きで選ばないようにします。</p>
+</blockquote>
+<h3 id="d1-04-gdpr" tabindex="-1">4.3 GDPRとPrivacy（プライバシー）</h3>
+<p>GDPR：General Data Protection Regulation（一般データ保護規則）では、Personal Data（個人データ）を取り扱う目的・根拠・範囲・保護・説明責任を考えます。「EUの市民権がある人だけ」が対象なのではありません。EU内の拠点との関係、EU内の人への商品・サービス提供や行動監視など、Article 3（第3条）の条件を確認します。<a href="https://commission.europa.eu/law/law-topic/data-protection/data-protection-explained_en">欧州委員会：適用範囲と基本概念</a></p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 13。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>法律上の役割</th>
+<th>意味</th>
+<th>セキュリティ上の要点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Controller（管理者・処理目的等の決定主体）</td>
+<td>処理の目的と手段を決める</td>
+<td>適法性・透明性・説明責任を確保する</td>
+</tr>
+<tr>
+<td>Processor（処理者・委託処理主体）</td>
+<td>管理者のために処理する</td>
+<td>指示・契約・安全管理・再委託条件を守る</td>
+</tr>
+<tr>
+<td>Data Subject（データ主体）</td>
+<td>個人データが関係する本人</td>
+<td>権利行使の対象者</td>
+</tr>
+<tr>
+<td>DPO：Data Protection Officer（データ保護責任者）</td>
+<td>要件に該当する組織等で助言・監督・窓口を担う</td>
+<td>管理者の責任を丸ごと肩代わりしない</td>
+</tr>
+</tbody></table></div>
+<p>Privacy（プライバシー）は機密保持だけでなく、本人に関する情報を適切な目的・根拠で使うことも含みます。Purpose Limitation（目的制限）、Data Minimization（データ最小化）、Accuracy（正確性）、Storage Limitation（保存制限）、透明性と説明責任を、収集時から考えます。同意は適法な処理根拠の一つであり、唯一の根拠ではありません。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 14。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>権利</th>
+<th>何を求めるか</th>
+<th>区別の目印</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Access（アクセス・開示）</td>
+<td>自分の情報や処理状況を知る</td>
+<td>「見せてほしい」</td>
+</tr>
+<tr>
+<td>Rectification（訂正）</td>
+<td>不正確な情報を直す</td>
+<td>「間違いを直して」</td>
+</tr>
+<tr>
+<td>Erasure（消去）</td>
+<td>条件を満たす情報を削除する</td>
+<td>Right to be Forgotten（忘れられる権利）</td>
+</tr>
+<tr>
+<td>Restriction（処理の制限）</td>
+<td>一定の処理を制限する</td>
+<td>保管と通常利用を分ける</td>
+</tr>
+<tr>
+<td>Portability（データ可搬性）</td>
+<td>条件を満たすデータを利用可能な形式で受け取る・移す</td>
+<td>「別サービスへ持ち運ぶ」</td>
+</tr>
+<tr>
+<td>Objection（異議申立て）</td>
+<td>一定の処理に異議を示す</td>
+<td>消去請求と同じとは限らない</td>
+</tr>
+</tbody></table></div>
+<p><strong>Q4の重点</strong>：Erasure（消去）はすべての情報を無条件に即時消去する権利ではありません。法的義務に基づく保存、法的請求など例外を確認します。削除できない場合でも、理由と処理制限の検討を切り離して考えます。<a href="https://commission.europa.eu/law/law-topic/data-protection/information-individuals_en">欧州委員会：本人の権利</a></p>
+<p><strong>漏えい通知の読み方</strong>：管理者から監督機関へは、本人の権利・自由へのリスクが生じそうにない場合を除き、不当に遅滞せず、可能なら認識後72時間以内に通知します。本人への通知は高いリスクの場合に不当に遅滞なく行うという別の条件です。「事故発生後72時間以内に全員へ通知」とまとめません。<a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng">GDPR本文：第3・5・6・15〜22・33〜34条</a></p>
+<h3 id="d1-04-global" tabindex="-1">4.4 世界のプライバシー制度と越境移転</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 15。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>制度</th>
+<th>国・地域と学習上の位置付け</th>
+<th>見分ける点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CCPA / CPRA（カリフォルニア州の消費者プライバシー制度／改正法）</td>
+<td>対象企業と州住民の権利</td>
+<td>CPRAはCCPAを改正。知る・消去・訂正・売却や共有の拒否等</td>
+</tr>
+<tr>
+<td>PIPL：Personal Information Protection Law（中国の個人情報保護法）</td>
+<td>中国の個人情報制度として公式範囲に例示</td>
+<td>日本の個人情報保護法や南アフリカ法と取り違えない</td>
+</tr>
+<tr>
+<td>POPIA：Protection of Personal Information Act（南アフリカの個人情報保護法）</td>
+<td>公私の主体の適法な個人情報処理を扱う</td>
+<td>Information Officer（情報責任者）など制度固有の役割</td>
+</tr>
+<tr>
+<td>APPI：Act on the Protection of Personal Information（日本の個人情報保護法）</td>
+<td>日本での実務へつなげる補完</td>
+<td>利用目的、安全管理、第三者提供、外国移転等を確認</td>
+</tr>
+</tbody></table></div>
+<p><a href="https://cppa.ca.gov/faq.html">CPPAのFAQ</a>、<a href="https://inforegulator.org.za/popia/">南アフリカ情報規制当局</a>、<a href="https://www.ppc.go.jp/en/legal/">日本の個人情報保護委員会</a>。PIPLについては、中国本土の人への商品・サービス提供や行動の分析等で域外の組織も関係し得ること、外国移転に追加の条件があることを押さえます。中国当局の法律本文取得はできず、香港の公的な個人情報保護当局の解説で補完しました。現行の移転閾値や詳細手続の網羅的な法的検証は行っていません。<a href="https://www.pcpd.org.hk/english/data_privacy_law/mainland_law/mainland_law.html">香港PCPD：PIPLの解説</a></p>
+<p>Transborder Data Flow（国境を越えるデータ移転）は、サーバー所在地だけでなく、海外からのアクセス、再委託先、バックアップ、サポート、削除まで確認します。Data Residency（データ所在）、Data Sovereignty（データに及ぶ法的支配）、Data Localization（国内保存などの要求）を同じ意味で使いません。</p>
+<p>GDPRでは、第三国移転についてAdequacy Decision（十分性認定）、SCC：Standard Contractual Clauses（標準契約条項）、BCR：Binding Corporate Rules（拘束的企業準則）などの条件・根拠を検討します。暗号化は保護措置であり、移転の法的根拠を自動的に作るものではありません。<a href="https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/rules-international-data-transfers_en">欧州委員会：国際移転の条件</a></p>
+<blockquote class="callout trap"><p><strong>Common Trap（よくあるひっかけ）</strong>：「EU向けサービスではない」「データを匿名化したつもり」「海外リージョンを使っていない」といった一条件で、全義務がないと判断しません。Pseudonymization（仮名化）と、本人の再識別が合理的にできないAnonymization（匿名化）も区別します。</p>
+</blockquote>
+<h3 id="d1-04-ip" tabindex="-1">4.5 Intellectual Property（知的財産）と利用許諾</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 16。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>保護</th>
+<th>主に守るもの</th>
+<th>成立・維持の考え方</th>
+<th>試験の手がかり</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Copyright（著作権）</td>
+<td>文章・コード等の創作的表現</td>
+<td>創作物への権利。国ごとの要件を確認</td>
+<td>アイデアそのものと表現を区別</td>
+</tr>
+<tr>
+<td>Trademark（商標）</td>
+<td>商品・サービスの出所を示す表示</td>
+<td>標章・登録・使用等の制度</td>
+<td>ブランド名・ロゴ・混同防止</td>
+</tr>
+<tr>
+<td>Patent（特許）</td>
+<td>要件を満たす発明</td>
+<td>出願・審査・公開、期間・地域の制限</td>
+<td>技術的発明と独占的権利</td>
+</tr>
+<tr>
+<td>Trade Secret（営業秘密）</td>
+<td>秘密であることに価値のある情報</td>
+<td>秘密として扱う合理的な措置を維持</td>
+<td>秘密性・経済価値・秘密管理</td>
+</tr>
+</tbody></table></div>
+<p>同じソフトウェアでも、コード表現は著作権、名称は商標、特定発明は特許、非公開ノウハウは営業秘密になり得ます。<a href="https://www.uspto.gov/trademarks/basics/trademark-patent-copyright">USPTOの比較</a>、<a href="https://www.uspto.gov/ip-policy/trade-secret-policy">営業秘密</a></p>
+<p>License（利用許諾）は権利者が許可する利用範囲です。購入したコピーが、再配布・改変・商用利用のすべてを許すとは限りません。Open Source（オープンソース）も無条件で権利がないソフトウェアではなく、ライセンスの条件に従います。台数・ユーザー数・再配布・帰属表示・ソース開示条件を資産管理と調達へ組み込みます。</p>
+<h3 id="d1-04-crime" tabindex="-1">4.6 サイバー犯罪・漏えい・輸出入管理</h3>
+<p>Cybercrime（サイバー犯罪）では、不正アクセス、詐欺、情報の窃取・破壊などを、権限・目的・行為・管轄で評価します。Data Breach（データ侵害）は窃取だけでなく、適用法によって不正な開示や喪失等も含みます。通知、契約上の連絡、証拠保全、通常業務の回復を並行調整します。</p>
+<p>Import / Export Controls（輸出入管理）は暗号製品、ソフトウェア、技術情報などに関係します。国・品目・用途・利用者・移転形態を確認し、ライセンスや例外の条件を調べます。米国EAR：Export Administration Regulations（輸出管理規則）のENC（暗号品目の許可例外）にも分類・報告等の条件があります。「強い暗号はすべて輸出禁止」「ダウンロードなら輸出ではない」という単純化を避けます。<a href="https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-740/section-740.17">15 CFR 740.17</a></p>
+<p><strong>説明できるか</strong>：カード情報を扱う病院で複数の保護要件が同時に関係する理由と、それらを一つの法名だけで処理できない理由を説明してください。</p>
+<h2 id="d1-05" tabindex="-1">5. Investigation Requirements（調査の要件）</h2>
+<p>重要度：Core（中核） / 公式対応：1.5</p>
+<h3 id="d1-05-types" tabindex="-1">5.1 調査は目的・権限・基準を先に定める</h3>
+<p>同じ漏えいでも、雇用上の処分、民事上の損害、刑事責任、規制違反、業界標準の適合は別の問題です。一つの事件で複数の調査が並行し得ます。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 17。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>種類</th>
+<th>主な目的・主体</th>
+<th>必要な基準・権限</th>
+<th>学習上の識別</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Administrative（社内・行政的調査）</td>
+<td>組織の規程違反を人事・管理部門等が確認</td>
+<td>適法な監視、社内規程、公平な手続</td>
+<td>就業規則や組織の処分</td>
+</tr>
+<tr>
+<td>Criminal（刑事調査）</td>
+<td>捜査機関が犯罪と刑罰を扱う</td>
+<td>捜査権限、令状等の法的手続、厳格な証拠</td>
+<td>国家による訴追</td>
+</tr>
+<tr>
+<td>Civil（民事調査）</td>
+<td>当事者間の権利・責任・損害を扱う</td>
+<td>開示・保存・裁判手続</td>
+<td>損害賠償や契約紛争</td>
+</tr>
+<tr>
+<td>Regulatory（規制当局の調査）</td>
+<td>監督当局が規制遵守を確認</td>
+<td>当局の権限、報告義務、業種規制</td>
+<td>監督・制裁・是正命令</td>
+</tr>
+<tr>
+<td>Industry Standards（業界標準に関する調査）</td>
+<td>決済等の適合や事故を関係機関が確認</td>
+<td>契約・基準・指定された評価手続</td>
+<td>PCI等の義務との対応</td>
+</tr>
+</tbody></table></div>
+<p>米国法を前提とする基礎問題では、刑事のBeyond a Reasonable Doubt（合理的な疑いを超える立証）と、民事のPreponderance of Evidence（証拠の優越）が対比されます。世界中のすべての民事・規制手続に同じ基準が適用されるわけではありません。基準は管轄と事件の種類を確認します。</p>
+<h3 id="d1-05-evidence" tabindex="-1">5.2 証拠を使える状態に保つ</h3>
+<p>Evidence（証拠）は、Relevant（関連性がある）、Authentic（真正である）、Reliable（信頼できる）だけでなく、適法に取得・保存され、扱いを説明できる必要があります。フォレンジックの道具を先に動かすと、権限外の個人情報を取得したり、証拠を変更したりするおそれがあります。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 18。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>目的</th>
+<th>実務で残す情報</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Chain of Custody（証拠の管理履歴）</td>
+<td>誰が・いつ・なぜ・どのように扱ったかを説明する</td>
+<td>取得者、移送、受渡し、保管、アクセス</td>
+</tr>
+<tr>
+<td>Legal Hold（法的保存措置）</td>
+<td>関連証拠を通常の削除から保全する</td>
+<td>対象、通知先、停止する削除、解除権限</td>
+</tr>
+<tr>
+<td>Integrity Verification（完全性検証）</td>
+<td>コピーや証拠の変化を検出する</td>
+<td>取得時・検証時のハッシュ、使用手段、時刻</td>
+</tr>
+<tr>
+<td>Order of Volatility（揮発性の順序）</td>
+<td>消えやすい情報を優先して取得する</td>
+<td>メモリ、接続、実行状態などの取得判断</td>
+</tr>
+<tr>
+<td>Documentation（記録）</td>
+<td>再現・説明・検証を可能にする</td>
+<td>操作内容、設定、時刻ずれ、担当、例外</td>
+</tr>
+</tbody></table></div>
+<p>ライブシステムは電源断でメモリ情報が失われる一方、稼働継続は被害を拡大し得ます。「常に即電源断」「常に稼働維持」という固定回答は使いません。安全・権限・証拠・業務影響を承認済みの手順に沿って調整します。NISTのフォレンジック資料も、適用法について経営・法務と調整することを前提にしています。<a href="https://csrc.nist.gov/pubs/sp/800/86/final">NIST SP 800-86</a></p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：Domain 1では、調査の目的・権限・要求を押さえます。具体的なディスク取得コマンドや詳細分析はDomain 7の領域です。社員だから私物端末を自由に調べてよい、という結論は出しません。</p>
+</blockquote>
+<blockquote class="callout trap"><p><strong>Common Trap（よくあるひっかけ）</strong>：ハッシュが一致しても、不適法な取得、管理履歴の欠落、取得前の改ざんまで解決したわけではありません。Legal Hold（法的保存措置）中は、通常の保存期間を過ぎても関連証拠の自動削除を止める必要があります。</p>
+</blockquote>
+<p><strong>説明できるか</strong>：漏えいの原因調査を急ぐときに、最初に調査権限と証拠保全手順を確認する価値を説明してください。</p>
+<h2 id="d1-06" tabindex="-1">6. Security Documentation（方針・標準・手順・指針）</h2>
+<p>重要度：Core（中核） / 公式対応：1.6</p>
+<h3 id="d1-06-documents" tabindex="-1">6.1 文書の役割を目的と粒度で比較する</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 19。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>文書</th>
+<th>答える問い</th>
+<th>義務性の基本</th>
+<th>作成・承認・実施の典型</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Policy（方針）</td>
+<td>何を守り、なぜ行うか</td>
+<td>必須</td>
+<td>責任部門が起案、経営層等が承認、全対象者が遵守</td>
+<td>機密情報へのアクセスを業務上必要な者へ限定する</td>
+</tr>
+<tr>
+<td>Standard（標準）</td>
+<td>何を必須条件にするか</td>
+<td>必須</td>
+<td>専門部門が定義、権限者が承認、担当が実装</td>
+<td>特権アクセスでは承認された多要素認証を必須にする</td>
+</tr>
+<tr>
+<td>Procedure（手順）</td>
+<td>どの順で実施するか</td>
+<td>適用対象は原則必須</td>
+<td>運用部門が作成・維持、担当者が実施</td>
+<td>申請確認→承認→付与→確認→記録</td>
+</tr>
+<tr>
+<td>Guideline（指針・推奨事項）</td>
+<td>どの方法が推奨されるか</td>
+<td>通常は推奨</td>
+<td>専門部門が提示、状況に応じて利用</td>
+<td>強い認証の利用者向け推奨例</td>
+</tr>
+<tr>
+<td>Baseline（最低基準・標準構成）</td>
+<td>最低限どの状態にするか</td>
+<td>組織で定めた適用条件に従う</td>
+<td>標準を実装可能な構成へ具体化</td>
+<td>サーバーの初期構成と禁止設定</td>
+</tr>
+</tbody></table></div>
+<p>具体的な文書名・承認者は組織ごとに異なります。Policy（方針）と名付けた文書に設定値が書かれる場合もありますが、試験では記述が担う役割を優先します。Guideline（指針）が契約・規程へ取り込まれ必須化される場合もあるため、義務性は名称だけでなく適用関係を確認します。</p>
+<h3 id="d1-06-lifecycle" tabindex="-1">6.2 文書を実装し維持する</h3>
+<p>文書化の流れは、適用要件と対象の明確化→利害関係者との調整→責任者・承認→周知・教育→実装→遵守確認→変更・例外管理です。発行して終わりではありません。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 20。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>管理項目</th>
+<th>なぜ必要か</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Owner（文書責任者）と承認者</td>
+<td>誰が解釈・更新・例外判断をするか明確にする</td>
+</tr>
+<tr>
+<td>Scope（適用範囲）と対象者</td>
+<td>子会社・委託先・私物端末への適用を曖昧にしない</td>
+</tr>
+<tr>
+<td>Version（版）・施行日・改訂履歴</td>
+<td>古い手順の誤使用を避ける</td>
+</tr>
+<tr>
+<td>Review（見直し）</td>
+<td>法令・脅威・業務の変化を反映する</td>
+</tr>
+<tr>
+<td>Exception（例外）の期限と代替措置</td>
+<td>例外が恒久的な抜け道になることを防ぐ</td>
+</tr>
+<tr>
+<td>Evidence（実施証拠）</td>
+<td>受講記録・承認・設定・監査で実装を確認する</td>
+</tr>
+</tbody></table></div>
+<p>Exception（例外）は、理由・対象・リスク・Compensating Control（代替管理策）・承認権限・期限・再評価を記録します。「技術的にできないので黙って除外」は正式なリスク受容ではありません。</p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：「すべての社員へ適切な利用を求める」はAUP：Acceptable Use Policy（許容利用方針）、「新規アカウントの登録作業の順番」はProcedure（手順）です。抽象度と目的を分けると、選択肢の語感に左右されません。</p>
+</blockquote>
+<p><strong>説明できるか</strong>：方針に細かな製品画面の操作まで埋め込むと、長期的な運用が難しくなる理由を説明してください。</p>
+<h2 id="d1-07" tabindex="-1">7. Business Continuity（事業継続）の要求</h2>
+<p>重要度：High Priority（重点） / 公式対応：1.7</p>
+<h3 id="d1-07-plans" tabindex="-1">7.1 BCP / DRP / Incident Responseの関係</h3>
+<p>Business Continuity（事業継続）は、混乱が起きても、重要な製品・サービスを許容される水準で継続・再開するための能力です。すべての業務を平常時と同じ水準で直ちに復旧することが目的ではありません。人の安全を確保し、限られた資源を重要業務へ配分します。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 21。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>計画・活動</th>
+<th>主目的と範囲</th>
+<th>主な関与者</th>
+<th>成功の尺度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BCP：Business Continuity Plan（事業継続計画）</td>
+<td>人・場所・取引先・情報・ITを含め重要業務を続ける</td>
+<td>経営層、業務責任者、BC担当、各部門</td>
+<td>重要サービスを許容水準で提供できる</td>
+</tr>
+<tr>
+<td>DRP：Disaster Recovery Plan（災害復旧計画）</td>
+<td>被災したIT・施設等を回復させる計画。CISSPではIT復旧の文脈が中心</td>
+<td>IT復旧担当、システム所有者、施設等</td>
+<td>必要な資源・データを復旧目標内で回復</td>
+</tr>
+<tr>
+<td>Incident Response（インシデント対応）</td>
+<td>セキュリティ事故を検知・封じ込め・対処・復旧する</td>
+<td>対応チーム、法務、広報、関係部門</td>
+<td>被害抑制と安全な業務回復</td>
+</tr>
+<tr>
+<td>Crisis Management（危機管理）</td>
+<td>重大な状況で全社の意思決定と対外調整を行う</td>
+<td>経営層、危機管理、広報</td>
+<td>安全・信頼・意思決定の一貫性</td>
+</tr>
+</tbody></table></div>
+<p>DRP（災害復旧計画）は事業継続を支える一つの計画として理解します。BCPの定義を「サーバーの修理」に縮めると、代替要員、手作業、通信、仕入れ、顧客対応が抜けます。BCPには事前準備だけでなく、発動後の業務継続・再開の行動も含まれます。「事前の対策はすべてBCP、有事の行動はすべてDRP」という分類はしません。</p>
+<blockquote class="callout insight"><p><strong>Problem-derived Insights（問題演習由来の知見）</strong>：Q22・Q23に加え、完走時の総括ではQ41・Q53・Q56・Q66・Q67・Q76がBCP／DRP関連の重点として挙がっていました。個々の設問は再取得できていないため、正誤を追加で断定せず、目的・順序・時間目標の境界をまとめて補強しています。</p>
+</blockquote>
+<h3 id="d1-07-bia" tabindex="-1">7.2 BIA（事業影響分析）は業務から資源へ進む</h3>
+<p>BIA：Business Impact Analysis（事業影響分析）は、業務が中断した場合の影響と、その時間的変化を把握し、復旧要求・優先順位を導く活動です。Risk Assessment（リスク評価）が「どの脅威がどれほど起こり得るか」を扱うのに対し、BIAは「止まるとどう困り、いつまで耐えられるか」に焦点を置きます。両者を組み合わせて事業継続の戦略を選びます。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 22。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>段階</th>
+<th>確認すること</th>
+<th>主な成果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>準備</td>
+<td>経営の支援、目的、対象、担当、調査方法</td>
+<td>合意された分析範囲</td>
+</tr>
+<tr>
+<td>業務と影響</td>
+<td>重要サービス、停止時の金銭・安全・契約・信用への影響、時間経過</td>
+<td>重要度と許容できない影響の境界</td>
+</tr>
+<tr>
+<td>必要資源と依存</td>
+<td>人、場所、データ、システム、認証、通信、取引先</td>
+<td>業務と資源の対応表</td>
+</tr>
+<tr>
+<td>復旧要求・優先</td>
+<td>業務目標に必要な順番と回復時間</td>
+<td>承認可能な復旧優先順位と目標</td>
+</tr>
+</tbody></table></div>
+<p>この整理は、NIST SP 800-34の「業務と重要度→必要資源→資源の復旧優先」の考え方と整合させたものです。<a href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-34r1.pdf">NIST SP 800-34 第3.2節</a></p>
+<p><strong>Q23の読み直し</strong>：履歴要約には「BIAの順序・資産価値算定」が要注意とあります。ただし、原選択肢を取得できていないため「BIAは必ず資産価格の算定から」と一般化しません。事業価値・重要度の把握は必要ですが、システム購入価格だけでは優先順位は決まりません。安全上重要な安価なシステムが、高価な非重要システムより先になることもあります。</p>
+<p><strong>例：受注業務を復旧する。</strong> 受注アプリだけ復旧しても、IdP：Identity Provider（認証基盤）、DNS（名前解決）、通信回線、決済、倉庫連携が使えなければ注文は完了しません。復旧は「高価なサーバー順」ではなく、業務を成立させる依存関係と必要な水準に従います。</p>
+<h3 id="d1-07-time" tabindex="-1">7.3 RTO / RPO / MTDを時間の意味で区別する</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 23。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>用語</th>
+<th>問うこと</th>
+<th>決める根拠</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MTD：Maximum Tolerable Downtime（最大許容停止時間）</td>
+<td>業務は全体としてどこまで停止に耐えられるか</td>
+<td>事業への許容不能な影響</td>
+<td>受注停止は8時間が限界</td>
+</tr>
+<tr>
+<td>MTPD：Maximum Tolerable Period of Disruption（最大許容中断期間）</td>
+<td>中断の影響が許容不能になるまでの期間</td>
+<td>業務・サービスの耐えられる期間</td>
+<td>継続管理で用いられる関連概念</td>
+</tr>
+<tr>
+<td>RTO：Recovery Time Objective（目標復旧時間）</td>
+<td>どれくらいで資源・サービスを回復すべきか</td>
+<td>業務要求、依存関係、実現可能性</td>
+<td>4時間以内にシステムを回復</td>
+</tr>
+<tr>
+<td>RPO：Recovery Point Objective（目標復旧時点）</td>
+<td>どの時点までのデータへ戻せる必要があるか</td>
+<td>許容できるデータ損失</td>
+<td>直前15分までの記録を回復</td>
+</tr>
+<tr>
+<td>WRT：Work Recovery Time（業務再開に要する追加時間）</td>
+<td>IT回復後、業務確認や処理再開にどれくらい必要か</td>
+<td>確認・再入力・再開準備</td>
+<td>確認と再処理に2時間</td>
+</tr>
+</tbody></table></div>
+<p>MTD（最大許容停止時間）とMTPD（最大許容中断期間）は関連しますが、採用する規格・教材の定義を確認します。RTOの対象に「システム復旧だけ」を含めるか「業務再開まで」を含めるかでも、追加時間の数え方が変わります。</p>
+<p><strong>学習用の時間モデル</strong>：RTOがIT復旧だけ、WRTがその後の業務再開時間なら、<code>RTO + WRT ≤ MTD</code> を満たすように計画します。現実には不確実性の余裕も必要です。この式をすべての規格で必ず同じ意味の恒等式として扱わないでください。</p>
+<p><strong>例</strong>：MTD 8時間、ITのRTO 4時間、WRT 2時間なら、残り2時間が計画上の余地です。RPOが15分でも「15分でサービスが復旧する」意味ではありません。RTOは未来の回復までの時間、RPOは過去のどこまでのデータを回復するかです。</p>
+<p><strong>設計の確認</strong>：RPO 15分の要求に、1日1回のバックアップだけでは通常対応できません。レプリケーション（複製）でも破損や不正変更を即時に複製する危険があるため、改変から保護された履歴と復旧確認を組み合わせます。</p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：事業側が必要水準を示し、IT側が実現可能性・費用・制約を返します。現行バックアップが24時間間隔だからRPOも24時間、と要件を逆算して正当化しません。満たせなければ差と対応計画を意思決定者へ示します。</p>
+</blockquote>
+<h3 id="d1-07-dependencies" tabindex="-1">7.4 外部依存と継続戦略</h3>
+<p>External Dependencies（外部依存）には、電力、通信、物流、決済、クラウド、部材、人員派遣、建物、共有認証などがあります。契約先を二つにしても、同じ地域、上位回線、クラウド基盤へ依存していれば同時に止まります。これがCommon-mode Failure（共通原因故障）の問題です。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 24。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>戦略の例</th>
+<th>向いている条件</th>
+<th>注意点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>手作業・代替手段</td>
+<td>最低限のサービスを簡易に続けたい</td>
+<td>処理能力、誤り、後日の照合が必要</td>
+</tr>
+<tr>
+<td>代替要員・相互訓練</td>
+<td>特定個人への依存が大きい</td>
+<td>アクセス権と承認経路も準備する</td>
+</tr>
+<tr>
+<td>複数供給元</td>
+<td>一社停止の影響が大きい</td>
+<td>上流供給網や輸送の共通依存を確認</td>
+</tr>
+<tr>
+<td>代替拠点</td>
+<td>施設停止へ備える</td>
+<td>距離、同時災害、利用者の移動を考慮</td>
+</tr>
+<tr>
+<td>クラウドの分散構成</td>
+<td>復旧時間を短縮したい</td>
+<td>コスト、データ整合性、契約、運用複雑性</td>
+</tr>
+</tbody></table></div>
+<p>Supporting（補完）として、Hot Site（稼働準備の整った代替拠点）は一般に復旧が速く高コスト、Cold Site（設備等を別途用意する代替拠点）は遅く低コスト、Warm Site（中間的な準備の拠点）はその間です。ただし名称だけでRTO達成は保証できず、データ・人員・回線・手順の準備を確認します。</p>
+<h3 id="d1-07-exercise" tabindex="-1">7.5 要求の実装・演習・改善</h3>
+<p>要求を優先付けしてから戦略を選び、経営が費用と残余リスクを判断し、計画・契約・資源・教育へ落とします。計画の担当者が起案・維持を行っても、重要な事業継続方針と資源配分の承認は権限を持つ経営側の責任です。Exercise（演習）では紙面の整合性だけでなく、連絡先、意思決定権限、手作業、外部事業者との協力、データの利用可能性を確かめます。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 25。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>確認方法</th>
+<th>何を確かめるか</th>
+<th>限界</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Read-through（読み合わせ）</td>
+<td>計画の誤り・連絡先・役割</td>
+<td>実際に復旧できるかは十分に分からない</td>
+</tr>
+<tr>
+<td>Tabletop（机上演習）</td>
+<td>シナリオに沿う判断と部門連携</td>
+<td>本番資源の動作を証明しない</td>
+</tr>
+<tr>
+<td>Simulation（模擬演習）</td>
+<td>想定環境での動作と判断</td>
+<td>模擬条件と本番の差がある</td>
+</tr>
+<tr>
+<td>Parallel Test（並行試験）</td>
+<td>通常業務を続けて代替環境を動かす</td>
+<td>全面切替の全リスクは再現しない</td>
+</tr>
+<tr>
+<td>Full Interruption（全面停止・切替試験）</td>
+<td>実際の切替に近い総合動作</td>
+<td>業務影響が大きく、慎重な承認と戻しが必要</td>
+</tr>
+</tbody></table></div>
+<p>最も現実的な試験を常に最初に選ぶわけではありません。目的・リスク・成熟度に応じて段階的に検証し、Lesson Learned（得られた教訓）を計画・BIA・契約へ戻します。人命の保護は試験中も優先します。</p>
+<p><strong>説明できるか</strong>：復旧サーバーの起動成功と、BCPの成功が同じでない理由を、依存関係・データ・人員の3点から説明してください。</p>
+<h2 id="d1-08" tabindex="-1">8. Personnel Security（人的セキュリティ）</h2>
+<p>重要度：Core（中核）、職務分離はHigh Priority（重点） / 公式対応：1.8</p>
+<h3 id="d1-08-lifecycle" tabindex="-1">8.1 雇用・配置・退職を一つのライフサイクルで管理する</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 26。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>段階</th>
+<th>目的と対応</th>
+<th>担当の連携</th>
+<th>ひっかけ</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Screening（採用前確認）</td>
+<td>職務のリスクに比例した身元・経歴確認</td>
+<td>人事・法務・採用部門</td>
+<td>無制限な調査や差別を許容しない</td>
+</tr>
+<tr>
+<td>Hiring（採用）</td>
+<td>職務・守秘・権利・遵守事項を合意</td>
+<td>人事・法務・管理者</td>
+<td>技術アクセスだけで責任を定義しない</td>
+</tr>
+<tr>
+<td>Onboarding（受入れ）</td>
+<td>業務上必要な権限を承認後に付与、教育・機器配布</td>
+<td>上長・所有者・IT</td>
+<td>前任者の権限を丸ごと複製しない</td>
+</tr>
+<tr>
+<td>Transfer（異動）</td>
+<td>新職務の権限付与と旧権限の見直し</td>
+<td>旧・新上長、人事、IT</td>
+<td>追加するだけのPrivilege Creep（権限の累積）</td>
+</tr>
+<tr>
+<td>Termination（退職・契約終了）</td>
+<td>適切な時点でアクセス失効、資産回収、引継ぎ</td>
+<td>人事・法務・警備・IT</td>
+<td>通知より早すぎる失効や、終了後の放置</td>
+</tr>
+</tbody></table></div>
+<p>退職時の順序と時刻は、人事・法務・安全上の要件と整合させます。敵対的な退職では同時性が重要になる一方、すべての退職者を同じ手順で扱うとは限りません。アカウントの削除と無効化を区別し、調査・保存義務のある記録や業務データを不用意に消しません。</p>
+<blockquote class="callout insight"><p><strong>Problem-derived Insights（問題演習由来の知見）</strong>：再確認した完走時総括ではQ109のTermination Process（退職・終了プロセス）が誤答論点として挙がっていました。ユーザーの選択肢は未取得のため、具体的な回答番号ではなく、人事通知・失効時刻・資産回収・記録保全の連携へ一般化しています。</p>
+</blockquote>
+<h3 id="d1-08-sod" tabindex="-1">8.2 職務分離と内部者リスク</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 27。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>目的</th>
+<th>例</th>
+<th>境界</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Least Privilege（最小権限）</td>
+<td>必要最小限の操作に限定</td>
+<td>読取業務へ更新権限を与えない</td>
+<td>情報を知る業務上の必要性と関連するが同義ではない</td>
+</tr>
+<tr>
+<td>Need-to-know（知る必要性）</td>
+<td>特定情報を必要とする者へ限定</td>
+<td>人事担当でも担当外の機微情報は見せない</td>
+<td>役職の高さだけで全情報へアクセスさせない</td>
+</tr>
+<tr>
+<td>Separation of Duties（職務分離）</td>
+<td>一人で不正を完結しにくくする</td>
+<td>申請・承認・支払実行を分ける</td>
+<td>共謀まで完全に防ぐわけではない</td>
+</tr>
+<tr>
+<td>Dual Control（複数人による共同管理）</td>
+<td>重要操作に複数人の関与を要求</td>
+<td>高リスクな鍵操作を二者で承認</td>
+<td>日常的な別職務への分担とは粒度が異なる</td>
+</tr>
+<tr>
+<td>Job Rotation（職務ローテーション）</td>
+<td>属人化を減らし、不正の兆候を発見</td>
+<td>担当交代で不自然な帳簿を確認</td>
+<td>引継ぎ後の旧権限を残さない</td>
+</tr>
+<tr>
+<td>Mandatory Vacation（強制休暇）</td>
+<td>本人不在でも業務を回し、継続的な隠蔽を見つける</td>
+<td>他者が担当処理を確認</td>
+<td>単なる福利厚生目的の設問と区別</td>
+</tr>
+</tbody></table></div>
+<p><strong>演習からの一般原則</strong>：一人が処理を開始し承認し隠せるなら、認証強化だけでは不正の構造を解消できません。権限・承認・独立した照合を組み合わせます。MFA（多要素認証）は本人以外による利用を減らしますが、本人の不正な権限行使まで防ぐものではありません。</p>
+<p>Insider Threat（内部者の脅威）は悪意だけでなく、過失、疲労、誤操作、侵害された正規アカウントでも生じます。監視は適法性、比例性、通知、アクセス制限と組み合わせ、個人への思い込みで扱いません。</p>
+<h3 id="d1-08-contractors" tabindex="-1">8.3 契約者・委託先の人にも統制を適用する</h3>
+<p>Vendor（供給者）、Consultant（助言者）、Contractor（契約作業者）についても、役割、守秘、必要権限、教育、事故報告、期限、契約終了時の失効を決めます。NDA（秘密保持契約）は情報を秘密として扱う義務、AUP（許容利用方針）は許される使い方を定めるもので、相互に代替しません。</p>
+<p>委託元は、個人の受入れ・監督と、企業としての供給者評価を両方行います。企業の認証があることは、委託先のすべての従業員に自社管理者権限を与える理由にはなりません。<a href="#d1-11">供給者全体の管理は第11章</a></p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：人事の通知、業務側の承認、ITの付与・失効を一つの流れにします。「誰が実施したか」と「誰が権限を認めたか」を分けてください。</p>
+</blockquote>
+<p><strong>説明できるか</strong>：異動時に新しい権限だけを足す運用が、退職処理を正しく行っていても危険な理由を説明してください。</p>
+<h2 id="d1-09" tabindex="-1">9. Risk Management（リスク管理）</h2>
+<p>重要度：High Priority（重点） / 公式対応：1.9</p>
+<h3 id="d1-09-terms" tabindex="-1">9.1 Threat / Vulnerability / Riskの因果関係</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 28。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>用語</th>
+<th>意味</th>
+<th>Webアプリの例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Asset（資産）</td>
+<td>守る価値があるもの</td>
+<td>サービス、顧客データ、信頼</td>
+</tr>
+<tr>
+<td>Threat Source / Agent（脅威源・脅威主体）</td>
+<td>悪影響を引き起こす可能性のある源</td>
+<td>悪意あるハッカー、自然災害</td>
+</tr>
+<tr>
+<td>Threat Event（脅威事象）</td>
+<td>損害を生じさせ得る出来事</td>
+<td>攻撃者による不正な入力の送信</td>
+</tr>
+<tr>
+<td>Vulnerability（脆弱性）</td>
+<td>脅威に利用され得る弱点</td>
+<td>未修正の欠陥、不十分な入力処理</td>
+</tr>
+<tr>
+<td>Attack（攻撃）</td>
+<td>悪意を持つ主体の具体的行為・手法</td>
+<td>SQL Injection（SQLインジェクション）</td>
+</tr>
+<tr>
+<td>Likelihood（発生可能性）</td>
+<td>その条件で事象と悪影響が生じる見込み</td>
+<td>公開状態・攻撃能力・既存対策で変化</td>
+</tr>
+<tr>
+<td>Impact / Consequence（影響・結果）</td>
+<td>資産・業務への不利益</td>
+<td>Web改ざん、停止、信用低下</td>
+</tr>
+<tr>
+<td>Risk（リスク）</td>
+<td>不確実な事象による影響の可能性・大きさ</td>
+<td>攻撃が成功し業務へ損失を与えるリスク</td>
+</tr>
+</tbody></table></div>
+<p><strong>Q95</strong>ではユーザー回答C（悪意あるハッカー）が正解でした。一般化すると、人物＝脅威主体、弱点＝脆弱性、手口＝攻撃、損害＝影響と分解できます。ただしThreat（脅威）という語が資料によって主体・事象を広く指すことがあるため、選択肢と問われた粒度を確認します。</p>
+<p>学習上の <code>Risk ≈ Likelihood × Impact</code> は、可能性と影響を組み合わせるモデルです。あらゆるリスクを厳密な掛け算で算出できるという物理法則ではありません。脆弱性の深刻度だけが、その組織の業務リスクを決めるわけでもありません。<a href="https://csrc.nist.gov/pubs/sp/800/30/r1/final">NIST SP 800-30 Rev.1</a></p>
+<h3 id="d1-09-assessment" tabindex="-1">9.2 Scope（範囲）・基準・評価方法</h3>
+<p>リスク評価は、組織全体、特定業務、システム、変更、委託など、どの範囲を扱うかをまず明確にします。対象外の前提、評価期間、既存対策、判断基準、関係者を揃えなければ、部署間の「高リスク」を比較できません。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 29。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>活動</th>
+<th>何をするか</th>
+<th>主な成果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Identification（特定）</td>
+<td>資産・脅威・脆弱性・影響を洗い出す</td>
+<td>リスクシナリオ</td>
+</tr>
+<tr>
+<td>Analysis（分析）</td>
+<td>可能性・影響・既存対策を検討する</td>
+<td>リスクの水準と不確実性</td>
+</tr>
+<tr>
+<td>Evaluation（評価・判定）</td>
+<td>定めた基準と比較する</td>
+<td>対応の要否・優先順位</td>
+</tr>
+<tr>
+<td>Treatment（対応）</td>
+<td>選択肢を決め、実行し、残るリスクを扱う</td>
+<td>対応計画・受容判断</td>
+</tr>
+</tbody></table></div>
+<p>Risk Assessment（リスク評価）は、資料によって特定・分析・評価をまとめた用語です。「分析」と「評価」の訳語だけで順序を機械的に断定せず、何をしているかを見ます。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 30。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>入力・出力</th>
+<th>長所</th>
+<th>限界と試験の目印</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Qualitative（定性）</td>
+<td>高・中・低、影響の記述、専門家判断</td>
+<td>データ不足でも議論・順位付けしやすい</td>
+<td>尺度と判断者のばらつき。高×高を精密な金額にしない</td>
+</tr>
+<tr>
+<td>Quantitative（定量）</td>
+<td>頻度・損失額・分布など数値</td>
+<td>費用対効果・金銭影響を比較しやすい</td>
+<td>数値の精密さと根拠の確かさは別</td>
+</tr>
+<tr>
+<td>Semi-quantitative（半定量）</td>
+<td>1〜5などのスコア</td>
+<td>一貫した分類を支える</td>
+<td>5が1の5倍の損失とは限らない</td>
+</tr>
+</tbody></table></div>
+<p>Interview（聞き取り）、Workshop（討議）、Checklist（確認表）、Scenario Analysis（シナリオ分析）などを組み合わせます。Delphi Technique（デルファイ法）は匿名の専門家意見を反復して集約し、特定の強い発言者の影響を抑える方法です。</p>
+<h3 id="d1-09-quant" tabindex="-1">9.3 AV・EF・SLE・ARO・ALEを判断までつなげる</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 31。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>記号・英語</th>
+<th>日本語</th>
+<th>意味・単位</th>
+<th>式・例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AV：Asset Value</td>
+<td>資産価値</td>
+<td>評価対象の価値、通貨</td>
+<td>10,000,000ドル</td>
+</tr>
+<tr>
+<td>EF：Exposure Factor</td>
+<td>曝露係数・損失割合</td>
+<td>一回の事象で失うAVの割合、0〜1</td>
+<td>50% = 0.5</td>
+</tr>
+<tr>
+<td>SLE：Single Loss Expectancy</td>
+<td>単一損失予測額</td>
+<td>一回あたりの予測損失、通貨／回</td>
+<td><code>SLE = AV × EF</code></td>
+</tr>
+<tr>
+<td>ARO：Annualized Rate of Occurrence</td>
+<td>年間発生率</td>
+<td>一年あたりの期待回数、回／年</td>
+<td>200年に1回 → 0.005</td>
+</tr>
+<tr>
+<td>ALE：Annualized Loss Expectancy</td>
+<td>年間損失予測額</td>
+<td>一年あたりの期待損失、通貨／年</td>
+<td><code>ALE = SLE × ARO</code></td>
+</tr>
+</tbody></table></div>
+<p><strong>演習Q96〜98の計算</strong>：AV = 10,000,000ドル、典型的損失 = 5,000,000ドルなので、EF = 5,000,000 ÷ 10,000,000 = 0.5、SLE = 5,000,000ドルです。ARO = 1 ÷ 200 = 0.005、ALE = 5,000,000 × 0.005 = <strong>25,000ドル／年</strong>。回答96:C、97:B、98:Aはいずれも正解と確認できました。</p>
+<p>単位で検算すると、通貨／回 × 回／年 = 通貨／年となります。「200年に1回」をARO 200や0.5にしないこと、損失額がすでに与えられているならそれがSLEに相当することを確認します。</p>
+<p><strong>Q1から拡張する費用対効果</strong>：</p>
+<p><code>年間純便益 = 対策前ALE − 対策後ALE − 対策の年間総費用</code></p>
+<p>本書独自の例として、対策前ALE 120,000ドル、対策後ALE 30,000ドル、年間費用40,000ドルなら、年間損失の削減は90,000ドル、年間純便益は50,000ドルです。ALEが120,000ドルだから「120,000ドルまでどんな対策費も合理的」とは言えません。対策後にも損失が残るからです。</p>
+<p>年間費用にはライセンス、運用、教育、保守、検証、業務負担などを含めます。初期費用を複数年へ配分する場合は期間を明示し、期間の違う金額をそのまま引きません。設問が初期費用しか与えない場合、勝手な償却年数を追加しないでください。</p>
+<p><strong>Deep Dive（深掘り）</strong>：ALEは長期的な平均のモデルで、翌年に必ずその額を失う意味でも、最悪損失の上限でもありません。AROは年間の期待回数なので1を超え得ます。1年に少なくとも一回起こる確率とは一般には異なります。低頻度でも組織が存続できない損失は、平均値だけでは判断できません。</p>
+<p>推定値の幅、重大事故の尾部リスク、同時災害、二重計上、法的義務を考えます。感度分析で、頻度や損失が変わっても同じ選択になるか確認します。FAIR：Factor Analysis of Information Risk（情報リスクの要因分析）は、損失頻度と損失規模を分解する定量的な考え方としてSupporting（補完）に位置付けます。特定の数式やモデルの名前だけで良い判断にはなりません。</p>
+<h3 id="d1-09-treatment" tabindex="-1">9.4 リスク選好・許容度・対応・残余リスク</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 32。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>意味</th>
+<th>判断者・具体化</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Risk Appetite（リスク選好）</td>
+<td>目標のために進んで引き受けるリスクの種類・水準</td>
+<td>経営の方針として定める</td>
+</tr>
+<tr>
+<td>Risk Tolerance（リスク許容度）</td>
+<td>特定の目標やリスクに対する許容できる限界・変動</td>
+<td>選好を業務上の指標・閾値へ落とす</td>
+</tr>
+<tr>
+<td>Risk Capacity（リスク負担能力）</td>
+<td>組織が耐えられるリスクの限界</td>
+<td>財務・人員・法的存続等から考える</td>
+</tr>
+<tr>
+<td>Inherent Risk（固有リスク）</td>
+<td>指定した管理策を考慮する前のリスク</td>
+<td>何を除外した評価か明記する</td>
+</tr>
+<tr>
+<td>Residual Risk（残余リスク）</td>
+<td>対策後に残るリスク</td>
+<td>権限者が許容可否を判断する</td>
+</tr>
+</tbody></table></div>
+<p>「新事業の小規模実証は許す」という選好を、「実証データは匿名のサンプルに限り、損失上限と中止条件を置く」という具体的な許容範囲へつなげます。Appetite（選好）は好き嫌い、Tolerance（許容度）は我慢強さという日常語だけで覚えないでください。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 33。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>対応</th>
+<th>何を変えるか</th>
+<th>例</th>
+<th>誰が決めるか・残るもの</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Acceptance（受容）</td>
+<td>対応を追加せず、把握したリスクを引き受ける</td>
+<td>低い損失を記録して監視する</td>
+<td>権限を持つリスク所有者。無視ではない</td>
+</tr>
+<tr>
+<td>Avoidance（回避）</td>
+<td>リスクを生む活動をやめる・行わない</td>
+<td>機微データを集める事業を中止</td>
+<td>事業判断が必要。機会も失う</td>
+</tr>
+<tr>
+<td>Mitigation / Reduction（軽減）</td>
+<td>発生可能性・影響を下げる</td>
+<td>パッチ、権限制御、分散、バックアップ</td>
+<td>対策担当が実行し、有効性を評価</td>
+</tr>
+<tr>
+<td>Transfer / Sharing（移転・共有）</td>
+<td>主に損失の負担や対応の一部を他者と分担</td>
+<td>サイバー保険、契約上の補償</td>
+<td>法的責任・信用低下がすべて消えるわけではない</td>
+</tr>
+</tbody></table></div>
+<p>Cyber Insurance（サイバー保険）では、対象事故、免責、自己負担、限度額、条件、通知、対策義務を確認します。保険が攻撃を防ぐわけではなく、SLA（サービス水準合意）の返金が事業損失を全額埋めるとも限りません。</p>
+<p><strong>残余リスクの扱い</strong>：評価結果、対応、残る影響、所有者、承認、期限、再評価条件をRisk Register（リスク台帳）へ記録します。セキュリティ担当が勝手に受容したことにせず、委譲された権限の範囲で処理します。重大変更・事故・新脅威で前提が変われば再評価します。</p>
+<blockquote class="callout trap"><p><strong>Common Trap（よくあるひっかけ）</strong>：法律違反を費用対効果だけで受容できるとは限りません。また「リスクは必ずゼロにする」も誤りです。目標は必要な義務を満たし、事業が許容できる水準へ管理することです。</p>
+</blockquote>
+<h3 id="d1-09-controls" tabindex="-1">9.5 Control（管理策）の分類は二つの軸で考える</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 34。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>実現手段の軸</th>
+<th>意味</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Administrative / Managerial（管理的）</td>
+<td>方針・人・プロセスで管理</td>
+<td>身元確認、方針、教育、職務分離</td>
+</tr>
+<tr>
+<td>Technical / Logical（技術的・論理的）</td>
+<td>ソフトウェアや論理機構で制御</td>
+<td>MFA、ACL、暗号化、ログ分析</td>
+</tr>
+<tr>
+<td>Physical（物理的）</td>
+<td>物理的な接触・侵入・環境を制御</td>
+<td>柵、錠、入退室、消火設備</td>
+</tr>
+</tbody></table></div>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 35。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>機能の軸</th>
+<th>目的</th>
+<th>例と注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Preventive（予防）</td>
+<td>事象の発生や成功を防ぐ</td>
+<td>アクセス拒否、パッチ、施錠</td>
+</tr>
+<tr>
+<td>Detective（検知）</td>
+<td>発生・兆候を把握する</td>
+<td>ログ監視、警報、照合</td>
+</tr>
+<tr>
+<td>Corrective（是正）</td>
+<td>問題状態を修正する</td>
+<td>原因除去、設定修正</td>
+</tr>
+<tr>
+<td>Recovery（復旧）</td>
+<td>必要な能力を回復する</td>
+<td>バックアップからの復元</td>
+</tr>
+<tr>
+<td>Deterrent（抑止）</td>
+<td>行為の意欲を低下させる</td>
+<td>監視の掲示、制裁の周知</td>
+</tr>
+<tr>
+<td>Directive（指示）</td>
+<td>望む行動を示す</td>
+<td>方針、手順、指示標識</td>
+</tr>
+<tr>
+<td>Compensating（代替・補完）</td>
+<td>本来の対策が困難な場合、目的を別の手段で満たす</td>
+<td>遺産システムへ分離・監視等を組合せる</td>
+</tr>
+</tbody></table></div>
+<p>この二つの軸は排他的ではありません。防犯カメラはPhysical（物理的）でDetective（検知）的、掲示によりDeterrent（抑止）的にもなります。教育はAdministrative（管理的）で予防に寄与します。NIST等では別の分類体系も使うので、組織・教材の文脈も読みます。</p>
+<p><strong>演習の重点</strong>：完走時総括はQ20・Q75・Q100で対策分類を重点に挙げています。まず「何で実現するか」と「何のために働くか」のどちらを聞いているかを確認すると、Technical（技術的）とPreventive（予防）を競合する選択肢として誤比較しなくなります。</p>
+<p>WAF：Web Application Firewall（Webアプリケーション用ファイアウォール）は攻撃成功のLikelihood（可能性）を下げる代表例です。パッチの代替として恒久放置せず、回避、誤検知、未対応の攻撃を評価します。バックアップは主としてデータ喪失や停止のImpact（影響）を軽減しますが、目的と構成によって複数の効果があります。</p>
+<h3 id="d1-09-monitoring" tabindex="-1">9.6 評価・監視・報告・改善を閉じる</h3>
+<p>Control Assessment（管理策評価）は、設計が適切か、実装されているか、意図した効果が出ているかを確認します。「製品が設置されている」「規程に書いてある」だけでは有効性の証拠になりません。Security Assessment（セキュリティ評価）とPrivacy Assessment（プライバシー評価）は重なりますが、適法な目的や本人への影響などは別に評価します。<a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev.5</a></p>
+<p><strong>最新性の補足</strong>：SP 800-53はRev.5の系統で、公式ページは2025年8月のRelease 5.2.0（小規模な更新版）も案内しています。Revision（主要改訂）とRelease（更新版）を区別し、2020年のPDFだけが最新の管理策情報すべてだとは扱いません。事故対応の関連資料SP 800-61も2025年のRev.3に更新され、CSF 2.0へ接続されています。旧Rev.2の工程図を現在版として提示しません。<a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final">NIST SP 800-61 Rev.3</a></p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 36。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>指標・活動</th>
+<th>何を確認するか</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>KPI：Key Performance Indicator（重要業績・実行指標）</td>
+<td>活動が計画通り進むか</td>
+<td>期限内の権限棚卸し実施率</td>
+</tr>
+<tr>
+<td>KRI：Key Risk Indicator（重要リスク指標）</td>
+<td>リスクが高まっていないか</td>
+<td>重要資産の未修正期間、復旧試験失敗</td>
+</tr>
+<tr>
+<td>Continuous Monitoring（継続監視）</td>
+<td>前提・状態・管理策の変化</td>
+<td>構成変化、脆弱性、サービス変更</td>
+</tr>
+<tr>
+<td>Internal Reporting（内部報告）</td>
+<td>意思決定と是正を促す</td>
+<td>所有者、期限、事業影響、要承認事項</td>
+</tr>
+<tr>
+<td>External Reporting（外部報告）</td>
+<td>法令・契約・利害関係者の要求を満たす</td>
+<td>当局通知、顧客説明、適合報告</td>
+</tr>
+</tbody></table></div>
+<p>指標の分類は利用目的に依存します。「教育受講率」は実施指標であり、行動変容や事故減少を単独で証明しません。「検知件数が増えた」も悪化とは限らず、検知能力が改善した可能性があります。母数・対象・測定条件を揃えます。</p>
+<p>Continuous Improvement（継続改善）は、評価→是正→再検証→方針・設計への反映を繰り返すことです。Maturity Model（成熟度モデル）は属人的な対応から、定義・測定・改善される仕組みへの発展を考える道具であり、成熟度の点数が事故ゼロを保証するものではありません。Plan–Do–Check–Act（計画・実行・評価・改善）はこの循環を捉える補助になります。</p>
+<h3 id="d1-09-frameworks" tabindex="-1">9.7 リスク枠組みの使い分け</h3>
+<p>全社的な方向付けはCSF・COBIT、管理体系と評価・対応はISO 27001／27005、システムの承認と監視はNIST RMF、事業要件と設計の追跡はSABSA、カード情報環境の義務はPCI DSS、と目的で選びます。同じ企業で併用して構いません。<a href="#d1-03-frameworks">枠組みの比較</a></p>
+<p>Framework（枠組み）の採用そのものをRisk Treatment（リスク対応）の完了とみなしません。自組織の対象・責任・証拠・対応計画へ落としたことが重要です。</p>
+<p><strong>説明できるか</strong>：ALEが減る対策でも採用できない場合と、年間純便益が負でも必要になり得る対策を一つずつ挙げてください。</p>
+<h2 id="d1-10" tabindex="-1">10. Threat Modeling（脅威モデリング）</h2>
+<p>重要度：Core（中核）、STRIDEの比較はHigh Priority（重点） / 公式対応：1.10</p>
+<h3 id="d1-10-process" tabindex="-1">10.1 対象をモデル化し、起こり得る失敗を考える</h3>
+<p>Threat Modeling（脅威モデリング）は、守る対象と前提を可視化し、どんな悪いことが起こり得るか、どう対処し、その対処をどう確かめるかを整理する活動です。運用前に一回だけ行うものではなく、設計・実装・変更・事故を通じて更新します。<a href="https://community.owasp.org/Threat_Modeling">OWASPの概要</a></p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 37。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>観点</th>
+<th>記述すること</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Scope（対象範囲）</td>
+<td>守る資産、機能、想定外とする範囲</td>
+<td>受注APIと管理画面</td>
+</tr>
+<tr>
+<td>Data Flow（データの流れ）</td>
+<td>主体、処理、保管、通信</td>
+<td>顧客→API→注文DB</td>
+</tr>
+<tr>
+<td>Trust Boundary（信頼境界）</td>
+<td>権限・管理主体・信頼の前提が変わる場所</td>
+<td>インターネットとアプリ、委託先との接続</td>
+</tr>
+<tr>
+<td>Assumption（前提）</td>
+<td>成り立つと仮定した条件</td>
+<td>管理者端末が管理下にある</td>
+</tr>
+<tr>
+<td>Threat / Mitigation（脅威・軽減策）</td>
+<td>シナリオ、影響、対策</td>
+<td>権限検証不足→注文の不正変更→所有者確認</td>
+</tr>
+<tr>
+<td>Validation（妥当性確認）</td>
+<td>前提・対策が有効か検証</td>
+<td>権限境界の否定テスト、設計レビュー</td>
+</tr>
+</tbody></table></div>
+<p>DFD：Data Flow Diagram（データフロー図）では、外部主体・プロセス・データストア・データフロー・信頼境界を扱います。ネットワーク配線図だけでは、誰が何を信用しているか、データの利用目的は見えないことがあります。</p>
+<h3 id="d1-10-stride" tabindex="-1">10.2 STRIDEを侵害される性質と対応させる</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 38。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>分類</th>
+<th>日本語</th>
+<th>主に破られる性質</th>
+<th>例・対応の方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Spoofing</td>
+<td>なりすまし</td>
+<td>Authenticity（真正性）・認証</td>
+<td>他人の資格情報の悪用→適切な認証</td>
+</tr>
+<tr>
+<td>Tampering</td>
+<td>改ざん</td>
+<td>Integrity（完全性）</td>
+<td>注文金額の書換え→入力・権限・改変検証</td>
+</tr>
+<tr>
+<td>Repudiation</td>
+<td>否認</td>
+<td>Nonrepudiation（否認防止）</td>
+<td>操作を否認→信頼できる記録・署名</td>
+</tr>
+<tr>
+<td>Information Disclosure</td>
+<td>情報漏えい</td>
+<td>Confidentiality（機密性）</td>
+<td>他人の情報を閲覧→最小権限・暗号化</td>
+</tr>
+<tr>
+<td>Denial of Service</td>
+<td>サービス妨害</td>
+<td>Availability（可用性）</td>
+<td>資源枯渇→制限・容量・分散</td>
+</tr>
+<tr>
+<td>Elevation of Privilege</td>
+<td>権限昇格</td>
+<td>Authorization（認可）</td>
+<td>一般利用者が管理機能へ→権限境界の検証</td>
+</tr>
+</tbody></table></div>
+<p>Microsoftが整理するSTRIDEは脅威の見落としを減らす分類です。リスクの金額や優先順位を自動的に計算するものではありません。<a href="https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats">MicrosoftのSTRIDE説明</a></p>
+<blockquote class="callout insight"><p><strong>Problem-derived Insights（問題演習由来の知見）</strong>：STRIDEは完走時総括で比較的理解が進んだ領域でした。正解した用語を再認するだけでなく、たとえばRepudiation（否認）に対して「暗号化」だけで十分か、「個人に結び付く改変困難な記録」が必要かを説明できる状態を目指します。</p>
+</blockquote>
+<h3 id="d1-10-methods" tabindex="-1">10.3 他の手法との使い分け</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 39。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>手法</th>
+<th>主な問い・用途</th>
+<th>STRIDEとの違い</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Attack Tree（攻撃ツリー）</td>
+<td>目的へ至る条件・経路をAND／ORで分解する</td>
+<td>分類ではなく達成経路を表す</td>
+</tr>
+<tr>
+<td>PASTA：Process for Attack Simulation and Threat Analysis（攻撃シミュレーションと脅威分析のプロセス）</td>
+<td>事業目的から技術・脅威・弱点・攻撃・リスクを段階的に分析</td>
+<td>ビジネスの影響を含む一連の手順</td>
+</tr>
+<tr>
+<td>Misuse / Abuse Case（不正利用のシナリオ）</td>
+<td>正常機能をどう悪用できるか</td>
+<td>利用場面を通じて要求を見つける</td>
+</tr>
+<tr>
+<td>MITRE ATT&amp;CK（実際の攻撃戦術・技術の知識体系）</td>
+<td>現実の攻撃者がどう行動するか</td>
+<td>実際の攻撃知識を補う。設計全体のリスク評価の代わりではない</td>
+</tr>
+<tr>
+<td>DREAD（影響・再現性等による評価法）</td>
+<td>複数の評価軸で優先を考える</td>
+<td>脅威の分類とリスクの採点を区別する補完知識</td>
+</tr>
+</tbody></table></div>
+<p>PASTAは、事業目標→技術範囲→分解→脅威分析→弱点分析→攻撃のモデル化・模擬→リスクと影響の分析、という7段階で捉えます。公式範囲が特定手法の丸暗記だけを要求している、と読み替えないでください。<a href="https://versprite.com/resources/blog/what-is-pasta-threat-modeling/">PASTA開発者側の説明</a>、<a href="https://attack.mitre.org/">MITRE ATT&amp;CK</a></p>
+<p><strong>攻撃ツリーの読み方</strong>：「情報を盗む」が最上位の目的なら、「正規IDを悪用する」OR「公開された保存先から取得する」が別経路です。「正規IDを悪用する」経路にパスワードと第二要素の両方が必要ならAND条件になります。一経路の対策だけで他のOR経路も消えたとは言えません。</p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：脅威の一覧を作ること、脆弱性を発見すること、業務リスクを評価すること、対策を検証することを区別します。攻撃者視点は有効ですが、対象と許可範囲が定まる前に実攻撃を始めることではありません。</p>
+</blockquote>
+<p><strong>説明できるか</strong>：脅威モデリングを完成した後でも、設計変更時に更新する必要がある理由を説明してください。</p>
+<h2 id="d1-11" tabindex="-1">11. Supply Chain Risk Management（供給網のリスク管理）</h2>
+<p>重要度：Core（中核） / 公式対応：1.11</p>
+<h3 id="d1-11-risks" tabindex="-1">11.1 購入した製品・サービスにもリスクは残る</h3>
+<p>SCRM：Supply Chain Risk Management（供給網のリスク管理）は、製品・サービスを作り、運び、組み込み、運用し、終了するまでの依存を管理します。情報機器の直接の供給者だけでなく、部品、開発環境、ソフトウェア依存、更新経路、再委託、クラウド基盤も対象です。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 40。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>リスク</th>
+<th>例</th>
+<th>なぜ通常の受入れ試験だけでは足りないか</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tampering（改変・細工）</td>
+<td>出荷前のファームウェア改変</td>
+<td>通常機能が動いても悪意ある挙動が潜む</td>
+</tr>
+<tr>
+<td>Counterfeit（偽造品）</td>
+<td>正規品に見せた部品</td>
+<td>品質・保守・真正性が確認できない</td>
+</tr>
+<tr>
+<td>Implant（不正な仕込み）</td>
+<td>ハードウェア・ソフトウェアへ隠した機能</td>
+<td>特定条件でのみ動作する場合がある</td>
+</tr>
+<tr>
+<td>Dependency Risk（依存リスク）</td>
+<td>ライブラリ、ビルド基盤、更新サーバーの侵害</td>
+<td>一つの侵害が多数の利用者へ波及</td>
+</tr>
+<tr>
+<td>Concentration Risk（集中リスク）</td>
+<td>多くの重要業務が同一供給者へ依存</td>
+<td>個別サービスの分散だけでは解消しない</td>
+</tr>
+<tr>
+<td>Lifecycle Risk（継続利用のリスク）</td>
+<td>サポート終了、倒産、データを取り出せない</td>
+<td>購入時の安全性だけで長期運用を保証しない</td>
+</tr>
+</tbody></table></div>
+<p>供給網の不透明さを前提に、重要性に応じた調査と多層の軽減策を設計します。<a href="https://csrc.nist.gov/pubs/sp/800/161/r1/upd1/final">NIST SP 800-161 Rev.1・2024年更新</a></p>
+<h3 id="d1-11-lifecycle" tabindex="-1">11.2 選定・契約・監視・終了をつなげる</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 41。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>段階</th>
+<th>主な行為</th>
+<th>判断・実施する人</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>要件化</td>
+<td>情報分類、利用目的、必要水準、法令、終了条件を定める</td>
+<td>業務所有者・セキュリティ・法務・調達</td>
+</tr>
+<tr>
+<td>選定前</td>
+<td>重要性で評価を段階化し、証拠と能力を確認</td>
+<td>調達と専門部門、必要なら独立評価者</td>
+</tr>
+<tr>
+<td>契約</td>
+<td>最低保護要件、通知、監査権、再委託、SLA、削除・返却を合意</td>
+<td>権限を持つ契約当事者</td>
+</tr>
+<tr>
+<td>受入れ</td>
+<td>正規流通、真正性、構成、権限、検証を確認</td>
+<td>技術担当、受入れ責任者</td>
+</tr>
+<tr>
+<td>運用</td>
+<td>事故、変更、評価結果、更新、依存先の変化を監視</td>
+<td>サービス責任者と専門部門</td>
+</tr>
+<tr>
+<td>終了</td>
+<td>移行、返却・削除、資格情報失効、証拠・記録の保全</td>
+<td>業務・法務・IT・供給者</td>
+</tr>
+</tbody></table></div>
+<p>Third-party Assessment（第三者評価）は、質問票、独立監査報告、認証、テスト、契約、実際の運用証拠を、対象サービスと期間に結び付けて読みます。報告書の対象外機能や、顧客側に要求される統制を見落とさないでください。評価は初回契約時だけで終わらせません。</p>
+<h3 id="d1-11-assurance" tabindex="-1">11.3 SLA・契約・技術的保証を混同しない</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 42。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>手段</th>
+<th>できること</th>
+<th>保証しないこと</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SLA：Service Level Agreement（サービス水準合意）</td>
+<td>水準、計測、対象時間、報告、違反時の扱いを合意</td>
+<td>停止の物理的防止、すべての損失の補償</td>
+</tr>
+<tr>
+<td>Minimum Security Requirements（最低セキュリティ要件）</td>
+<td>認証、ログ、暗号化、更新等の必須条件を定義</td>
+<td>文書にあるだけで実装された証明</td>
+</tr>
+<tr>
+<td>SBOM：Software Bill of Materials（ソフトウェア部品表）</td>
+<td>構成要素・版・依存関係の把握と影響調査を助ける</td>
+<td>脆弱性ゼロ、未記載要素ゼロ、実行時安全性</td>
+</tr>
+<tr>
+<td>Signed Update（署名付き更新）</td>
+<td>配布元と改変の検証を助ける</td>
+<td>正規の開発・署名環境自体が侵害された場合の安全性</td>
+</tr>
+<tr>
+<td>Silicon / Hardware Root of Trust（半導体・ハードウェアの信頼の起点）</td>
+<td>鍵・起動検証等を支える、保護された基礎</td>
+<td>システム全体の設定・運用の安全性</td>
+</tr>
+<tr>
+<td>PUF：Physically Unclonable Function（物理的複製困難関数）</td>
+<td>製造ばらつき等による個体差を識別・鍵生成等に利用</td>
+<td>模倣・解析リスクの絶対的な排除</td>
+</tr>
+</tbody></table></div>
+<p>Root of Trust（信頼の起点）は、上位の検証を支えるために信頼する必要がある基礎です。基礎を守ることと、供給者・設計・運用全体を無条件に信用することは異なります。<a href="https://csrc.nist.gov/glossary/term/hardware_root_of_trust">NISTのHardware Root of Trust定義</a></p>
+<p><strong>演習との接続</strong>：SLAの知識を、稼働率の数字だけで終わらせません。どのサービス・測定点・除外時間が対象か、インシデント通知が間に合うか、RTO／RPOを支えられるかを確認します。年間稼働率が高くても、繁忙日の数時間停止が事業に致命的な場合があります。</p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：外部サービスの利用は、作業の外部化であって判断の放棄ではありません。データ・業務の重要性を定め、責任の分担と証拠を確認し、残るリスクを権限者が判断します。</p>
+</blockquote>
+<p><strong>説明できるか</strong>：SBOMと製品署名を受領しても、供給者の開発・更新プロセスを評価する価値が残る理由を説明してください。</p>
+<h2 id="d1-12" tabindex="-1">12. Awareness / Education / Training（啓発・教育・訓練）</h2>
+<p>重要度：Core（中核）、3概念の区別はHigh Priority（重点） / 公式対応：1.12</p>
+<h3 id="d1-12-learning" tabindex="-1">12.1 気付く・実行できる・理解するを区別する</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 43。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>活動</th>
+<th>目的</th>
+<th>対象・方法</th>
+<th>成果の見方</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Awareness（啓発・意識向上）</td>
+<td>気付き、注意、望ましい行動への動機を作る</td>
+<td>全員への短い周知、ポスター、注意喚起</td>
+<td>報告の増加・適切な気付き</td>
+</tr>
+<tr>
+<td>Training（訓練）</td>
+<td>特定の職務や操作を正しくできるようにする</td>
+<td>管理者、開発者、担当者の演習</td>
+<td>手順や作業を実行できるか</td>
+</tr>
+<tr>
+<td>Education（教育）</td>
+<td>概念・背景・判断力を体系的に育てる</td>
+<td>継続学習、講座、専門的な学習</td>
+<td>未経験の状況にも理由を説明し応用できるか</td>
+</tr>
+</tbody></table></div>
+<p>形式だけで決めません。同じ動画でも、注意喚起ならAwareness（啓発）、バックアップ復旧手順の実習ならTraining（訓練）、リスク理論を学ぶならEducation（教育）です。「長い研修＝Education」とは限りません。</p>
+<blockquote class="callout insight"><p><strong>Problem-derived Insights（問題演習由来の知見）</strong>：完走時の総括でこの区別が重点に挙がっていました。「知っている」「できる」「なぜか分かる」を目的で判断する練習が有効です。プログラム全体では三つを組み合わせます。</p>
+</blockquote>
+<h3 id="d1-12-program" tabindex="-1">12.2 プログラムを作り、対象に合わせる</h3>
+<p>ニーズとリスクの把握→対象者と行動目標→教材・方法→実施→測定→改善、の循環で進めます。新人、管理者、開発者、経営層、委託先では必要な内容が違います。経営層には意思決定と責任、開発者には設計・コーディング、利用者には情報取扱いと報告を結び付けます。</p>
+<p><strong>BCPの訓練対象</strong>：組織全体には避難・連絡・報告など必要な認識を広げ、計画上の役割を持つ人には担当手順を実行できる訓練を行います。経営層の意思決定、代理担当、必要な外部関係者も役割に応じて対象です。全員に同じ詳細技術訓練を行うことも、IT部門だけへ限定することも適切とは限りません。過去総括ではQ56の解説にBから教材正解Cへの訂正があったことを確認しましたが、選択肢本文は取得できていないため、どの対象者がCだったかは復元していません。Q93・94も啓発・訓練の区別の誤答として総括に挙がっています。</p>
+<p>NIST SP 800-50 Rev.1は2024年9月公表で、旧2003年版に代わり、セキュリティとプライバシーの学習をライフサイクルで管理し、行動変容と評価・改善を扱います。学習上の三つの区分は残しつつ、実際のプログラムを単発の注意喚起へ縮めません。<a href="https://csrc.nist.gov/pubs/sp/800/50/r1/final">NIST SP 800-50 Rev.1</a></p>
+<h3 id="d1-12-methods" tabindex="-1">12.3 手法を目的に合わせて選ぶ</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 44。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>方法・題材</th>
+<th>ねらい</th>
+<th>設計上の注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Social Engineering（社会工学的攻撃）の学習</td>
+<td>権威・緊急性・好奇心への働きかけに気付く</td>
+<td>誰でも騙され得る前提で、確認と報告の行動を教える</td>
+</tr>
+<tr>
+<td>Phishing Simulation（フィッシング模擬訓練）</td>
+<td>不審な依頼を検知し、正しく報告する</td>
+<td>難易度・対象・文脈を揃え、個人への恥辱を目的にしない</td>
+</tr>
+<tr>
+<td>Security Champions（各部門のセキュリティ推進者）</td>
+<td>現場に相談先と実践者を置く</td>
+<td>専門部門の責任を無償で丸投げしない</td>
+</tr>
+<tr>
+<td>Gamification（ゲーム要素の活用）</td>
+<td>継続参加と学習意欲を支える</td>
+<td>得点稼ぎで目的の行動が歪まないようにする</td>
+</tr>
+<tr>
+<td>Microlearning（短時間の学習）</td>
+<td>必要なときに少量ずつ学ぶ</td>
+<td>短さだけで体系理解まで達成できると思わない</td>
+</tr>
+<tr>
+<td>Role-based Training（役割別訓練）</td>
+<td>職務のリスクに対応した操作を学ぶ</td>
+<td>実際の権限・手順・報告先を教材に反映</td>
+</tr>
+</tbody></table></div>
+<h3 id="d1-12-effectiveness" tabindex="-1">12.4 効果を測り、内容を更新する</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 45。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>測定</th>
+<th>読み取れること</th>
+<th>単独では言えないこと</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>受講率</td>
+<td>対象者へ届いたか</td>
+<td>実務で行動が変わったか</td>
+</tr>
+<tr>
+<td>知識確認</td>
+<td>内容を理解したか</td>
+<td>長期間維持・応用できるか</td>
+</tr>
+<tr>
+<td>模擬訓練の誤操作率</td>
+<td>特定条件での反応</td>
+<td>難易度が違う回との単純比較</td>
+</tr>
+<tr>
+<td>報告率・報告時間</td>
+<td>適切な行動と対応速度</td>
+<td>報告が多いから事故が悪化したという断定</td>
+</tr>
+<tr>
+<td>実務の観察・監査</td>
+<td>職務上の行動に反映されたか</td>
+<td>変化の原因が教育だけであるという断定</td>
+</tr>
+</tbody></table></div>
+<p>周期的に見直し、事故、新しい攻撃、業務変更、技術の普及を反映します。Cryptocurrency（暗号資産）では詐欺・鍵管理・送金承認、Blockchain（ブロックチェーン）では記録の改変耐性と入力情報の正しさの区別、AI：Artificial Intelligence（人工知能）では情報入力・出力の扱いを、各自の業務へつなげます。</p>
+<h3 id="d1-12-ai" tabindex="-1">12.5 AIをDomain 1の判断へつなげる</h3>
+<p>公式ページのAIに関する補足は、倫理・リスク・プライバシー・外部AI供給者の評価を既存Domainへ結び付けています。本節は新たな独立Domainや公表されていない出題比率を追加するものではありません。<a href="https://www.isc2.org/certifications/cissp/cissp-certification-exam-outline">ISC2のAI補足</a></p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 46。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>AI利用の論点</th>
+<th>Domain 1としての判断</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>機密情報や個人情報の入力</td>
+<td>利用目的、情報分類、保管・学習利用、再委託、所在地を確認する</td>
+</tr>
+<tr>
+<td>Hallucination（もっともらしい誤出力）</td>
+<td>出力の検証と、人が承認する場面を定める</td>
+</tr>
+<tr>
+<td>Bias（偏り）・差別</td>
+<td>対象者への影響、評価、説明、苦情対応を考える</td>
+</tr>
+<tr>
+<td>AI Agent（自律的に作業するAI）</td>
+<td>操作範囲、最小権限、承認点、記録、停止権限を定義する</td>
+</tr>
+<tr>
+<td>外部モデル・サービスへの依存</td>
+<td>供給者変更、データ由来、終了・代替手段、事故通知を確認する</td>
+</tr>
+</tbody></table></div>
+<p>AIが判断に参加してもAccountability（説明責任）は消えません。NIST AI RMF（AIリスク管理枠組み）は、Govern（統治）、Map（状況把握）、Measure（測定）、Manage（管理）という機能で考える補完資料です。CSFの6機能と同じものではありません。<a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI RMF</a></p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：新しい技術だから、最初に製品の導入や全面禁止と決めません。用途、データ、影響、権限、法的条件、管理策を確認し、許可される使い方と必要な教育を定めます。</p>
+</blockquote>
+<p><strong>説明できるか</strong>：フィッシング訓練後に報告件数が増えたとき、悪化か改善かを判断するために必要な追加情報を説明してください。</p>
+<h2 id="d1-appendix" tabindex="-1">付録A. 章をまたぐ判断の練習</h2>
+<p>以下は問題集の転載ではなく、本書独自の短い応用例です。暗記した名称だけでなく、判断の理由を説明してください。</p>
+<h3 id="d1-case-saas" tabindex="-1">A.1 新しい外部サービスの導入</h3>
+<p>顧客情報を扱うSaaS（クラウド提供ソフトウェア）を事業部が導入します。供給者は認証取得済みで、稼働率も高いと説明しています。</p>
+<p><strong>考え方</strong>：まず顧客情報の種類、利用目的、法的・契約上の要件、業務の復旧要求を特定します。認証の対象・期間・顧客側の責任、データの再利用・再委託、通知、終了時の移行を確認します。残るリスクを記録し、権限者が承認します。サービス開始後はアクセス権・変更・事故・供給者の状況を監視します。<a href="#d1-03">第3章</a>・<a href="#d1-04">第4章</a>・<a href="#d1-07">第7章</a>・<a href="#d1-11">第11章</a></p>
+<p><strong>一般原則</strong>：外部の認証・契約・技術的保証は、事業要件の特定とリスク判断を支える証拠です。それ自体が自社の採用判断の完了ではありません。</p>
+<h3 id="d1-case-admin" tabindex="-1">A.2 管理者による不正変更</h3>
+<p>管理者はMFA（多要素認証）を利用していますが、自分で変更を申請・承認・実行し、ログも削除できます。</p>
+<p><strong>考え方</strong>：本人確認を強めるだけでは職務上の不正を防げません。職務分離、特権の制限、独立した承認、ログの保護、独立レビューを検討します。調査では証拠保全と権限を確認し、事実と疑いを分けます。<a href="#d1-02">第2章</a>・<a href="#d1-05">第5章</a>・<a href="#d1-08">第8章</a></p>
+<p><strong>一般原則</strong>：正しく認証された主体でも、過大な権限や検証不在はリスクです。</p>
+<h3 id="d1-case-cost" tabindex="-1">A.3 安い対策と義務のある対策</h3>
+<p>対策Aは予測損失の削減額より年間費用が大きいものの、適用法の要件を満たすために必要です。対策Bは純便益が正ですが、基幹業務を許容時間以上停止させます。</p>
+<p><strong>考え方</strong>：Aは単純な純便益だけで却下できません。適法で負担の少ない実現手段を比較します。Bは便益が正でも業務要求を満たさず、そのまま採用できません。前提を調整するには権限者の判断が必要です。<a href="#d1-04">第4章</a>・<a href="#d1-07">第7章</a>・<a href="#d1-09">第9章</a></p>
+<p><strong>一般原則</strong>：費用対効果は重要な判断材料ですが、法令・安全・事業の制約条件の中で用います。</p>
+<h2 id="d1-next" tabindex="-1">付録B. 他Domainへの接続と更新</h2>
+<p>Domain 1は他領域の「なぜ・誰が・どの水準で」を決める土台です。今回、他Domainの本編は作成していません。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 47。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>将来追加する領域</th>
+<th>Domain 1から引き継ぐ問い</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Domain 2 Asset Security（資産のセキュリティ）</td>
+<td>所有者・分類・法的要件を、情報ライフサイクルへどう適用するか</td>
+</tr>
+<tr>
+<td>Domain 3 Security Architecture and Engineering（設計と工学）</td>
+<td>リスク・事業要件を設計原則と技術へどう具体化するか</td>
+</tr>
+<tr>
+<td>Domain 4 Communication and Network Security（通信とネットワーク）</td>
+<td>必要な保護特性を通信へどう実装するか</td>
+</tr>
+<tr>
+<td>Domain 5 Identity and Access Management（識別とアクセス管理）</td>
+<td>誰の承認で、誰へ、どの権限を与えるか</td>
+</tr>
+<tr>
+<td>Domain 6 Security Assessment and Testing（評価と試験）</td>
+<td>統制が機能していることをどう証明するか</td>
+</tr>
+<tr>
+<td>Domain 7 Security Operations（運用）</td>
+<td>承認済みの方針・復旧要求を日々どう実施するか</td>
+</tr>
+<tr>
+<td>Domain 8 Software Development Security（ソフトウェア開発）</td>
+<td>設計・開発・変更へ保護をどう組み込むか</td>
+</tr>
+</tbody></table></div>
+<p>本文の更新はこのMarkdown正本で行い、閲覧用HTMLは生成スクリプトで再作成します。公式範囲・法律・規格の変更があれば、<a href="../references/sources.html">出典と最新性の台帳</a>、<a href="../coverage/domain1.html">網羅性確認表</a>も更新します。問題演習の追加情報は<a href="../references/history.html">問題履歴台帳</a>へ根拠とともに追記し、重複説明ではなく該当節を改善してください。</p>
+</article><footer class="page-footer">復習ノート 第1.0版 · 資料確認 2026-09-12<br>本文はMarkdown（正本）から生成しています。</footer></main></div><a class="back-top" href="#top" aria-label="ページの先頭へ戻る">↑ 先頭</a></body></html>

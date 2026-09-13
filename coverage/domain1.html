@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="description" content="体系的なCISSP復習用参考書。英日併記、比較、判断原則と学習履歴を統合。"><title>Domain 1 Coverage Matrix（網羅性確認表） | CISSP Study Notes</title><link rel="stylesheet" href="../assets/style.css"><script defer src="../assets/app.js"></script></head>
+<body id="top"><a class="skip-link" href="#main">本文へ移動</a><header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">C</span><span>CISSP Study Notes<small>CISSP 復習ノート</small></span></a><div class="header-right"><span class="edition">第1.0版 · 2026-09-12</span><button type="button" class="theme-toggle" hidden aria-label="ダークモードを切り替える" aria-pressed="false">夜間表示</button></div></header><nav class="domain-nav" aria-label="Domainの移動"><a href="../domain1/index.html">D1<span>Security and Risk Management（セキュリティとリスク管理）</span></a><span class="unavailable" title="Asset Security（資産のセキュリティ）">D2<small>未作成</small></span><span class="unavailable" title="Security Architecture and Engineering（設計と工学）">D3<small>未作成</small></span><span class="unavailable" title="Communication and Network Security（通信とネットワーク）">D4<small>未作成</small></span><span class="unavailable" title="Identity and Access Management（識別とアクセス管理）">D5<small>未作成</small></span><span class="unavailable" title="Security Assessment and Testing（評価と試験）">D6<small>未作成</small></span><span class="unavailable" title="Security Operations（運用）">D7<small>未作成</small></span><span class="unavailable" title="Software Development Security（ソフトウェア開発）">D8<small>未作成</small></span></nav>
+<div class="reading-layout"><aside class="sidebar" aria-label="学習ナビゲーション"><div class="sidebar-links"><a href="../index.html">全体の入口</a><a href="domain1.html" aria-current="page">網羅性確認表</a><a href="../references/history.html">問題履歴の反映</a><a href="../references/sources.html">出典・最新性</a><a href="../guide/index.html">使い方・更新方法</a></div><nav class="toc desktop-toc" aria-label="目次"><p class="eyebrow">CONTENTS（目次）</p><ul><li class="toc-level-2"><a href="#coverage-method" data-chapter="coverage-method">判定方法</a></li><li class="toc-level-2"><a href="#coverage-matrix" data-chapter="coverage-matrix">公式範囲と本文の対応</a></li><li class="toc-level-2"><a href="#coverage-result" data-chapter="coverage-result">品質確認の結果</a></li></ul></nav></aside>
+<main id="main" tabindex="-1"><div class="page-tools"><details class="mobile-toc"><summary>このページの目次を開く</summary><nav class="toc" aria-label="モバイル目次"><ul><li class="toc-level-2"><a href="#coverage-method" data-chapter="coverage-method">判定方法</a></li><li class="toc-level-2"><a href="#coverage-matrix" data-chapter="coverage-matrix">公式範囲と本文の対応</a></li><li class="toc-level-2"><a href="#coverage-result" data-chapter="coverage-result">品質確認の結果</a></li></ul></nav></details><div class="search-box" hidden><label for="page-search">本文検索</label><div class="search-row"><input id="page-search" type="search" placeholder="例：残余リスク / RTO" autocomplete="off" aria-controls="search-results"><button id="search-clear" type="button">消去</button></div><p id="search-status" role="status" aria-live="polite"></p><ol id="search-results" hidden></ol></div></div><article class="article"><h1>Domain 1 Coverage Matrix（網羅性確認表）</h1>
+<p>基準日：2026-09-12 / 版：1.0</p>
+<h2 id="coverage-method" tabindex="-1">判定方法</h2>
+<p>ISC2の<a href="https://www.isc2.org/certifications/cissp/cissp-certification-exam-outline">現行試験範囲</a>と<a href="https://edge.sitecorecloud.io/internationf173-xmc4e73-prodbc0f-9660/media/Project/ISC2/Main/Media/documents/exam-outlines/CISSP-Exam-Outline-April-2024-English.pdf">英語PDF</a>のDomain 1を基準にしています。公式の12領域を、箇条書きと単独項目に沿って37の確認単位へ整理しました。末尾のa〜iは本書独自の管理記号で、ISC2の公式細目番号ではありません。論点名は短く言い換えています。</p>
+<p><strong>履歴区分</strong>：E＝個別回答を検索で確認、S＝提供された学習要約・過去総括で確認、U＝出題状況不明。Sは個別の誤答を証明しません。<strong>未出題が確定した項目はありません</strong>。履歴全件を取得できないため、未確認を「出題なし」に変換しません。</p>
+<p><strong>補完</strong>：あり＝公式範囲・一次資料・一般的な知識体系から、確認できた演習情報を超えて説明。H＝High Priority（重点）、C＝Core（中核）。各行は中核要件を扱うため、行全体をSupporting（補完）にはしていません。周辺知識のみ本文でSupportingと示します。</p>
+<h2 id="coverage-matrix" tabindex="-1">公式範囲と本文の対応</h2>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 1。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>確認ID</th>
+<th>公式の対象論点（要約）</th>
+<th>本編の収録先・確認内容</th>
+<th>履歴</th>
+<th>補完</th>
+<th>重要度</th>
+<th>誤答・要注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1.1-a</td>
+<td>専門職の倫理規程</td>
+<td><a href="../domain1/index.html#d1-01-ethics">1.1</a>：4原則、判断例</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>個別状況不明</td>
+</tr>
+<tr>
+<td>1.1-b</td>
+<td>組織の倫理</td>
+<td><a href="../domain1/index.html#d1-01-organization">1.2</a>：文化、報告、公平な手続</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>個別状況不明</td>
+</tr>
+<tr>
+<td>1.2-a</td>
+<td>CIA・真正性・否認防止</td>
+<td><a href="../domain1/index.html#d1-02-pillars">2.1〜2.3</a>：5特性、認証・認可、事例</td>
+<td>S：Q28、47〜49</td>
+<td>あり</td>
+<td>H</td>
+<td>Q28等の文脈判断</td>
+</tr>
+<tr>
+<td>1.3-a</td>
+<td>事業目標との整合</td>
+<td><a href="../domain1/index.html#d1-03-governance">3.1</a>：戦略・戦術・運用</td>
+<td>S：総括</td>
+<td>あり</td>
+<td>H</td>
+<td>判断の役割・段階</td>
+</tr>
+<tr>
+<td>1.3-b</td>
+<td>買収・売却・委員会等</td>
+<td><a href="../domain1/index.html#d1-03-governance">3.1</a>・<a href="../domain1/index.html#d1-03-change">3.4</a>：統合前評価と分離</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>個別状況不明</td>
+</tr>
+<tr>
+<td>1.3-c</td>
+<td>役割と責任</td>
+<td><a href="../domain1/index.html#d1-03-roles">3.2</a>：所有者・実施者・監査</td>
+<td>S：Q36、総括</td>
+<td>あり</td>
+<td>H</td>
+<td>Owner／Custodian</td>
+</tr>
+<tr>
+<td>1.3-d</td>
+<td>管理策の枠組み</td>
+<td><a href="../domain1/index.html#d1-03-frameworks">3.5〜3.6</a>：ISO、NIST、COBIT、SABSA、PCI、FedRAMP</td>
+<td>S：PCI等。個別枠組みはU</td>
+<td>あり</td>
+<td>C</td>
+<td>目的と版の混同</td>
+</tr>
+<tr>
+<td>1.3-e</td>
+<td>注意義務と適切な調査</td>
+<td><a href="../domain1/index.html#d1-03-care">3.3</a>：実施・確認・調査</td>
+<td>U</td>
+<td>あり</td>
+<td>H</td>
+<td>適用前／後の固定化</td>
+</tr>
+<tr>
+<td>1.4-a</td>
+<td>犯罪・データ侵害</td>
+<td><a href="../domain1/index.html#d1-04-crime">4.6</a>：管轄、通知、証拠</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>調査権限と報告</td>
+</tr>
+<tr>
+<td>1.4-b</td>
+<td>利用許諾・知財</td>
+<td><a href="../domain1/index.html#d1-04-ip">4.5</a>：4保護方式とライセンス</td>
+<td>S：テーマ要約</td>
+<td>あり</td>
+<td>H</td>
+<td>アイデア・表現・ブランド</td>
+</tr>
+<tr>
+<td>1.4-c</td>
+<td>輸出入管理</td>
+<td><a href="../domain1/index.html#d1-04-crime">4.6</a>：品目・用途・利用者</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>暗号を一律禁止としない</td>
+</tr>
+<tr>
+<td>1.4-d</td>
+<td>越境データ</td>
+<td><a href="../domain1/index.html#d1-04-global">4.4</a>：所在・法的支配・移転根拠</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>暗号化と合法性は別</td>
+</tr>
+<tr>
+<td>1.4-e</td>
+<td>プライバシー制度</td>
+<td><a href="../domain1/index.html#d1-04-gdpr">4.3〜4.4</a>：GDPR、CCPA、PIPL、POPIA等</td>
+<td>S：Q4。その他はU</td>
+<td>あり</td>
+<td>H</td>
+<td>消去権、通知、適用範囲</td>
+</tr>
+<tr>
+<td>1.4-f</td>
+<td>法令・契約・業界等の義務</td>
+<td><a href="../domain1/index.html#d1-04-scope">4.1〜4.2</a>：義務種別、主要米国法</td>
+<td>S：Q11、34、総括</td>
+<td>あり</td>
+<td>H</td>
+<td>FISMA等の対象主体</td>
+</tr>
+<tr>
+<td>1.5-a</td>
+<td>調査種別の要求</td>
+<td><a href="../domain1/index.html#d1-05-types">5.1〜5.2</a>：社内・刑事・民事・規制・業界の5種</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>権限・証拠基準</td>
+</tr>
+<tr>
+<td>1.6-a</td>
+<td>方針・標準・手順・指針</td>
+<td><a href="../domain1/index.html#d1-06-documents">6.1〜6.2</a>：4文書、承認、実装、維持</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>粒度・義務性・例外</td>
+</tr>
+<tr>
+<td>1.7-a</td>
+<td>事業影響分析</td>
+<td><a href="../domain1/index.html#d1-07-bia">7.1〜7.3</a>：目的、順序、時間目標</td>
+<td>S：Q22、23、41、53、56、66、67、76</td>
+<td>あり</td>
+<td>H</td>
+<td>重点。個別正誤未再確認</td>
+</tr>
+<tr>
+<td>1.7-b</td>
+<td>外部依存</td>
+<td><a href="../domain1/index.html#d1-07-dependencies">7.4〜7.5</a>：共通依存、戦略、演習</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>供給者数と独立性</td>
+</tr>
+<tr>
+<td>1.8-a</td>
+<td>採用前確認・採用</td>
+<td><a href="../domain1/index.html#d1-08-lifecycle">8.1</a>：職務比例の調査</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>適法性・必要性</td>
+</tr>
+<tr>
+<td>1.8-b</td>
+<td>雇用合意・方針要件</td>
+<td><a href="../domain1/index.html#d1-08-lifecycle">8.1〜8.2</a>：契約、職務、分離</td>
+<td>S：職務分離。雇用合意はU</td>
+<td>あり</td>
+<td>H</td>
+<td>認証と内部者統制</td>
+</tr>
+<tr>
+<td>1.8-c</td>
+<td>受入れ・異動・退職</td>
+<td><a href="../domain1/index.html#d1-08-lifecycle">8.1</a>：権限付与・変更・失効</td>
+<td>S：Q109、総括</td>
+<td>あり</td>
+<td>H</td>
+<td>退職の連携、権限の累積</td>
+</tr>
+<tr>
+<td>1.8-d</td>
+<td>外部要員の契約・統制</td>
+<td><a href="../domain1/index.html#d1-08-contractors">8.3</a>：守秘、権限、終了</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>外注先への無条件信頼</td>
+</tr>
+<tr>
+<td>1.9-a</td>
+<td>脅威・脆弱性の特定</td>
+<td><a href="../domain1/index.html#d1-09-terms">9.1</a>：主体・弱点・行為・影響</td>
+<td>E：Q95</td>
+<td>あり</td>
+<td>H</td>
+<td>Q95は正解、用語の粒度</td>
+</tr>
+<tr>
+<td>1.9-b</td>
+<td>分析・評価・範囲</td>
+<td><a href="../domain1/index.html#d1-09-assessment">9.2〜9.3</a>：定性・定量・ALE</td>
+<td>E：Q96〜98、S：Q1</td>
+<td>あり</td>
+<td>H</td>
+<td>計算後の費用対効果</td>
+</tr>
+<tr>
+<td>1.9-c</td>
+<td>対応と保険</td>
+<td><a href="../domain1/index.html#d1-09-treatment">9.4</a>：4対応、許容、残余</td>
+<td>S：テーマ要約・総括</td>
+<td>あり</td>
+<td>H</td>
+<td>移転と責任、受容権限</td>
+</tr>
+<tr>
+<td>1.9-d</td>
+<td>管理策の種別</td>
+<td><a href="../domain1/index.html#d1-09-controls">9.5</a>：手段と機能の2軸</td>
+<td>S：Q20、75、100、WAF等</td>
+<td>あり</td>
+<td>H</td>
+<td>重点。個別正誤未再確認</td>
+</tr>
+<tr>
+<td>1.9-e</td>
+<td>管理策評価</td>
+<td><a href="../domain1/index.html#d1-09-monitoring">9.6</a>：設計・実装・効果・プライバシー</td>
+<td>S：Q49は関連。直接出題はU</td>
+<td>あり</td>
+<td>C</td>
+<td>設置と有効性</td>
+</tr>
+<tr>
+<td>1.9-f</td>
+<td>継続監視・測定</td>
+<td><a href="../domain1/index.html#d1-09-monitoring">9.6</a>：変化と指標</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>件数だけの評価</td>
+</tr>
+<tr>
+<td>1.9-g</td>
+<td>内部・外部報告</td>
+<td><a href="../domain1/index.html#d1-09-monitoring">9.6</a>：意思決定、法令、契約</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>相手・目的・期限</td>
+</tr>
+<tr>
+<td>1.9-h</td>
+<td>継続改善・成熟</td>
+<td><a href="../domain1/index.html#d1-09-monitoring">9.6</a>：是正、再評価、成熟度</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>点数と安全性</td>
+</tr>
+<tr>
+<td>1.9-i</td>
+<td>リスクの枠組み</td>
+<td><a href="../domain1/index.html#d1-09-frameworks">9.7</a>・<a href="../domain1/index.html#d1-03-frameworks">3.5</a>：目的別の併用</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>採用と実装の違い</td>
+</tr>
+<tr>
+<td>1.10-a</td>
+<td>脅威のモデル化と手法</td>
+<td><a href="../domain1/index.html#d1-10-process">10.1〜10.3</a>：DFD、STRIDE、攻撃経路、PASTA</td>
+<td>S：STRIDE</td>
+<td>あり</td>
+<td>H</td>
+<td>分類とリスク算定</td>
+</tr>
+<tr>
+<td>1.11-a</td>
+<td>製品・サービス調達のリスク</td>
+<td><a href="../domain1/index.html#d1-11-risks">11.1</a>：細工、偽造、仕込み、依存</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>正常稼働と真正性</td>
+</tr>
+<tr>
+<td>1.11-b</td>
+<td>供給網の軽減策</td>
+<td><a href="../domain1/index.html#d1-11-lifecycle">11.2〜11.3</a>：第三者評価、最低要件、SLA、信頼の起点、PUF、SBOM</td>
+<td>S：SLA。その他はU</td>
+<td>あり</td>
+<td>C</td>
+<td>文書と保証の限界</td>
+</tr>
+<tr>
+<td>1.12-a</td>
+<td>啓発・訓練の方法</td>
+<td><a href="../domain1/index.html#d1-12-learning">12.1〜12.3</a>：攻撃心理、模擬訓練、推進者、ゲーム要素</td>
+<td>S：Q56、93・94、総括</td>
+<td>あり</td>
+<td>H</td>
+<td>啓発・訓練・教育</td>
+</tr>
+<tr>
+<td>1.12-b</td>
+<td>新技術を踏まえる見直し</td>
+<td><a href="../domain1/index.html#d1-12-effectiveness">12.4〜12.5</a>：暗号資産、ブロックチェーン、AI</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>新技術も既存の統治へ接続</td>
+</tr>
+<tr>
+<td>1.12-c</td>
+<td>効果の評価</td>
+<td><a href="../domain1/index.html#d1-12-effectiveness">12.4</a>：理解・行動・報告・実施率</td>
+<td>U</td>
+<td>あり</td>
+<td>C</td>
+<td>受講率だけでは不十分</td>
+</tr>
+</tbody></table></div>
+<h2 id="coverage-result" tabindex="-1">品質確認の結果</h2>
+<ul>
+<li>公式の12領域：12／12を収録。</li>
+<li>この表の37確認単位：37／37に説明と参照先を用意。列挙された代表例も、同じ行の本文で確認。</li>
+<li>本文中の対象アンカーと相互参照は生成時に検証。</li>
+<li>倫理、組織再編、調査、外部依存、人的ライフサイクル、供給網の具体策、新技術、プログラム評価など、履歴で確認できない部分を範囲主導で補完。</li>
+<li>履歴照合は部分的。個別回答の全111問再確認、全誤答・全迷いの完全抽出は未完了。出題有無を断定した全面的な網羅表ではない。</li>
+<li>本文収録率は理解度・予想得点・本試験の全問題への対応率を表さない。</li>
+</ul>
+<p>独自の第0章と付録は公式細目の数に含めていません。更新時は本表の行を削って本文へ合わせるのではなく、新しい公式範囲との差分を確認して本文と本表を同時に更新します。</p>
+</article><footer class="page-footer">復習ノート 第1.0版 · 資料確認 2026-09-12<br>本文はMarkdown（正本）から生成しています。</footer></main></div><a class="back-top" href="#top" aria-label="ページの先頭へ戻る">↑ 先頭</a></body></html>

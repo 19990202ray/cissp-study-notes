@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "reviewed": "2026-09-12",
+  "pages": [
+    {
+      "source": "content/domain1/CISSP_Domain1_Master.md",
+      "output": "domain1/index.html",
+      "headings": 68,
+      "tables": 47,
+      "characters": 46326
+    },
+    {
+      "source": "coverage/Domain1_Coverage.md",
+      "output": "coverage/domain1.html",
+      "headings": 3,
+      "tables": 1,
+      "characters": 6285
+    },
+    {
+      "source": "references/Problem_History.md",
+      "output": "references/history.html",
+      "headings": 4,
+      "tables": 3,
+      "characters": 3201
+    },
+    {
+      "source": "references/Sources.md",
+      "output": "references/sources.html",
+      "headings": 6,
+      "tables": 4,
+      "characters": 6134
+    },
+    {
+      "source": "README.md",
+      "output": "guide/index.html",
+      "headings": 7,
+      "tables": 1,
+      "characters": 4385
+    }
+  ],
+  "localLinksChecked": 77
+}
