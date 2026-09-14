@@ -1,0 +1,222 @@
+name: Validate published site
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Syntax and integrity checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check JavaScript syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          find . -type f \( -name '*.js' -o -name '*.mjs' \) \
+            -not -path './.git/*' -not -path './node_modules/*' -print0 |
+          while IFS= read -r -d '' file; do
+            echo "Checking ${file}"
+            node --check "${file}"
+          done
+
+      - name: Check JSON syntax
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+
+          const skipDirs = new Set(['.git', 'node_modules']);
+          const jsonFiles = [];
+
+          function walk(dir) {
+            for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+              if (entry.isDirectory() && skipDirs.has(entry.name)) continue;
+              const fullPath = path.join(dir, entry.name);
+              if (entry.isDirectory()) walk(fullPath);
+              else if (entry.isFile() && entry.name.endsWith('.json')) jsonFiles.push(fullPath);
+            }
+          }
+
+          walk('.');
+
+          for (const file of jsonFiles) {
+            try {
+              const text = fs.readFileSync(file, 'utf8').replace(/^\uFEFF/, '');
+              JSON.parse(text);
+              console.log(`OK ${file}`);
+            } catch (error) {
+              console.error(`Invalid JSON: ${file}`);
+              console.error(error.message);
+              process.exitCode = 1;
+            }
+          }
+          NODE
+
+      - name: Verify publish manifest hashes
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import crypto from 'node:crypto';
+          import fs from 'node:fs';
+
+          const manifest = JSON.parse(fs.readFileSync('publish-manifest.json', 'utf8'));
+          let failed = false;
+
+          for (const entry of manifest.files ?? []) {
+            if (!fs.existsSync(entry.path)) {
+              console.error(`Missing file: ${entry.path}`);
+              failed = true;
+              continue;
+            }
+
+            const data = fs.readFileSync(entry.path);
+            const sha256 = crypto.createHash('sha256').update(data).digest('hex');
+
+            if (data.length !== entry.bytes) {
+              console.error(`Byte-size mismatch: ${entry.path} (expected ${entry.bytes}, got ${data.length})`);
+              failed = true;
+            }
+
+            if (sha256 !== entry.sha256) {
+              console.error(`SHA-256 mismatch: ${entry.path}`);
+              failed = true;
+            } else {
+              console.log(`OK ${entry.path}`);
+            }
+          }
+
+          if (failed) process.exit(1);
+          NODE
+
+      - name: Check published HTML structure and local references
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+
+          const root = path.resolve('.');
+          const manifest = JSON.parse(fs.readFileSync('publish-manifest.json', 'utf8'));
+          const htmlFiles = (manifest.files ?? [])
+            .map((entry) => entry.path)
+            .filter((file) => file.endsWith('.html'));
+
+          let failed = false;
+
+          function error(message) {
+            console.error(message);
+            failed = true;
+          }
+
+          function hasId(html, id) {
+            const escaped = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            return new RegExp(`\\bid\\s*=\\s*["']${escaped}["']`, 'i').test(html);
+          }
+
+          for (const file of htmlFiles) {
+            if (!fs.existsSync(file)) {
+              error(`Missing HTML file: ${file}`);
+              continue;
+            }
+
+            const html = fs.readFileSync(file, 'utf8');
+            const required = [
+              [/<!doctype\s+html/i, '<!doctype html>'],
+              [/<html\b/i, '<html>'],
+              [/<head\b/i, '<head>'],
+              [/<title\b[^>]*>.*?<\/title>/is, '<title>'],
+              [/<body\b/i, '<body>'],
+              [/<\/body>/i, '</body>'],
+              [/<\/html>/i, '</html>'],
+            ];
+
+            for (const [pattern, label] of required) {
+              if (!pattern.test(html)) error(`${file}: missing ${label}`);
+            }
+
+            const ids = new Set();
+            for (const match of html.matchAll(/\bid\s*=\s*["']([^"']+)["']/gi)) {
+              const id = match[1];
+              if (ids.has(id)) error(`${file}: duplicate id="${id}"`);
+              ids.add(id);
+            }
+
+            for (const match of html.matchAll(/\b(?:href|src)\s*=\s*["']([^"'<>]+)["']/gi)) {
+              const raw = match[1].trim();
+              if (!raw || raw.startsWith('#')) continue;
+              if (/^[a-z][a-z0-9+.-]*:/i.test(raw) || raw.startsWith('//')) continue;
+
+              if (raw.startsWith('/')) {
+                error(`${file}: root-relative path is unsafe for a project Pages site: ${raw}`);
+                continue;
+              }
+
+              const [beforeFragment, fragmentRaw = ''] = raw.split('#', 2);
+              const pathRaw = beforeFragment.split('?', 1)[0];
+              if (!pathRaw) continue;
+
+              let decodedPath;
+              let fragment;
+              try {
+                decodedPath = decodeURIComponent(pathRaw);
+                fragment = fragmentRaw ? decodeURIComponent(fragmentRaw) : '';
+              } catch {
+                error(`${file}: malformed URL encoding: ${raw}`);
+                continue;
+              }
+
+              let target = path.resolve(path.dirname(file), decodedPath);
+              if (decodedPath.endsWith('/')) target = path.join(target, 'index.html');
+
+              if (!target.startsWith(root + path.sep) && target !== root) {
+                error(`${file}: local reference escapes repository root: ${raw}`);
+                continue;
+              }
+
+              if (!fs.existsSync(target)) {
+                error(`${file}: missing local target: ${raw}`);
+                continue;
+              }
+
+              if (fragment && target.endsWith('.html')) {
+                const targetHtml = fs.readFileSync(target, 'utf8');
+                if (!hasId(targetHtml, fragment)) {
+                  error(`${file}: missing anchor target: ${raw}`);
+                }
+              }
+            }
+
+            console.log(`Checked ${file}`);
+          }
+
+          if (manifest.validation?.htmlPages !== undefined &&
+              manifest.validation.htmlPages !== htmlFiles.length) {
+            error(`HTML page count mismatch: manifest says ${manifest.validation.htmlPages}, files list has ${htmlFiles.length}`);
+          }
+
+          if (failed) process.exit(1);
+          NODE
