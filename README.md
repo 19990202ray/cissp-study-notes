@@ -23,7 +23,9 @@ GitHub → このリポジトリ → Settings → Pages → Build and deployment
 - Folder: **/(root)**
 - **Save**
 
-独自のGitHub Actionsワークフローは不要です。`.nojekyll` により生成済みHTMLを配信します。GitHub内部のPages配信処理がActionsに表示される場合があります。
+Pages配信自体に独自のデプロイ用GitHub Actionsは不要です。`.nojekyll` により生成済みHTMLを配信します。GitHub内部のPages配信処理がActionsに表示される場合があります。
+
+公開前の品質確認には `.github/workflows/validate.yml` を使用します。`main` 向けPull Requestと `main` へのpushで、JavaScript/MJS、JSON、公開manifest、HTML構造、ローカルリンク・アンカーを自動検査します。
 
 ## 更新する
 
@@ -31,22 +33,32 @@ Node.js 22以降を使用します。パッケージの追加インストール�
 
 1. Driveの最新フォルダ一式を取得し、ローカルに展開します。古いZIPだけを最新正本とみなさず、更新日時を確認します。
 2. 本文は `content/domainN/` のMarkdown、見た目は `ui/`、登録情報は `book.json` で更新します。
-3. 公開リポジトリのmainを最新にして、Drive正本のコピーにあるスクリプトを実行します。
+3. 公開リポジトリの `main` を最新にしてから、更新用ブランチを作成し、Drive正本のコピーにあるスクリプトを実行します。
 
 ```sh
+git switch main
 git pull --ff-only
+git switch -c update/cissp-notes
 node /path/to/CISSP_Study_Notes/publishing/sync-site.mjs /path/to/CISSP_Study_Notes /path/to/cissp-study-notes
 ```
 
 4. 正本の変更と再生成された `site/` を、Google Driveの同じファイルへ保存します。Drive保存を済ませてから公開します。
-5. 差分とブラウザ表示を確認し、このリポジトリでコミット・pushします。
+5. 差分とブラウザ表示を確認し、更新用ブランチへコミット・pushします。`main` へ直接pushしません。
 
 ```sh
 git diff --stat
 git add -A
 git commit -m "Update CISSP study notes from Drive sources"
-git push origin main
+git push -u origin update/cissp-notes
 ```
+
+6. GitHubで `main` 向けPull Requestを作成します。GitHub Actionsの **Syntax and integrity checks** が成功したことを確認してから `main` へmergeします。Actionsが失敗している変更はmergeしません。
+
+GitHub側では `main` を対象とするRulesetまたはBranch protectionを設定し、少なくとも次を必須化します。
+
+- Pull Request経由での変更
+- **Syntax and integrity checks** の成功
+- force pushの禁止
 
 `tools/sync-from-drive.mjs` はDrive正本の `publishing/sync-site.mjs` のコピーです。修正する場合は正本から行います。
 同期処理はMarkdownから再生成し、相対リンクとアンカーを検査し、ソースと成果物のSHA-256を記録します。前回の同期後に公開ファイルだけを変更していた場合は、乖離を防ぐため停止します。必要な変更を正本へ戻し、公開側を前回のコミットの状態へ戻してから再実行してください。
