@@ -72,7 +72,7 @@ const manifest = {
   sourceFiles:sourceInputs.map(p => ({path:p,sha256:hash(fs.readFileSync(safe(source,p)))})),
   files:[...files].map(([p,data]) => ({path:p,bytes:data.length,sha256:hash(data)})),
   validation:{htmlPages:documents.size,localLinks,rootRelativePaths:0},
-  workflow:'Edit Drive sources, rebuild and sync, save changed source/site files to Drive, then commit/push generated files to main.'
+  workflow:'Edit Drive sources, rebuild and sync, save changed source/site files to Drive, then commit/push generated files to a work branch, open a PR, and merge after required checks pass.'
 };
 const manifestPath = safe(target, 'publish-manifest.json');
 let previous = [];
