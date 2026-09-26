@@ -23,7 +23,7 @@ GitHub → このリポジトリ → Settings → Pages → Build and deployment
 - Folder: **/(root)**
 - **Save**
 
-独自のGitHub Actionsワークフローは不要です。`.nojekyll` により生成済みHTMLを配信します。GitHub内部のPages配信処理がActionsに表示される場合があります。
+Pages配信専用の独自GitHub Actionsワークフローは不要です。既存の構文・整合性検査は更新時の必須工程として使用します。`.nojekyll` により生成済みHTMLを配信します。GitHub内部のPages配信処理がActionsに表示される場合があります。
 
 ## 更新する
 
@@ -39,14 +39,17 @@ node /path/to/CISSP_Study_Notes/publishing/sync-site.mjs /path/to/CISSP_Study_No
 ```
 
 4. 正本の変更と再生成された `site/` を、Google Driveの同じファイルへ保存します。Drive保存を済ませてから公開します。
-5. 差分とブラウザ表示を確認し、このリポジトリでコミット・pushします。
+5. 差分とブラウザ表示を確認し、作業ブランチへコミット・pushします。
 
 ```sh
 git diff --stat
+git switch -c update/cissp-notes
 git add -A
 git commit -m "Update CISSP study notes from Drive sources"
-git push origin main
+git push -u origin update/cissp-notes
 ```
+
+6. main向けPull Requestを作成し、`Syntax and integrity checks` の成功を確認してからmergeします。mainへの直接push・force pushは行いません。詳細はリポジトリの `CONTRIBUTING.md` と `VERSIONING.md` を参照してください。既存の検査・リリース用Actionsは保持します。Pagesの配信方式は引き続きブランチ公開です。
 
 `tools/sync-from-drive.mjs` はDrive正本の `publishing/sync-site.mjs` のコピーです。修正する場合は正本から行います。
 同期処理はMarkdownから再生成し、相対リンクとアンカーを検査し、ソースと成果物のSHA-256を記録します。前回の同期後に公開ファイルだけを変更していた場合は、乖離を防ぐため停止します。必要な変更を正本へ戻し、公開側を前回のコミットの状態へ戻してから再実行してください。
