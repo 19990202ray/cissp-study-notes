@@ -15,12 +15,27 @@ on:
         description: "Release notes (optional)"
         required: false
         type: string
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/release.yml"
 
 permissions:
   contents: write
 
 jobs:
+  register:
+    if: github.event_name == 'push'
+    name: Register release workflow
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Register workflow in Actions
+        run: echo "Release workflow registered. Use workflow_dispatch to create releases."
+
   release:
+    if: github.event_name == 'workflow_dispatch'
     name: Create tag and GitHub Release
     runs-on: ubuntu-latest
     timeout-minutes: 5
