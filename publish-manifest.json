@@ -1,43 +1,39 @@
 {
   "format": 1,
   "source": "Google Drive: CISSP/CISSP_Study_Notes",
-  "contentVersion": "1.0.1",
+  "contentVersion": "1.0.2",
   "sourceFiles": [
     {
       "path": "README.md",
-      "sha256": "3fb21a2f1292d9ebde1b92b5a96724f183d6fc836025412d5aced062a6b6dad6"
+      "sha256": "d52aa3a34563248c58a6c86f130d8985aba3c35a76bf99f670f45b0a2db0ebcb"
     },
     {
       "path": "book.json",
-      "sha256": "716676415a361c32465e8162b41eac336bd043d821249336467a94ee22d0b70a"
+      "sha256": "db7060e83a7353f3ec49746b7ffe701ee2fa4e10b782ae3d1898f166eebdac53"
     },
     {
       "path": "build/build.mjs",
-      "sha256": "2495e97bf1102defb14ec4cf08b1e609ce38f1f71743cd078f49a05600ffb95f"
+      "sha256": "406232d34a3eaac5cd3fa2ac2141706986c35072c37ddda330af00a8f664e34b"
     },
     {
       "path": "content/domain1/CISSP_Domain1_Master.md",
-      "sha256": "56d77a5b85314f63c0a2732629804d6b4b932fdf9eefe90d5ec1fcfba925aa7e"
+      "sha256": "b0f8afc2b70b78be4468dd1a9a0ec0c9f6832dd8b220f2718b64c13a3ac16042"
     },
     {
       "path": "coverage/Domain1_Coverage.md",
-      "sha256": "5deb210bfd429a89b7f435be34f36947af06e380714c9dded84939dc91d6ee5d"
+      "sha256": "4c67540f0252ad9d90641f5548f92ca3c7a7d0725d4a6d73d9709f4668513eb6"
     },
     {
       "path": "publishing/README_GitHub.md",
-      "sha256": "08c86ca8a5afd582486cabfa44cecab0bda115f62aab5bce4951dd83657a3093"
+      "sha256": "a9cb7d031ae0e0bd1b6c676d37ea4d28acdcbbf2b0ed56a159dfc8d2286716da"
     },
     {
       "path": "publishing/sync-site.mjs",
-      "sha256": "5bc4430db153d4bcf4361feb1abae0c76c6048b1fb0599d04a90370be4ac2c85"
-    },
-    {
-      "path": "references/Problem_History.md",
-      "sha256": "eeeed28133c006f334d6419ab0b6f17b01b34eef915b067c9ca331e3cec2f379"
+      "sha256": "c5d85e204a8057ddadad68fc312f7e71f893e2c3e52e376f394c191752e11645"
     },
     {
       "path": "references/Sources.md",
-      "sha256": "2329442294158f3ea8199f96dc14d2f7801f289b197444bb505cc577e2d94718"
+      "sha256": "d370342b2aa1940bbb4e0e1bcd80279f859d7a1f161ed8c44a1d4329e59ed7cf"
     },
     {
       "path": "ui/app.js",
@@ -59,33 +55,28 @@
   "files": [
     {
       "path": "index.html",
-      "bytes": 4144,
-      "sha256": "95f2e5e5ddd96d29265da692d479f6cc55973d8c09473a53e10465a750e67f1a"
+      "bytes": 4022,
+      "sha256": "90cae18933abc76fb4c5a64fb4c72abcb4fb731283cc468f24b968a421b3b439"
     },
     {
       "path": "domain1/index.html",
-      "bytes": 175051,
-      "sha256": "5d94e3e5d85a964aa5ab2e8938d6ada13150dfd3b32ad768439a0bd438476bbf"
+      "bytes": 172535,
+      "sha256": "de9d1532616d923a13e0ebf68693bb33671141aa8caf16bf24ffe218a569e3fc"
     },
     {
       "path": "coverage/domain1.html",
-      "bytes": 18717,
-      "sha256": "2b35c21e6e1ba90a1d45c131b9cd9f0a369878164a4725bdb79691d33ab7dddd"
-    },
-    {
-      "path": "references/history.html",
-      "bytes": 12891,
-      "sha256": "86ed056b95d3a54afdd54c101be0236ce4b7daa709c486db0df2ec2bf4f9b077"
+      "bytes": 15933,
+      "sha256": "9a9b02668b0f451e0098734666d5b3fb07075ef28c89df97221aade1eee81984"
     },
     {
       "path": "references/sources.html",
-      "bytes": 22822,
-      "sha256": "adf1b314d123ed4b1a3344801a0002c9efbf6c995580504633f48b56a8407bf6"
+      "bytes": 22797,
+      "sha256": "929d566611f237b2dbdf5a41cb8bb7a36005395f08ffffcf2ef5c5454ca7ba07"
     },
     {
       "path": "guide/index.html",
-      "bytes": 15751,
-      "sha256": "b0d0a463f02d2499e509c11d8a79ba3cfca1d329ad553a743f5d77719aa35701"
+      "bytes": 15541,
+      "sha256": "9be8e3dbfb64fcd25f5c8441b3cbdc46b6ff29cc047fced7dd3279e93e5a7deb"
     },
     {
       "path": "assets/style.css",
@@ -99,8 +90,8 @@
     },
     {
       "path": "build-report.json",
-      "bytes": 936,
-      "sha256": "540180c3c4c1a7c3e28bca163facdb6108bcf889dc26f69392789cc751592be5"
+      "bytes": 784,
+      "sha256": "18b383f2ec0a6eb61ef0ace5840ef1e073be4edab78f447b1475a2a570f8acae"
     },
     {
       "path": ".nojekyll",
@@ -109,18 +100,18 @@
     },
     {
       "path": "README.md",
-      "bytes": 4668,
-      "sha256": "08c86ca8a5afd582486cabfa44cecab0bda115f62aab5bce4951dd83657a3093"
+      "bytes": 5043,
+      "sha256": "a9cb7d031ae0e0bd1b6c676d37ea4d28acdcbbf2b0ed56a159dfc8d2286716da"
     },
     {
       "path": "tools/sync-from-drive.mjs",
-      "bytes": 6179,
-      "sha256": "5bc4430db153d4bcf4361feb1abae0c76c6048b1fb0599d04a90370be4ac2c85"
+      "bytes": 6805,
+      "sha256": "c5d85e204a8057ddadad68fc312f7e71f893e2c3e52e376f394c191752e11645"
     }
   ],
   "validation": {
-    "htmlPages": 6,
-    "localLinks": 371,
+    "htmlPages": 5,
+    "localLinks": 322,
     "rootRelativePaths": 0
   },
   "workflow": "Edit Drive sources, rebuild and sync, save changed source/site files to Drive, then commit/push generated files to a work branch, open a PR, and merge after required checks pass."

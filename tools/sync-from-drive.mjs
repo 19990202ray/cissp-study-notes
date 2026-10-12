@@ -43,6 +43,13 @@ files.set('tools/sync-from-drive.mjs', fs.readFileSync(safe(source, 'publishing/
 // Project Siteの接頭辞を含むURLで、参照先と節アンカーを確認。
 const base = 'https://19990202ray.github.io/cissp-study-notes/';
 const documents = new Map([...files].filter(([p]) => p.endsWith('.html')).map(([p,data]) => [p,data.toString('utf8')]));
+// 公開対象は登録済みの生成物のみ。Driveの原資料や演習履歴を同期しない。
+for (const [file, html] of documents) {
+  if (/(?:^|\/)(?:history\.html|private\/|quality\/)/i.test(file) ||
+      /\bQ\s*\d{1,4}\b|問題\s*[0-9０-９]+|設問\s*[0-9０-９]+|Problem_History|Exercise_Coverage|references\/history\.html|source_images|questions\.json|NOTE_LINK_AUDIT|選択肢の中では|学習時正解|学習時の正解|初回回答|ユーザー回答|完走時総括/iu.test(html)) {
+    throw new Error(`公開対象に個別演習または非公開資料が含まれています: ${file}`);
+  }
+}
 const ids = new Map([...documents].map(([p,html]) => {
   const values = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
   if (values.length !== new Set(values).size) throw new Error(`ID重複: ${p}`);
