@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="description" content="体系的なCISSP復習用参考書。英日併記、比較、関連知識と判断原則を整理。"><title>Domain 2 — Sources and Currency（出典・最新性） | CISSP Study Notes</title><link rel="stylesheet" href="../assets/style.css"><script defer src="../assets/app.js"></script></head>
+<body id="top"><a class="skip-link" href="#main">本文へ移動</a><header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">C</span><span>CISSP Study Notes<small>CISSP 復習ノート</small></span></a><div class="header-right"><span class="edition">第1.1.0版 · 更新 2026-11-08</span><button type="button" class="theme-toggle" hidden aria-label="ダークモードを切り替える" aria-pressed="false">夜間表示</button></div></header><nav class="domain-nav" aria-label="Domainの移動"><a href="../domain1/index.html">D1<span>Security and Risk Management（セキュリティとリスク管理）</span></a><a href="../domain2/index.html">D2<span>Asset Security（資産のセキュリティ）</span></a><span class="unavailable" title="Security Architecture and Engineering（設計と工学）">D3<small>未作成</small></span><span class="unavailable" title="Communication and Network Security（通信とネットワーク）">D4<small>未作成</small></span><span class="unavailable" title="Identity and Access Management（識別とアクセス管理）">D5<small>未作成</small></span><span class="unavailable" title="Security Assessment and Testing（評価と試験）">D6<small>未作成</small></span><span class="unavailable" title="Security Operations（運用）">D7<small>未作成</small></span><span class="unavailable" title="Software Development Security（ソフトウェア開発）">D8<small>未作成</small></span></nav>
+<div class="reading-layout"><aside class="sidebar" aria-label="学習ナビゲーション"><div class="sidebar-links"><a href="../index.html">全体の入口</a><a href="../coverage/domain1.html">Domain 1 網羅性</a><a href="../coverage/domain2.html">Domain 2 網羅性</a><a href="sources.html">Domain 1 出典・最新性</a><a href="domain2-sources.html" aria-current="page">Domain 2 出典・最新性</a><a href="../guide/index.html">使い方・更新方法</a></div><nav class="toc desktop-toc" aria-label="目次"><p class="eyebrow">CONTENTS（目次）</p><ul><li class="toc-level-2"><a href="#d2-s-outline" data-chapter="d2-s-outline">試験範囲の基準</a></li><li class="toc-level-2"><a href="#d2-s-classification" data-chapter="d2-s-classification">分類制度と影響評価</a></li><li class="toc-level-2"><a href="#d2-s-roles" data-chapter="d2-s-roles">役割と責任</a></li><li class="toc-level-2"><a href="#d2-s-assets" data-chapter="d2-s-assets">資産とデータの管理</a></li><li class="toc-level-2"><a href="#d2-s-privacy" data-chapter="d2-s-privacy">個人情報・保持・非識別化</a></li><li class="toc-level-2"><a href="#d2-s-transfer" data-chapter="d2-s-transfer">越境移転と旧制度</a></li><li class="toc-level-2"><a href="#d2-s-records" data-chapter="d2-s-records">電子記録・電子署名</a></li><li class="toc-level-2"><a href="#d2-s-sanitization" data-chapter="d2-s-sanitization">媒体サニタイズ</a></li><li class="toc-level-2"><a href="#d2-s-lifecycle" data-chapter="d2-s-lifecycle">資産の利用終了</a></li><li class="toc-level-2"><a href="#d2-s-encryption" data-chapter="d2-s-encryption">暗号・製品・ハッシュ</a></li><li class="toc-level-2"><a href="#d2-s-transit" data-chapter="d2-s-transit">通信区間とメッセージ保護</a></li><li class="toc-level-2"><a href="#d2-s-baselines" data-chapter="d2-s-baselines">基準の選択と調整</a></li><li class="toc-level-2"><a href="#d2-s-standards" data-chapter="d2-s-standards">標準と遵守要求</a></li><li class="toc-level-2"><a href="#d2-s-protection" data-chapter="d2-s-protection">DLP・DRM・CASB</a></li></ul></nav></aside>
+<main id="main" tabindex="-1"><div class="page-tools"><details class="mobile-toc"><summary>このページの目次を開く</summary><nav class="toc" aria-label="モバイル目次"><ul><li class="toc-level-2"><a href="#d2-s-outline" data-chapter="d2-s-outline">試験範囲の基準</a></li><li class="toc-level-2"><a href="#d2-s-classification" data-chapter="d2-s-classification">分類制度と影響評価</a></li><li class="toc-level-2"><a href="#d2-s-roles" data-chapter="d2-s-roles">役割と責任</a></li><li class="toc-level-2"><a href="#d2-s-assets" data-chapter="d2-s-assets">資産とデータの管理</a></li><li class="toc-level-2"><a href="#d2-s-privacy" data-chapter="d2-s-privacy">個人情報・保持・非識別化</a></li><li class="toc-level-2"><a href="#d2-s-transfer" data-chapter="d2-s-transfer">越境移転と旧制度</a></li><li class="toc-level-2"><a href="#d2-s-records" data-chapter="d2-s-records">電子記録・電子署名</a></li><li class="toc-level-2"><a href="#d2-s-sanitization" data-chapter="d2-s-sanitization">媒体サニタイズ</a></li><li class="toc-level-2"><a href="#d2-s-lifecycle" data-chapter="d2-s-lifecycle">資産の利用終了</a></li><li class="toc-level-2"><a href="#d2-s-encryption" data-chapter="d2-s-encryption">暗号・製品・ハッシュ</a></li><li class="toc-level-2"><a href="#d2-s-transit" data-chapter="d2-s-transit">通信区間とメッセージ保護</a></li><li class="toc-level-2"><a href="#d2-s-baselines" data-chapter="d2-s-baselines">基準の選択と調整</a></li><li class="toc-level-2"><a href="#d2-s-standards" data-chapter="d2-s-standards">標準と遵守要求</a></li><li class="toc-level-2"><a href="#d2-s-protection" data-chapter="d2-s-protection">DLP・DRM・CASB</a></li></ul></nav></details><div class="search-box" hidden><label for="page-search">本文検索</label><div class="search-row"><input id="page-search" type="search" placeholder="例：リスク / データ保持" autocomplete="off" aria-controls="search-results"><button id="search-clear" type="button">消去</button></div><p id="search-status" role="status" aria-live="polite"></p><ol id="search-results" hidden></ol></div></div><article class="article"><h1>Domain 2 — Sources and Currency（出典・最新性）</h1>
+<p>確認日：2026-11-08。本文は複数の一次資料と標準的な知識をもとに独自に構成しています。表・例・判断手順は学習用の整理であり、ISC2の公式解説や採点基準を転載したものではありません。CBK（共通知識体系）に沿う概念を説明しますが、有料CBK全巻の逐語照合を行ったとは扱いません。</p>
+<h2 id="d2-s-outline" tabindex="-1">試験範囲の基準</h2>
+<ul>
+<li><a href="https://www.isc2.org/certifications/cissp/cissp-certification-exam-outline">ISC2 CISSP Exam Outline（試験範囲）</a>：現在の適用日と、2027-04-15からの新範囲の告知を確認。</li>
+<li><a href="https://assets.ctfassets.net/82ripq7fjls2/2D57uYE9A4MhPVAV3SBJLk/8389a0d0386c5c2814b52df9ab1603a8/CISSP-Exam-Outline-April-2024-English.pdf">2024年版の英語PDF</a>：Domain 2の2.1〜2.6と、役割・状態・保護手段等の列挙を確認。冊子上のDomain 2ページが範囲対応の基準。</li>
+</ul>
+<p>本編は2024-04-15発効版の範囲を扱います。新範囲の開始日を知っていることと、新範囲の全細目に対応済みであることは区別しています。将来版への移行は別の改訂で管理します。試験時間・問題数などの受験要領は本文の対象外であり、申込み時にISC2の現行案内を確認します。</p>
+<h2 id="d2-s-classification" tabindex="-1">分類制度と影響評価</h2>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 1。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>一次資料</th>
+<th>確認対象</th>
+<th>本編への反映</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.archives.gov/isoo/policy-documents/cnsi-eo.html">米国EO 13526</a></td>
+<td>Section 1.2の三つの区分と損害表現</td>
+<td>国家安全保障の区分と民間分類を分ける</td>
+</tr>
+<tr>
+<td><a href="https://www.archives.gov/cui">National Archives：CUI</a></td>
+<td>非機密でも管理を要する情報の制度</td>
+<td>機密指定なしと公開可能を区別</td>
+</tr>
+<tr>
+<td><a href="https://csrc.nist.gov/pubs/fips/199/final">NIST FIPS 199</a></td>
+<td>CIAへの潜在的影響によるカテゴリー化</td>
+<td>機密区分と影響度を混同しない</td>
+</tr>
+<tr>
+<td><a href="https://csrc.nist.gov/pubs/sp/800/60/v1/r1/final">NIST SP 800-60 Vol.1 Rev.1</a></td>
+<td>情報の種類とカテゴリー化の関係</td>
+<td>分類とシステムの保護要求をつなぐ</td>
+</tr>
+</tbody></table></div>
+<p>FIPS 199は2004年、SP 800-60 Vol.1 Rev.1は2008年の刊行です。古い発行年そのものを失効とみなさず、公式掲載の位置付けを確認しています。民間の区分名・順序に共通の唯一の対応表は設定していません。</p>
+<h2 id="d2-s-roles" tabindex="-1">役割と責任</h2>
+<ul>
+<li><a href="https://csrc.nist.gov/pubs/sp/800/37/r2/final">NIST SP 800-37 Rev.2</a>と<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-37r2.pdf">本文PDF</a>：管理策選択・実装・監視等の責任と支援役割。特にAppendix E（付録E）の役割表を確認し、担当作業と最終的な管理責任を混同しない説明に使用。</li>
+<li><a href="https://csrc.nist.gov/glossary/term/information_owner">NIST Information Owner（情報所有者）の用語定義</a>：生成・収集・処理・提供・廃棄等についての権限・責任。</li>
+<li><a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng">GDPR本文</a>：Article 4の定義、24・28等の管理者・処理者に関する要求。</li>
+<li><a href="https://www.edpb.europa.eu/documents/guideline/guidelines-072020-on-the-concepts-of-controller-and-processor-in-the-gdpr_en">EDPB Guidelines 07/2020（管理者・処理者に関する指針）</a>：2021-07-07採択の最終版。実際の目的・手段の決定と、他者のために処理する関係に着目。</li>
+</ul>
+<p>本書の役割表は学習上の比較です。各組織の役職名、権限委任、法的な主体の判定を、同じ名称の存在だけで一律に対応付けません。</p>
+<h2 id="d2-s-assets" tabindex="-1">資産とデータの管理</h2>
+<ul>
+<li><a href="https://www.cisecurity.org/controls/inventory-and-control-of-enterprise-assets">CIS Control 1：企業資産の台帳と管理</a>：物理・仮想・遠隔・クラウドの資産を含む把握と是正。</li>
+<li><a href="https://www.cisecurity.org/controls/data-protection">CIS Control 3：データ保護</a>：識別・分類・安全な取扱い・保持・廃棄を一連の管理として扱う。</li>
+<li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev.5</a>：CM（構成管理）、MP（媒体保護）、SI（システム・情報完全性）等の管理策体系。公式掲載でRelease 5.2.0（2025年）の存在を確認。</li>
+</ul>
+<p>台帳項目、引渡しの確認項目、独自の業務例は、本書の説明用に構成しました。CISの管理策全文を転載したものではありません。</p>
+<h2 id="d2-s-privacy" tabindex="-1">個人情報・保持・非識別化</h2>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 2。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>一次資料</th>
+<th>主な参照範囲</th>
+<th>取り違えを避ける点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng">GDPR本文</a></td>
+<td>Articles 4・5・6・15・16・17・20・32、識別可能性に関する考え方</td>
+<td>仮名化と匿名化、同意と他の根拠、消去権の条件</td>
+</tr>
+<tr>
+<td><a href="https://csrc.nist.gov/pubs/sp/800/122/final">NIST SP 800-122</a></td>
+<td>文脈に応じたPIIの識別と保護</td>
+<td>直接識別子だけに限定しない</td>
+</tr>
+<tr>
+<td><a href="https://www.hhs.gov/hipaa/for-professionals/privacy/laws-regulations/index.html">HHS：HIPAA Privacy Ruleの概要</a></td>
+<td>適用主体と保護対象情報</td>
+<td>健康データすべてを一律にPHIとしない</td>
+</tr>
+<tr>
+<td><a href="https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html">HHS：PHIの非識別化</a></td>
+<td>専門家判定と所定条件による非識別化</td>
+<td>名前の削除だけで完了としない</td>
+</tr>
+</tbody></table></div>
+<p>個別の保持年数、個別組織への法適用、全法域の権利一覧は本版で網羅していません。保持方針、法的保全、可読性、複製の管理へつなげる範囲で整理しています。</p>
+<h2 id="d2-s-transfer" tabindex="-1">越境移転と旧制度</h2>
+<ul>
+<li><a href="https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/adequacy-decisions_en">欧州委員会：十分性認定</a>：確認時点で、米国はEU–US DPF参加組織を対象とする掲載。国名だけで適用範囲を判断しない説明に使用。</li>
+<li><a href="https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/eu-us-data-transfers_en">欧州委員会：EU・米国間データ移転</a>：旧Privacy Shieldと現行枠組みの区別。</li>
+<li><a href="https://curia.europa.eu/site/upload/docs/application/pdf/2020-07/cp200091en.pdf">EU司法裁判所：2020-07-16判決の公式発表</a>：Privacy Shieldの十分性認定が無効となったことを確認。</li>
+</ul>
+<p>旧制度の名称を現行の移転根拠として使用しません。制度、受領者の参加状態、適用範囲は変わるため、実際の移転を判断する際に再確認する対象です。</p>
+<h2 id="d2-s-records" tabindex="-1">電子記録・電子署名</h2>
+<p><a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11">eCFR：21 CFR Part 11</a>の適用範囲、11.50（署名者・日時・意味）、11.70（署名と記録の関連付け）を確認しました。取得ページはTitle 21の2026-11-05時点の更新を表示していました。</p>
+<p>全記録への一律の電子署名義務や、電子署名が特定の暗号方式だけであるという説明にはしていません。信頼できる電子記録として何を説明できる必要があるかに焦点を置いています。</p>
+<h2 id="d2-s-sanitization" tabindex="-1">媒体サニタイズ</h2>
+<ul>
+<li><a href="https://csrc.nist.gov/pubs/sp/800/88/r2/final">NIST SP 800-88 Rev.2（2025年9月）</a>と<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-88r2.pdf">本文PDF</a>：Sections 3.1・3.2の方法と暗号消去、4.5の実施確認と妥当性判断、記録・証明書に関する記述を確認。</li>
+<li><a href="https://csrc.nist.gov/news/2025/guidelines-for-media-sanitization-rev-2">NISTの改訂告知</a>：Rev.1からの変更、組織的な消去プログラムと他の技術標準を参照する構成を確認。</li>
+</ul>
+<p>本書はRev.2を基準に説明し、旧版の媒体別表を現行の万能手順として再利用していません。IEEE 2883・ISO/IEC 27040等の全文を購入・精読したとは扱わず、具体的な破壊粒度や装置別の操作条件は独自に指定していません。</p>
+<h2 id="d2-s-lifecycle" tabindex="-1">資産の利用終了</h2>
+<p><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev.5</a>の非サポート構成要素に関する管理策体系と、<a href="https://csrc.nist.gov/pubs/sp/800/37/r2/final">SP 800-37 Rev.2</a>のライフサイクルを通じたリスク管理を参照しています。ベンダー固有の終了日・製品名は本編の原則に固定していません。移行・例外・廃止の手順は学習用の整理です。</p>
+<h2 id="d2-s-encryption" tabindex="-1">暗号・製品・ハッシュ</h2>
+<ul>
+<li><a href="https://csrc.nist.gov/pubs/fips/197/final">NIST FIPS 197：AES</a>：2023年の編集上の更新に、アルゴリズムの技術的変更はないことを確認。</li>
+<li><a href="https://learn.microsoft.com/en-us/windows/security/book/operating-system-security-encryption-and-data-protection">Microsoft：Windowsの暗号化とデータ保護</a>：BitLockerの保護対象と暗号化の位置付け。</li>
+<li><a href="https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/faq">Microsoft：BitLocker FAQ</a>：BitLockerとEFSの範囲、併用の説明。</li>
+<li><a href="https://learn.microsoft.com/en-us/windows/win32/fileio/file-encryption">Microsoft：File Encryption（ファイル暗号化）</a>：EFSのファイル単位の保護。</li>
+<li><a href="https://www.openbsd.org/papers/bcrypt-paper.pdf">OpenBSD：A Future-Adaptable Password Scheme</a>：bcryptとEksBlowfishの関係。用途の区別に使用し、新規システムへの方式推奨はしていない。</li>
+<li><a href="https://bcrypt.sourceforge.net/">bcryptファイル暗号化ツールの公開元</a>：同名の別ツールが存在することを確認。旧ツールの使用を推奨するための参照ではない。</li>
+</ul>
+<p>製品固有の細かな設定・動作は更新されるため、本文では比較に必要な保護範囲を説明しています。</p>
+<h2 id="d2-s-transit" tabindex="-1">通信区間とメッセージ保護</h2>
+<ul>
+<li><a href="https://www.rfc-editor.org/rfc/rfc8446.html">IETF RFC 8446</a>：TLS 1.3の通信保護。</li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc9580.html">IETF RFC 9580</a>：OpenPGPの暗号化・署名等。旧RFC 4880を置き換える2024年の仕様。</li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc7568.html">IETF RFC 7568</a>：SSL 3.0の使用禁止と弱点。</li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc8996.html">IETF RFC 8996</a>：TLS 1.0・1.1の非推奨化。</li>
+</ul>
+<p>通信の終端、トンネルの終端、メッセージの受信者の違いを説明するための参照です。TLSの全版・暗号スイートの実装規則を解説するものではありません。</p>
+<h2 id="d2-s-baselines" tabindex="-1">基準の選択と調整</h2>
+<ul>
+<li><a href="https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final">NIST SP 800-53B</a>：基準集合と調整。2025年のRelease 5.2.0は番号を合わせる更新で、基準集合に変更がない旨を確認。</li>
+<li><a href="https://csrc.nist.gov/glossary/term/tailoring">NIST Tailoring（調整）の用語定義</a>：Scoping、代替管理策、パラメーター、追加策等を含む定義。</li>
+<li><a href="https://www.cisecurity.org/cis-benchmarks">CIS Benchmarks（製品別設定基準）</a>：製品・版に応じた構成推奨。</li>
+<li><a href="https://csrc.nist.gov/News/2025/nist-releases-revision-to-sp-800-53-controls">NISTの2025年改訂告知</a>：SP 800-53・53A・53Bの更新の区別。</li>
+</ul>
+<h2 id="d2-s-standards" tabindex="-1">標準と遵守要求</h2>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 3。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>一次資料</th>
+<th>確認した位置付け・版</th>
+<th>制約</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.iso.org/standard/27001">ISO/IEC 27001</a></td>
+<td>2022年版、ISMSへの要求、追補があること</td>
+<td>公開概要の確認。規格本文全体の照合は未実施</td>
+</tr>
+<tr>
+<td><a href="https://www.iso.org/standard/75652.html">ISO/IEC 27002</a></td>
+<td>2022年版、管理策の指針</td>
+<td>公開概要の確認。規格本文の転載なし</td>
+</tr>
+<tr>
+<td><a href="https://www.pcisecuritystandards.org/document_library/">PCI SSC文書ライブラリ</a>・<a href="https://www.pcisecuritystandards.org/ja/document_library/">日本語掲載</a></td>
+<td>PCI DSS v4.0.1の掲載</td>
+<td>本書は適用対象と他の基準との違いを扱う</td>
+</tr>
+<tr>
+<td><a href="https://www.oag.ca.gov/privacy/facts/online-privacy/privacy-policy">California DOJ：プライバシーポリシー</a></td>
+<td>CalOPPAとCCPA等の異なる要求</td>
+<td>個別企業の適用判定や全ての権利は網羅しない</td>
+</tr>
+</tbody></table></div>
+<p>法令・規格・契約を同じ種類の義務とみなさず、誰に、どのデータ・処理について要求されるかを確認する説明にしています。</p>
+<h2 id="d2-s-protection" tabindex="-1">DLP・DRM・CASB</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/purview/dlp-learn-about-dlp">Microsoft：DLPの概要</a>：検出・監視・保護と適用場所。</li>
+<li><a href="https://learn.microsoft.com/en-us/purview/encryption">Microsoft：暗号化による情報保護</a>：暗号化と利用権限の制御の関係。</li>
+<li><a href="https://learn.microsoft.com/en-us/purview/rights-management-usage-rights">Microsoft：利用権限の設定</a>：印刷・コピー等の権限と、対応アプリによる実装差。</li>
+<li><a href="https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps">Microsoft：Defender for Cloud Apps</a>：CASBの可視化・保護機能。</li>
+<li><a href="https://learn.microsoft.com/en-us/security/zero-trust/integrate/applications">Microsoft：アプリケーション連携</a>：API連携とプロキシによる保護の実装例。</li>
+</ul>
+<p>製造元の資料は、その実装を説明する一次資料として利用しています。特定製品の機能を全製品の保証へ一般化せず、方式・対象経路・機能の有無を確認する説明にしています。</p>
+</article><footer class="page-footer">復習ノート 第1.1.0版 · 資料確認 2026-11-08<br>本文はMarkdown（正本）から生成しています。</footer></main></div><a class="back-top" href="#top" aria-label="ページの先頭へ戻る">↑ 先頭</a></body></html>

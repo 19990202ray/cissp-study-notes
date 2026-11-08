@@ -1,6 +1,6 @@
 {
-  "version": "1.0.2",
-  "reviewed": "2026-09-27（公開表現更新：2026-10-12）",
+  "version": "1.1.0",
+  "reviewed": "2026-11-08",
   "pages": [
     {
       "source": "content/domain1/CISSP_Domain1_Master.md",
@@ -10,11 +10,25 @@
       "characters": 56519
     },
     {
+      "source": "content/domain2/CISSP_Domain2_Master.md",
+      "output": "domain2/index.html",
+      "headings": 40,
+      "tables": 25,
+      "characters": 29064
+    },
+    {
       "source": "coverage/Domain1_Coverage.md",
       "output": "coverage/domain1.html",
       "headings": 3,
       "tables": 1,
       "characters": 6649
+    },
+    {
+      "source": "coverage/Domain2_Coverage.md",
+      "output": "coverage/domain2.html",
+      "headings": 3,
+      "tables": 1,
+      "characters": 4784
     },
     {
       "source": "references/Sources.md",
@@ -24,12 +38,19 @@
       "characters": 9173
     },
     {
+      "source": "references/Domain2_Sources.md",
+      "output": "references/domain2-sources.html",
+      "headings": 14,
+      "tables": 3,
+      "characters": 8128
+    },
+    {
       "source": "README.md",
       "output": "guide/index.html",
       "headings": 7,
       "tables": 1,
-      "characters": 4447
+      "characters": 4846
     }
   ],
-  "localLinksChecked": 89
+  "localLinksChecked": 151
 }
