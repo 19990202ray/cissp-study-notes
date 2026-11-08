@@ -1,0 +1,1032 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="description" content="体系的なCISSP復習用参考書。英日併記、比較、関連知識と判断原則を整理。"><title>CISSP Domain 2 — Asset Security（資産のセキュリティ） | CISSP Study Notes</title><link rel="stylesheet" href="../assets/style.css"><script defer src="../assets/app.js"></script></head>
+<body id="top"><a class="skip-link" href="#main">本文へ移動</a><header class="site-header"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">C</span><span>CISSP Study Notes<small>CISSP 復習ノート</small></span></a><div class="header-right"><span class="edition">第1.1.0版 · 更新 2026-11-08</span><button type="button" class="theme-toggle" hidden aria-label="ダークモードを切り替える" aria-pressed="false">夜間表示</button></div></header><nav class="domain-nav" aria-label="Domainの移動"><a href="../domain1/index.html">D1<span>Security and Risk Management（セキュリティとリスク管理）</span></a><a href="index.html" aria-current="page">D2<span>Asset Security（資産のセキュリティ）</span></a><span class="unavailable" title="Security Architecture and Engineering（設計と工学）">D3<small>未作成</small></span><span class="unavailable" title="Communication and Network Security（通信とネットワーク）">D4<small>未作成</small></span><span class="unavailable" title="Identity and Access Management（識別とアクセス管理）">D5<small>未作成</small></span><span class="unavailable" title="Security Assessment and Testing（評価と試験）">D6<small>未作成</small></span><span class="unavailable" title="Security Operations（運用）">D7<small>未作成</small></span><span class="unavailable" title="Software Development Security（ソフトウェア開発）">D8<small>未作成</small></span></nav>
+<div class="reading-layout"><aside class="sidebar" aria-label="学習ナビゲーション"><div class="sidebar-links"><a href="../index.html">全体の入口</a><a href="../coverage/domain1.html">Domain 1 網羅性</a><a href="../coverage/domain2.html">Domain 2 網羅性</a><a href="../references/sources.html">Domain 1 出典・最新性</a><a href="../references/domain2-sources.html">Domain 2 出典・最新性</a><a href="../guide/index.html">使い方・更新方法</a></div><nav class="toc desktop-toc" aria-label="目次"><p class="eyebrow">CONTENTS（目次）</p><ul><li class="toc-level-2"><a href="#d2-00" data-chapter="d2-00">0. 資産を守る判断の組み立て方</a></li><li class="toc-level-3"><a href="#d2-00-decisions" data-chapter="d2-00">0.1 対象・責任・要求・状態を先に確認する</a></li><li class="toc-level-3"><a href="#d2-00-lifecycle-state" data-chapter="d2-00">0.2 ライフサイクルとデータの状態</a></li><li class="toc-level-2"><a href="#d2-01" data-chapter="d2-01">1. 情報と資産の識別・分類 — 公式2.1</a></li><li class="toc-level-3"><a href="#d2-01-identify" data-chapter="d2-01">1.1 情報の価値と影響を識別する</a></li><li class="toc-level-3"><a href="#d2-01-classification" data-chapter="d2-01">1.2 分類・ラベル・扱い方・管理策の関係</a></li><li class="toc-level-3"><a href="#d2-01-schemes" data-chapter="d2-01">1.3 政府・民間・NISTの区分を混同しない</a></li><li class="toc-level-3"><a href="#d2-01-mixed" data-chapter="d2-01">1.4 混在・集約・再分類</a></li><li class="toc-level-2"><a href="#d2-02" data-chapter="d2-02">2. 情報と資産の取扱要件 — 公式2.2</a></li><li class="toc-level-3"><a href="#d2-02-handling" data-chapter="d2-02">2.1 取扱要件を業務で実行できる形にする</a></li><li class="toc-level-3"><a href="#d2-02-labels" data-chapter="d2-02">2.2 ラベル・メタデータ・電子透かし</a></li><li class="toc-level-3"><a href="#d2-02-transfer" data-chapter="d2-02">2.3 媒体の輸送・保管と第三者への引渡し</a></li><li class="toc-level-2"><a href="#d2-03" data-chapter="d2-03">3. 所有・資産台帳・安全な提供 — 公式2.3</a></li><li class="toc-level-3"><a href="#d2-03-roles" data-chapter="d2-03">3.1 事業・データ・システム・運用の責任</a></li><li class="toc-level-3"><a href="#d2-03-privacy-roles" data-chapter="d2-03">3.2 Controller・Processor・Subjectと組織内の役割</a></li><li class="toc-level-3"><a href="#d2-03-inventory" data-chapter="d2-03">3.3 有形・無形の資産台帳と継続管理</a></li><li class="toc-level-3"><a href="#d2-03-provisioning" data-chapter="d2-03">3.4 Secure Provisioning（安全な提供・初期設定）</a></li><li class="toc-level-2"><a href="#d2-04" data-chapter="d2-04">4. データのライフサイクル — 公式2.4</a></li><li class="toc-level-3"><a href="#d2-04-lifecycle" data-chapter="d2-04">4.1 収集から廃棄までの責任をつなぐ</a></li><li class="toc-level-3"><a href="#d2-04-collection" data-chapter="d2-04">4.2 収集目的・最小化・個人情報の識別</a></li><li class="toc-level-3"><a href="#d2-04-deidentification" data-chapter="d2-04">4.3 匿名化・仮名化・マスキング・トークン化</a></li><li class="toc-level-3"><a href="#d2-04-location" data-chapter="d2-04">4.4 所在・主権・越境移転</a></li><li class="toc-level-3"><a href="#d2-04-maintenance" data-chapter="d2-04">4.5 Data Maintenance（データの保守）と証拠としての品質</a></li><li class="toc-level-3"><a href="#d2-04-retention" data-chapter="d2-04">4.6 Retention・Archive・Backup・Legal Hold</a></li><li class="toc-level-3"><a href="#d2-04-remanence" data-chapter="d2-04">4.7 Data Remanence（データ残留）</a></li><li class="toc-level-3"><a href="#d2-04-sanitization" data-chapter="d2-04">4.8 Clear・Purge・Destroyとサニタイズ</a></li><li class="toc-level-3"><a href="#d2-04-media" data-chapter="d2-04">4.9 磁気媒体・SSD・暗号消去の違い</a></li><li class="toc-level-3"><a href="#d2-04-validation" data-chapter="d2-04">4.10 実施の確認・妥当性判断・処分記録</a></li><li class="toc-level-2"><a href="#d2-05" data-chapter="d2-05">5. 資産の保持と利用終了 — 公式2.5</a></li><li class="toc-level-3"><a href="#d2-05-eol" data-chapter="d2-05">5.1 EOL・サポート終了・データ保持期間</a></li><li class="toc-level-3"><a href="#d2-05-retirement" data-chapter="d2-05">5.2 移行・例外管理・安全な廃止</a></li><li class="toc-level-2"><a href="#d2-06" data-chapter="d2-06">6. データ保護策と遵守要求 — 公式2.6</a></li><li class="toc-level-3"><a href="#d2-06-states" data-chapter="d2-06">6.1 Data at Rest・in Transit・in Use</a></li><li class="toc-level-3"><a href="#d2-06-encryption" data-chapter="d2-06">6.2 暗号アルゴリズム・プロトコル・製品の粒度</a></li><li class="toc-level-3"><a href="#d2-06-transit" data-chapter="d2-06">6.3 通信区間と内容自体の保護</a></li><li class="toc-level-3"><a href="#d2-06-baselines" data-chapter="d2-06">6.4 Baseline・Scoping・Tailoring</a></li><li class="toc-level-3"><a href="#d2-06-standards" data-chapter="d2-06">6.5 Standards Selection（標準の選択）と遵守要求</a></li><li class="toc-level-3"><a href="#d2-06-protection" data-chapter="d2-06">6.6 DLP・DRM・CASBを目的で選ぶ</a></li><li class="toc-level-3"><a href="#d2-06-bridges" data-chapter="d2-06">6.7 隣接Domainの知識と説明の境界</a></li><li class="toc-level-3"><a href="#d2-06-application" data-chapter="d2-06">6.8 適用して説明するための復習</a></li></ul></nav></aside>
+<main id="main" tabindex="-1"><div class="page-tools"><details class="mobile-toc"><summary>このページの目次を開く</summary><nav class="toc" aria-label="モバイル目次"><ul><li class="toc-level-2"><a href="#d2-00" data-chapter="d2-00">0. 資産を守る判断の組み立て方</a></li><li class="toc-level-3"><a href="#d2-00-decisions" data-chapter="d2-00">0.1 対象・責任・要求・状態を先に確認する</a></li><li class="toc-level-3"><a href="#d2-00-lifecycle-state" data-chapter="d2-00">0.2 ライフサイクルとデータの状態</a></li><li class="toc-level-2"><a href="#d2-01" data-chapter="d2-01">1. 情報と資産の識別・分類 — 公式2.1</a></li><li class="toc-level-3"><a href="#d2-01-identify" data-chapter="d2-01">1.1 情報の価値と影響を識別する</a></li><li class="toc-level-3"><a href="#d2-01-classification" data-chapter="d2-01">1.2 分類・ラベル・扱い方・管理策の関係</a></li><li class="toc-level-3"><a href="#d2-01-schemes" data-chapter="d2-01">1.3 政府・民間・NISTの区分を混同しない</a></li><li class="toc-level-3"><a href="#d2-01-mixed" data-chapter="d2-01">1.4 混在・集約・再分類</a></li><li class="toc-level-2"><a href="#d2-02" data-chapter="d2-02">2. 情報と資産の取扱要件 — 公式2.2</a></li><li class="toc-level-3"><a href="#d2-02-handling" data-chapter="d2-02">2.1 取扱要件を業務で実行できる形にする</a></li><li class="toc-level-3"><a href="#d2-02-labels" data-chapter="d2-02">2.2 ラベル・メタデータ・電子透かし</a></li><li class="toc-level-3"><a href="#d2-02-transfer" data-chapter="d2-02">2.3 媒体の輸送・保管と第三者への引渡し</a></li><li class="toc-level-2"><a href="#d2-03" data-chapter="d2-03">3. 所有・資産台帳・安全な提供 — 公式2.3</a></li><li class="toc-level-3"><a href="#d2-03-roles" data-chapter="d2-03">3.1 事業・データ・システム・運用の責任</a></li><li class="toc-level-3"><a href="#d2-03-privacy-roles" data-chapter="d2-03">3.2 Controller・Processor・Subjectと組織内の役割</a></li><li class="toc-level-3"><a href="#d2-03-inventory" data-chapter="d2-03">3.3 有形・無形の資産台帳と継続管理</a></li><li class="toc-level-3"><a href="#d2-03-provisioning" data-chapter="d2-03">3.4 Secure Provisioning（安全な提供・初期設定）</a></li><li class="toc-level-2"><a href="#d2-04" data-chapter="d2-04">4. データのライフサイクル — 公式2.4</a></li><li class="toc-level-3"><a href="#d2-04-lifecycle" data-chapter="d2-04">4.1 収集から廃棄までの責任をつなぐ</a></li><li class="toc-level-3"><a href="#d2-04-collection" data-chapter="d2-04">4.2 収集目的・最小化・個人情報の識別</a></li><li class="toc-level-3"><a href="#d2-04-deidentification" data-chapter="d2-04">4.3 匿名化・仮名化・マスキング・トークン化</a></li><li class="toc-level-3"><a href="#d2-04-location" data-chapter="d2-04">4.4 所在・主権・越境移転</a></li><li class="toc-level-3"><a href="#d2-04-maintenance" data-chapter="d2-04">4.5 Data Maintenance（データの保守）と証拠としての品質</a></li><li class="toc-level-3"><a href="#d2-04-retention" data-chapter="d2-04">4.6 Retention・Archive・Backup・Legal Hold</a></li><li class="toc-level-3"><a href="#d2-04-remanence" data-chapter="d2-04">4.7 Data Remanence（データ残留）</a></li><li class="toc-level-3"><a href="#d2-04-sanitization" data-chapter="d2-04">4.8 Clear・Purge・Destroyとサニタイズ</a></li><li class="toc-level-3"><a href="#d2-04-media" data-chapter="d2-04">4.9 磁気媒体・SSD・暗号消去の違い</a></li><li class="toc-level-3"><a href="#d2-04-validation" data-chapter="d2-04">4.10 実施の確認・妥当性判断・処分記録</a></li><li class="toc-level-2"><a href="#d2-05" data-chapter="d2-05">5. 資産の保持と利用終了 — 公式2.5</a></li><li class="toc-level-3"><a href="#d2-05-eol" data-chapter="d2-05">5.1 EOL・サポート終了・データ保持期間</a></li><li class="toc-level-3"><a href="#d2-05-retirement" data-chapter="d2-05">5.2 移行・例外管理・安全な廃止</a></li><li class="toc-level-2"><a href="#d2-06" data-chapter="d2-06">6. データ保護策と遵守要求 — 公式2.6</a></li><li class="toc-level-3"><a href="#d2-06-states" data-chapter="d2-06">6.1 Data at Rest・in Transit・in Use</a></li><li class="toc-level-3"><a href="#d2-06-encryption" data-chapter="d2-06">6.2 暗号アルゴリズム・プロトコル・製品の粒度</a></li><li class="toc-level-3"><a href="#d2-06-transit" data-chapter="d2-06">6.3 通信区間と内容自体の保護</a></li><li class="toc-level-3"><a href="#d2-06-baselines" data-chapter="d2-06">6.4 Baseline・Scoping・Tailoring</a></li><li class="toc-level-3"><a href="#d2-06-standards" data-chapter="d2-06">6.5 Standards Selection（標準の選択）と遵守要求</a></li><li class="toc-level-3"><a href="#d2-06-protection" data-chapter="d2-06">6.6 DLP・DRM・CASBを目的で選ぶ</a></li><li class="toc-level-3"><a href="#d2-06-bridges" data-chapter="d2-06">6.7 隣接Domainの知識と説明の境界</a></li><li class="toc-level-3"><a href="#d2-06-application" data-chapter="d2-06">6.8 適用して説明するための復習</a></li></ul></nav></details><div class="search-box" hidden><label for="page-search">本文検索</label><div class="search-row"><input id="page-search" type="search" placeholder="例：リスク / データ保持" autocomplete="off" aria-controls="search-results"><button id="search-clear" type="button">消去</button></div><p id="search-status" role="status" aria-live="polite"></p><ol id="search-results" hidden></ol></div></div><article class="article"><h1>CISSP Domain 2 — Asset Security（資産のセキュリティ）</h1>
+<p>本編初版：2026-11-08 ／ 確認日：2026-11-08 ／ 対応範囲：2024-04-15発効のISC2 Exam Outline（試験範囲）2.1〜2.6。</p>
+<p>普段の復習で、用語の意味、判断の理由、担当者の責任を読み直すための参考書です。重要度はCore（中核）、High Priority（重点）、Supporting（補完）で示します。重点は中核より「必須」という意味ではなく、比較や適用条件を詳しく説明する領域です。例は理解のために独自に作成しています。</p>
+<p>ISC2は2027-04-15からの新範囲を告知しています。本版は現在有効な範囲を基準とし、将来の範囲を混在させません。新範囲で受験する場合は改訂時に差分を確認してください。<a href="../coverage/domain2.html">範囲の確認表</a>、<a href="../references/domain2-sources.html">出典・版の確認記録</a>も参照できます。</p>
+<h2 id="d2-00" tabindex="-1">0. 資産を守る判断の組み立て方</h2>
+<p><strong>Core（中核）</strong></p>
+<p>Domain 2では、情報の価値と要求を、その情報を扱う人・システム・媒体の管理へ結び付けます。暗号化が強くても、不要な個人情報を集め続けたり、責任者不明の複製を放置したりすれば、資産を適切に管理したことにはなりません。</p>
+<h3 id="d2-00-decisions" tabindex="-1">0.1 対象・責任・要求・状態を先に確認する</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 1。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>判断の順序</th>
+<th>確認すること</th>
+<th>次の判断へのつながり</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>対象と目的</td>
+<td>何の業務に使う、どの情報・資産か</td>
+<td>保護する対象と境界を決める</td>
+</tr>
+<tr>
+<td>責任者</td>
+<td>誰が利用や保護要求を承認するか</td>
+<td>技術担当者だけで業務上の判断をしない</td>
+</tr>
+<tr>
+<td>要求と影響</td>
+<td>機密性・完全性・可用性、法令、契約、保持義務</td>
+<td>分類、扱い方、優先順位の根拠になる</td>
+</tr>
+<tr>
+<td>所在と状態</td>
+<td>どこに複製があり、保存・処理・送信のどれか</td>
+<td>管理策の適用範囲を決める</td>
+</tr>
+<tr>
+<td>実装と検証</td>
+<td>誰が設定し、何をもって有効と確認するか</td>
+<td>設定済みと保護できていることを分ける</td>
+</tr>
+<tr>
+<td>変更と終了</td>
+<td>利用目的、担当者、保持期限、サポート期限に変化がないか</td>
+<td>再分類・権限変更・移行・廃棄へ進む</td>
+</tr>
+</tbody></table></div>
+<p>FIRST（最初）は、まだ満たされていない前提を探します。BEST（最適）は、示された目的と制約に対して最も適切な対策を探します。PRIMARY（主たる）は、作業への関与ではなく中心となる目的や責任を探します。事故が進行中なら、承認済み手順に従う封じ込めなどが先行する場合もあります。「常に方針作成が最初」とは限りません。一般的な設問の読み方は<a href="../domain1/index.html#d1-00">Domain 1の判断の基礎</a>を参照してください。</p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：答えを選ぶ前に「何について、何を決める人が問われているか」を一文にします。データの分類決定、システムの管理策選択、設定作業、個人データ処理の法的責任は、それぞれ対象が異なります。</p>
+</blockquote>
+<h3 id="d2-00-lifecycle-state" tabindex="-1">0.2 ライフサイクルとデータの状態</h3>
+<p>Data Lifecycle（データのライフサイクル）は、作成・取得から利用、共有、保存、廃棄までの管理です。Data State（データの状態）は、ある時点で保存中・転送中・使用中のどこにあるかを表します。同じ報告書でも、保管用ファイルは保存中、画面表示のためメモリ上で処理する部分は使用中、配信する部分は転送中です。</p>
+<p>この二つは一対一に対応しません。長期保存の段階でも、複製や復旧の際にはデータが転送されます。状態ごとの対策を適用しつつ、ライフサイクルを通じて分類・保持・利用権限を維持します。</p>
+<h2 id="d2-01" tabindex="-1">1. 情報と資産の識別・分類 — 公式2.1</h2>
+<p><strong>High Priority（重点）</strong></p>
+<h3 id="d2-01-identify" tabindex="-1">1.1 情報の価値と影響を識別する</h3>
+<p>Asset（資産）は、組織に価値を持つ対象です。端末・記憶媒体だけでなく、契約情報、設計情報、ソフトウェア、利用権、業務上の知識なども含めて考えます。情報の価値を、格納している装置の購入価格だけで評価すると、漏えいや停止が業務へ与える損失を取りこぼします。</p>
+<p>Classification（分類）は、必要な保護を共通のルールで決めるための区分付けです。Sensitivity（機微性）は主に不適切な開示による影響、Criticality（重要性）は業務を遂行するうえでの必要性に着目します。公開予定表でも改ざんや停止が業務を妨げるなら、完全性・可用性への要求は高くなります。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 2。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>評価する性質</th>
+<th>問い</th>
+<th>保護要求の例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Confidentiality（機密性）</td>
+<td>誰に知られると、どんな不利益があるか</td>
+<td>閲覧制限、暗号化、開示承認</td>
+</tr>
+<tr>
+<td>Integrity（完全性）</td>
+<td>誤りや改ざんで、誰の判断が狂うか</td>
+<td>変更承認、整合性検証、版管理</td>
+</tr>
+<tr>
+<td>Availability（可用性）</td>
+<td>いつまで使えないと業務に支障が出るか</td>
+<td>冗長化、復旧、必要な時期の可読性</td>
+</tr>
+<tr>
+<td>法令・契約上の要求</td>
+<td>収集、利用、移転、保存、削除の制限は何か</td>
+<td>利用目的、保持期間、処理地域、証跡</td>
+</tr>
+</tbody></table></div>
+<p>分類前には、対象データを発見して、業務目的、所有者、保存先、利用者、複製先を把握します。自動検出は候補を示せますが、業務影響の判断や分類の承認まで無条件に代替するものではありません。資産台帳の作り方は<a href="#d2-03-inventory">3.3</a>に整理しています。</p>
+<h3 id="d2-01-classification" tabindex="-1">1.2 分類・ラベル・扱い方・管理策の関係</h3>
+<p>分類制度は、区分名だけでなく、分類基準、判断権限、各区分の扱い方、見直し条件まで定義して機能します。Data Owner（データ所有者）が業務上の責任に基づき分類と利用条件を決め、管理担当者はそれに従って設定します。個別データの分類作業を委任しても、承認責任の所在を曖昧にしません。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 3。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>決める内容</th>
+<th>実施の例</th>
+<th>それだけではできないこと</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Classification（分類）</td>
+<td>必要な保護の区分</td>
+<td>影響・法令・価値を踏まえ区分を決定</td>
+<td>アクセスを自動的に拒否すること</td>
+</tr>
+<tr>
+<td>Labeling（ラベル付け）</td>
+<td>区分・扱いの表示</td>
+<td>文書表示や機械可読の属性を付与</td>
+<td>表示を無視する利用者の操作を必ず防ぐこと</td>
+</tr>
+<tr>
+<td>Handling Requirements（取扱要件）</td>
+<td>利用・保存・共有・廃棄の条件</td>
+<td>外部共有の承認、保管場所、消去手順</td>
+<td>要求を実際の装置へ設定すること</td>
+</tr>
+<tr>
+<td>Controls（管理策）</td>
+<td>要件を実現する仕組み</td>
+<td>権限、暗号化、監視、教育、物理保護</td>
+<td>未定義の業務目的や分類基準を決めること</td>
+</tr>
+</tbody></table></div>
+<p>過剰分類には、共有の遅延、運用コスト、利用者がルールを回避する動機などの問題があります。過少分類には、不適切な開示や保護不足の問題があります。目的は全情報を最上位へそろえることではなく、影響と要求に応じた保護を継続することです。</p>
+<blockquote class="callout trap"><p><strong>Common Trap（よくあるひっかけ）</strong>：暗号化したので分類を下げてよい、という判断は成立しません。暗号化は保護手段であり、平文の機微性や法的な取扱要件を消しません。</p>
+</blockquote>
+<h3 id="d2-01-schemes" tabindex="-1">1.3 政府・民間・NISTの区分を混同しない</h3>
+<p>米国の国家安全保障情報には、EO 13526（大統領令）に基づく三つの機密区分があります。訳語だけで覚えると差が曖昧になるため、損害を表す英語も区別します。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 4。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>国家安全保障情報の区分</th>
+<th>無権限の開示により予想される損害</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Confidential（機密）</td>
+<td>damage（損害）</td>
+</tr>
+<tr>
+<td>Secret（秘密）</td>
+<td>serious damage（重大な損害）</td>
+</tr>
+<tr>
+<td>Top Secret（極秘）</td>
+<td>exceptionally grave damage（極めて重大な損害）</td>
+</tr>
+</tbody></table></div>
+<p>Unclassified（機密指定なし）は、この三つの機密区分には含まれません。ただし、個人情報やControlled Unclassified Information：CUI（管理対象の非機密情報）のように、機密指定がなくても公開を制限すべき情報はあります。「機密指定なし＝誰にでも公開可」とは判断しません。</p>
+<p>民間ではPublic（公開）、Internal（社内）、Confidential（機密）、Restricted（厳格に制限）などの名称が使われますが、名称・段階数・順序は組織が定義します。Proprietary（専有・企業固有）も、常に特定の機密等級を意味するわけではありません。政府の区分と民間の名称に、普遍的な一対一の対応表はありません。</p>
+<p>NIST FIPS 199のSecurity Categorization（セキュリティのカテゴリー化）は、機密性・完全性・可用性を失った場合の影響をLow / Moderate / High（低・中・高）で評価する枠組みです。国家安全保障情報の三つの機密区分とは別です。SP 800-60は情報の種類からカテゴリー化を検討する際のガイドです。システム全体では、含まれる情報の影響をCIAの各観点で集約するため、単純な「最も秘密の文書名」だけでは決まりません。</p>
+<p>出典：<a href="../references/domain2-sources.html#d2-s-classification">米国分類制度・FIPS 199・SP 800-60</a>。</p>
+<h3 id="d2-01-mixed" tabindex="-1">1.4 混在・集約・再分類</h3>
+<p>異なる機密区分の情報を分離せず同じ媒体や一体の文書に収める場合、より厳しい取扱要件を満たすように保護します。文書の一部だけを公開したいなら、承認された抽出・編集と確認を経て、別の公開用成果物にします。表紙の表示だけを低い区分へ変更しても内容は保護されません。</p>
+<p>Aggregation（集約）によって、個々の情報より高い機微性が生まれることもあります。独立した施設の一般案内を大量に組み合わせると、運用上の弱点が推測できる場合があるためです。共有先が持つ他のデータとの組合せも評価します。</p>
+<p>再分類は、公開済みになった、契約が変わった、法令が改正された、保持目的が終わった、情報の価値が変わった、といった事情に応じて権限のある者が判断します。時間が経ったことや保管場所の変更だけで、利用者が任意に区分を下げることはできません。</p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：新しい法的要求や利用目的が生じたら、影響を確認して分類・取扱要件・管理策を見直します。装置を買い替えるだけでは、変更された要求に対応したことになりません。</p>
+</blockquote>
+<h2 id="d2-02" tabindex="-1">2. 情報と資産の取扱要件 — 公式2.2</h2>
+<p><strong>Core（中核）／ラベルと実際の保護の区別はHigh Priority（重点）</strong></p>
+<h3 id="d2-02-handling" tabindex="-1">2.1 取扱要件を業務で実行できる形にする</h3>
+<p>Handling Requirements（取扱要件）は、分類済みの情報や資産を誰が、どこで、どの方法で扱えるかを定めます。紙・画面・ファイル・複製・音声など、同じ情報が別の形になっても、守るべき要求が抜け落ちないようにします。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 5。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>場面</th>
+<th>要件に含める内容</th>
+<th>主な担当</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>作成・受領</td>
+<td>分類、所有者、利用目的、受領経路の確認</td>
+<td>所有者、業務担当者</td>
+</tr>
+<tr>
+<td>保存</td>
+<td>承認された場所、権限、暗号化、バックアップ</td>
+<td>システム所有者、管理担当者</td>
+</tr>
+<tr>
+<td>閲覧・利用</td>
+<td>Need to Know（知る必要性）、印刷・画面表示、目的外利用の制限</td>
+<td>所有者が承認、利用者が遵守</td>
+</tr>
+<tr>
+<td>複製・共有</td>
+<td>相手の権限、外部共有の承認、複製先の追跡</td>
+<td>所有者、業務担当者、管理担当者</td>
+</tr>
+<tr>
+<td>搬送</td>
+<td>梱包、受渡し記録、保管経路、紛失時の連絡</td>
+<td>物流・保管担当者、委託先</td>
+</tr>
+<tr>
+<td>終了</td>
+<td>保持義務の確認、消去方法、実施と検証の記録</td>
+<td>法務・記録管理、所有者、消去担当者</td>
+</tr>
+</tbody></table></div>
+<p>例えば、製品開発の検討資料を共同研究先と共有する場合、所有者が共有の目的と範囲を承認し、管理担当者が指定された相手に期限付きアクセスを設定します。担当者が資料を共有フォルダへ置けることと、社外開示を承認できることは別です。</p>
+<blockquote class="callout trap"><p><strong>Common Trap（よくあるひっかけ）</strong>：「社内専用」と表示するだけでは外部送信を止められません。表示に加え、アクセス制御、送信ルール、教育、検知・対応を組み合わせます。</p>
+</blockquote>
+<h3 id="d2-02-labels" tabindex="-1">2.2 ラベル・メタデータ・電子透かし</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 6。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>手段</th>
+<th>主な目的</th>
+<th>使う情報・方法</th>
+<th>限界と判断の手掛かり</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Visible Label（可視ラベル）</td>
+<td>人が扱い方を判断する</td>
+<td>文書見出し、印刷物の表示、画面の区分表示</td>
+<td>誤操作を減らすが、それ自体で操作権限は制限しない</td>
+</tr>
+<tr>
+<td>Metadata（メタデータ）</td>
+<td>属性を機械で識別・処理する</td>
+<td>分類、所有者、作成日、保持区分など</td>
+<td>変換やコピーで失われたり改変されたりする可能性</td>
+</tr>
+<tr>
+<td>Digital Watermark（電子透かし）</td>
+<td>所有者・出所・配布先などを識別する</td>
+<td>コンテンツへ識別情報を埋め込む</td>
+<td>耐改変性は方式依存。暗号化や本人認証と同じではない</td>
+</tr>
+<tr>
+<td>Steganography（ステガノグラフィー／情報隠蔽）</td>
+<td>情報の存在を分かりにくくする</td>
+<td>別の画像などへ情報を隠す</td>
+<td>内容を読めなくする暗号化とは目的が異なる</td>
+</tr>
+</tbody></table></div>
+<p>電子透かしが情報隠蔽の技術を利用することはありますが、用途を見分ける際は「何を確認したいか」に着目します。出所の追跡と、秘密通信の存在を隠すことは同じ目的ではありません。</p>
+<p>公開可能な情報も含め、分類済みであることを明示する運用には、未分類・未確認の情報と区別できる利点があります。すべての媒体への表示が法的に一律必須という意味ではなく、組織の方式に従います。DLP（情報漏えい防止）はラベルを判断材料にできますが、ラベルの正しさとポリシーの設定が前提です。</p>
+<h3 id="d2-02-transfer" tabindex="-1">2.3 媒体の輸送・保管と第三者への引渡し</h3>
+<p>媒体を外部倉庫や委託先へ渡しても、格納情報の機微性は変わりません。所有者は相手に求める保護を定め、担当者は送り出した媒体と受領した媒体を照合します。資産番号、受渡し日時、担当者、保管場所、未着時の対応を記録すると、責任の空白を見つけられます。</p>
+<p>Chain of Custody（管理の連鎖）は、誰がいつ対象物を管理したかを追跡する考え方です。日常の媒体輸送と、法的証拠の厳密な保全では必要な手続きが異なりますが、引渡しの連続性を残す目的は共通します。暗号化した媒体であっても、鍵を同じ荷物に添えれば分離による保護を失います。盗難対策としての暗号化に、紛失の検出、復旧可能性、物理的な保護を組み合わせます。</p>
+<p>第三者への開示では、NDA：Non-disclosure Agreement（秘密保持契約）に加え、利用目的、再委託、複製、返却・削除、監査可能性を契約と運用へ反映します。NDAは漏えいを物理的に防ぐ装置ではありません。退職・契約終了後に残る守秘義務と、直ちに取り消すアクセス権限も区別します。<a href="../domain1/index.html#d1-08-agreements">Domain 1の契約と退職管理</a>と併せて復習できます。</p>
+<h2 id="d2-03" tabindex="-1">3. 所有・資産台帳・安全な提供 — 公式2.3</h2>
+<p><strong>Core（中核）／役割の比較はHigh Priority（重点）</strong></p>
+<h3 id="d2-03-roles" tabindex="-1">3.1 事業・データ・システム・運用の責任</h3>
+<p>「責任者」を一つの役職名へ固定せず、責任の対象を確認します。同じ人が複数の役割を兼ねる組織でも、どの権限で決めたかを説明できるようにします。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 7。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>役割</th>
+<th>主に責任を持つ対象</th>
+<th>決定・承認すること</th>
+<th>実務との関係</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Senior Management（経営層）</td>
+<td>組織全体の方針とリスク</td>
+<td>方針、資源、組織としての許容範囲</td>
+<td>所有者の割当と統制を支える</td>
+</tr>
+<tr>
+<td>Business / Mission Owner（事業・使命の責任者）</td>
+<td>業務成果と要求</td>
+<td>事業目標、優先順位、業務上の必要性</td>
+<td>セキュリティの費用・効果を事業要求と調整</td>
+</tr>
+<tr>
+<td>Data / Information Owner（データ・情報所有者）</td>
+<td>担当情報の利用と保護</td>
+<td>分類、許容利用、アクセス条件、保持要求</td>
+<td>実装を委任しても担当情報への説明責任を維持</td>
+</tr>
+<tr>
+<td>System Owner（システム所有者）</td>
+<td>システムの全期間の管理</td>
+<td>情報の要求を実現する管理策や運用計画</td>
+<td>セキュリティ担当者・情報所有者と協働する</td>
+</tr>
+<tr>
+<td>Custodian（データ管理担当者）</td>
+<td>委任された日常管理</td>
+<td>承認済み範囲内の運用判断</td>
+<td>権限設定、バックアップ、設定維持、監視などを実施</td>
+</tr>
+<tr>
+<td>Security Professional（セキュリティ専門職）</td>
+<td>助言、設計・評価の支援</td>
+<td>専門的な推奨、評価結果の提示</td>
+<td>業務上の許容リスクを単独で決める立場とは限らない</td>
+</tr>
+<tr>
+<td>User（利用者）</td>
+<td>許可された利用</td>
+<td>利用目的と権限内の操作</td>
+<td>取扱ルールを守り、異常を報告</td>
+</tr>
+</tbody></table></div>
+<p>Data Steward（データスチュワード／データ管理の調整役）は、定義・品質・メタデータ・運用ルールの整備を支える役割として使われます。権限の呼称は組織ごとに異なるため、肩書きだけで最終決定権を推定しません。</p>
+<p>例えば、教育サービスの受講記録を扱う場合、事業責任者がサービス上の必要性を定め、情報所有者が記録の利用条件を承認します。システム所有者はその条件を満たす仕組みを計画し、管理担当者がグループ権限とバックアップを設定します。運用監視を担当している人に、記録を新しい目的へ転用する権限が当然に付くわけではありません。</p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：分類や利用ルールは情報所有者、システムとしての保護の実現はシステム所有者、設定・運用は管理担当者、という対象別の分担から考えます。NIST RMF（リスク管理枠組み）の管理策選択も、システム所有者などが情報所有者・専門職の支援を受ける協働作業です。すべての選択・実装・監視を一人へ割り当てる暗記法は避けます。</p>
+</blockquote>
+<h3 id="d2-03-privacy-roles" tabindex="-1">3.2 Controller・Processor・Subjectと組織内の役割</h3>
+<p>GDPR：General Data Protection Regulation（一般データ保護規則）の役割は、個人データを処理する実態から判断します。組織内のData Owner（データ所有者）やCustodian（管理担当者）と、一対一に対応する役職表ではありません。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 8。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>用語</th>
+<th>判断基準</th>
+<th>実際に見る行為</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Controller（管理者）</td>
+<td>処理の目的と手段を決める主体</td>
+<td>何のために、どの範囲で個人データを処理するかを決める</td>
+</tr>
+<tr>
+<td>Processor（処理者）</td>
+<td>管理者のために個人データを処理する別の主体</td>
+<td>文書化された指示と契約に従って処理する</td>
+</tr>
+<tr>
+<td>Joint Controllers（共同管理者）</td>
+<td>目的・手段を共同で決定する主体</td>
+<td>誰がどの義務を果たすかを整理する</td>
+</tr>
+<tr>
+<td>Data Subject（データ主体）</td>
+<td>個人データにより識別される、または識別可能な本人</td>
+<td>対象となる個人。システムの利用者とは限らない</td>
+</tr>
+</tbody></table></div>
+<p>処理者にも直接課される義務があります。委託すれば管理者の説明責任がなくなる、あるいは処理者は何も責任を負わない、という理解は誤りです。技術的な実装の一部を処理者が決めることと、処理目的を独自に決めることも区別します。</p>
+<p>一般的なIT文脈でProcessor（処理装置・処理主体）という語を使う場合と、GDPRの法的な処理者は意味が異なります。<strong>計算機がデータを処理しているというだけで、法的なProcessorと判断しません。</strong> 社内の管理担当者も、所属組織とは別の処理者に自動的になるわけではありません。</p>
+<p>出典：<a href="../references/domain2-sources.html#d2-s-roles">NISTの役割・GDPR・EDPBの解釈指針</a>。</p>
+<h3 id="d2-03-inventory" tabindex="-1">3.3 有形・無形の資産台帳と継続管理</h3>
+<p>Asset Inventory（資産台帳）は、何を管理しているかを継続的に確認する基礎です。Tangible Asset（有形資産）には端末、サーバー、媒体など、Intangible Asset（無形資産）にはデータ、ソフトウェア、利用権、知的財産などがあります。クラウド資源やSaaS（クラウド提供のソフトウェア）も、社内に物理装置がないという理由で対象から外しません。</p>
+<p>台帳には、識別子、所有者、用途、所在地・処理地域、分類や重要性、利用者、依存先、保守・契約期限、ライフサイクル上の状態を記録します。秘密鍵やパスワードそのものを、広く閲覧できる台帳へ集める必要はありません。所在と管理責任を追跡し、秘密の本体は適切な保管先で管理します。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 9。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>管理手段</th>
+<th>得られること</th>
+<th>補う必要があること</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>自動Discovery（発見）</td>
+<td>接続資産・ソフトウェア・クラウド資源の候補</td>
+<td>未接続媒体、業務目的、所有権の承認</td>
+</tr>
+<tr>
+<td>Asset Inventory（資産台帳）</td>
+<td>所有・所在・期限・管理状態</td>
+<td>現物やクラウド実態との定期照合</td>
+</tr>
+<tr>
+<td>CMDB（構成管理データベース）</td>
+<td>構成項目と依存関係</td>
+<td>財務・契約・情報所有者の記録との連携</td>
+</tr>
+<tr>
+<td>Data Inventory / Data Map（データ台帳・データの配置と流れ）</td>
+<td>データの種類、目的、共有先、複製、移転</td>
+<td>変更検知、保存先ごとの実装確認</td>
+</tr>
+</tbody></table></div>
+<p>Asset Management（資産管理）は、台帳を作る作業にとどまりません。調達、割当、変更、移動、返却、廃止のイベントで台帳を更新し、未承認の資産や所有者不明の資源を是正します。見つけた資産を即座に削除すると重要業務を止める場合があるため、用途・所有者・危険を確認して隔離や承認、廃止を判断します。</p>
+<p>出典：<a href="../references/domain2-sources.html#d2-s-assets">CISの資産・データ管理</a>。</p>
+<h3 id="d2-03-provisioning" tabindex="-1">3.4 Secure Provisioning（安全な提供・初期設定）</h3>
+<p>Provisioning（利用可能な状態へ準備・提供すること）では、実データを入れる前から保護を設計します。購入後に初めて消去機能やサポート期限を調べると、利用終了時の選択肢を失うことがあります。</p>
+<ol>
+<li>業務・データの要求、所有者、利用期間、廃棄条件を定めます。</li>
+<li>調達・契約で、保護機能、更新、地域、返却・削除、監査の条件を確認します。</li>
+<li>台帳へ登録し、承認済みのBaseline（基準設定）に従って不要な機能・既定認証情報を処置します。</li>
+<li>最小権限、分類、暗号化と鍵管理、ログ、必要なバックアップを設定します。</li>
+<li>機能と保護を検証し、業務への引渡しと運用責任を明確にします。</li>
+</ol>
+<p>例えば、共同作業用の新しいクラウド領域なら、公開共有を許す前提で作成して後から調整する運用は避け、所有者・権限・地域・保持条件を設定してからデータを移します。初期設定が適切でも、その後の変更で公開状態になる可能性があるため、継続監視と定期的な権限確認を行います。</p>
+<blockquote class="callout insight"><p><strong>Supplement（補足）</strong>：所有者が異動・退職した場合は、資産ごとに後任と承認権限を引き継ぎます。ファイルが残っていても、利用・保持・廃棄を判断する人がいなければ管理が停滞します。</p>
+</blockquote>
+<h2 id="d2-04" tabindex="-1">4. データのライフサイクル — 公式2.4</h2>
+<p><strong>Core（中核）／保持・残留・消去はHigh Priority（重点）</strong></p>
+<h3 id="d2-04-lifecycle" tabindex="-1">4.1 収集から廃棄までの責任をつなぐ</h3>
+<p>Data Lifecycle（データのライフサイクル）は、収集・作成、保管、利用、共有、長期保存、廃棄などの活動を継続して管理する考え方です。実務では、共有先から再取得したり、古い記録を参照したりして往復するため、一度だけ通る直線的な工程とは限りません。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 10。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>活動</th>
+<th>管理上の問い</th>
+<th>残すべき判断・記録</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Collection / Creation（収集・作成）</td>
+<td>何のために、どこまで必要か</td>
+<td>目的、取得元、適用条件、分類、所有者</td>
+</tr>
+<tr>
+<td>Storage（保管）</td>
+<td>どこに、どの状態で置くか</td>
+<td>保管先、権限、地域、暗号化、複製先</td>
+</tr>
+<tr>
+<td>Use / Maintenance（利用・保守）</td>
+<td>許された目的で正しく使えるか</td>
+<td>アクセス・変更の記録、品質、版、修正</td>
+</tr>
+<tr>
+<td>Sharing（共有）</td>
+<td>誰へ、どの条件で渡すか</td>
+<td>受領者、契約、移転要件、二次利用の制限</td>
+</tr>
+<tr>
+<td>Retention / Archive（保持・長期保存）</td>
+<td>いつまで、何の証拠として読める必要があるか</td>
+<td>保持基準、起算点、保全指示、可読性</td>
+</tr>
+<tr>
+<td>Destruction（廃棄）</td>
+<td>何を、誰の承認で、どこまで消去するか</td>
+<td>対象範囲、実施・確認、残る複製の扱い</td>
+</tr>
+</tbody></table></div>
+<p>役割は<a href="#d2-03-roles">3.1</a>と<a href="#d2-03-privacy-roles">3.2</a>の分担を全工程へ適用します。情報所有者、管理者、処理者、利用者、本人の権利は、保存段階だけの論点ではありません。収集する時点で利用終了後の処置まで定めておくと、後から削除できない契約や設計を避けられます。</p>
+<h3 id="d2-04-collection" tabindex="-1">4.2 収集目的・最小化・個人情報の識別</h3>
+<p>Data Minimization（データ最小化）は、目的に照らして必要なデータだけを扱う考え方です。将来使うかもしれないという理由で収集を広げると、保護すべき対象と利用の説明責任が増えます。入力項目を減らす、詳細を粗くする、集計で目的を満たす、といった設計も保護手段になります。</p>
+<p>GDPRでは、目的の限定、必要な範囲への限定、正確性、保存期間の制限などの原則と、適法な処理根拠を確認します。Consent（同意）は処理根拠の一つであり、すべての処理で唯一の根拠になるわけではありません。同意があれば無期限に何にでも使えるという理解も誤りです。</p>
+<p>本人の権利に応じられる設計も必要です。Access（アクセス権）は本人のデータ等を確認する権利、Rectification（訂正権）は誤りを直す権利、Data Portability（データポータビリティ権）は条件を満たす本人提供データを機械可読形式等で受け取り、他の管理者へ移す権利です。GDPRのポータビリティ権は、同意または契約に基づく自動処理などの条件があり、組織のすべての記録を無条件に取り出せる権利ではありません。<a href="#d2-04-retention">消去と保持の関係</a>も併せて確認します。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 11。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>情報の区分</th>
+<th>判断の軸</th>
+<th>注意点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PII：Personally Identifiable Information（個人を識別できる情報）</td>
+<td>単独または他の情報と組み合わせて個人を特定・関連付けできるか</td>
+<td>名前だけでなく、番号、行動、属性の組合せも検討</td>
+</tr>
+<tr>
+<td>Personal Data（GDPR上の個人データ）</td>
+<td>識別された、または識別可能な自然人に関する情報か</td>
+<td>米国の特定法のPII定義と完全に同一ではない</td>
+</tr>
+<tr>
+<td>PHI：Protected Health Information（保護対象の健康情報）</td>
+<td>HIPAAの適用主体などが扱う、個人を識別できる健康情報か</td>
+<td>あらゆる健康関連データが一律にHIPAA対象とは限らない</td>
+</tr>
+<tr>
+<td>CHD：Cardholder Data（カード会員データ）</td>
+<td>PCI DSSの対象となる決済データか</td>
+<td>個人情報と重なることがあり、排他的な分類ではない</td>
+</tr>
+</tbody></table></div>
+<p>ある属性が単独では直接識別子でなくても、他のデータと照合できれば個人を識別する可能性があります。地域、年齢、所属などの属性を「名前がないから非個人情報」と即断しません。組織内の参照番号も、対応情報で本人へ結び付くなら評価が必要です。</p>
+<blockquote class="callout trap"><p><strong>Common Trap（よくあるひっかけ）</strong>：個人情報、医療情報、決済情報は、重なりのある適用範囲です。一つの名称を付ければ他の義務が消えるわけではありません。</p>
+</blockquote>
+<h3 id="d2-04-deidentification" tabindex="-1">4.3 匿名化・仮名化・マスキング・トークン化</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 12。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>何を変えるか</th>
+<th>元の情報との関係</th>
+<th>向く目的・限界</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Anonymization（匿名化）</td>
+<td>合理的に本人を識別できない状態へ加工</td>
+<td>再識別可能性を、他情報や手段も含めて評価</td>
+<td>集計利用など。名前の削除だけでは達成できない</td>
+</tr>
+<tr>
+<td>Pseudonymization（仮名化）</td>
+<td>本人との対応を追加情報へ分離</td>
+<td>対応情報があれば再び関連付け可能</td>
+<td>利用時の露出を減らす。GDPRでは個人データのまま</td>
+</tr>
+<tr>
+<td>Masking（マスキング）</td>
+<td>表示・複製する値を隠す、または置換</td>
+<td>元データが別に残ることがある</td>
+<td>画面やテスト用データ。表示だけ隠す場合、基盤側を別途保護</td>
+</tr>
+<tr>
+<td>Tokenization（トークン化）</td>
+<td>元の値を代替値へ置き換える</td>
+<td>対応表・トークン生成方式に依存</td>
+<td>利用範囲を限定。保管庫や復元機能が新しい保護対象になる</td>
+</tr>
+<tr>
+<td>Encryption（暗号化）</td>
+<td>平文を鍵によって暗号文へ変換</td>
+<td>適切な鍵を持つ者は復号できる</td>
+<td>機密性の保護。目的制限や保持義務をなくさない</td>
+</tr>
+</tbody></table></div>
+<p>HIPAAの非識別化には、専門家による判定と、所定の識別子の除去などを条件とする方法があります。加工の名称だけで適合を判断せず、制度の条件を満たすかを確認します。完全に元へ戻せる対応表を残したデータを、単に「匿名」と命名しても、その実態は変わりません。</p>
+<p>出典：<a href="../references/domain2-sources.html#d2-s-privacy">個人情報・HIPAA・GDPR</a>。</p>
+<h3 id="d2-04-location" tabindex="-1">4.4 所在・主権・越境移転</h3>
+<p>Data Location（データの所在）は、主データの保存リージョンだけでは判断できません。バックアップ、複製、ログ、障害時の切替先、サポート担当者からのアクセス、再委託先を含めてデータの流れを確認します。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 13。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>主に何を示すか</th>
+<th>判断時の注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Data Residency（データの居住地・保存地域）</td>
+<td>データを置く地理的な場所</td>
+<td>契約上の地域制約と実際のコピー先を照合</td>
+</tr>
+<tr>
+<td>Data Sovereignty（データ主権）</td>
+<td>所在や主体などに関係して及ぶ法的管轄</td>
+<td>保存場所だけで法的影響のすべては決まらない</td>
+</tr>
+<tr>
+<td>Data Localization（データの国内保管・処理要求）</td>
+<td>特定の地域内での保存・処理を求める要件</td>
+<td>要求の対象、例外、国外アクセスを確認</td>
+</tr>
+<tr>
+<td>Cross-border Transfer（越境移転）</td>
+<td>国・地域をまたぐ提供やアクセス</td>
+<td>適用法の定義と移転条件を確認</td>
+</tr>
+</tbody></table></div>
+<p>越境移転では、法務・プライバシー担当者とともに、適用対象、受領者、処理目的、移転の仕組み、再委託、保護措置を検討します。暗号化は技術的な保護ですが、移転の法的根拠の代わりにはなりません。</p>
+<p>旧EU–US Privacy Shield（EU・米国プライバシーシールド）は2020年の判決で無効となりました。2026-11-08時点の欧州委員会の掲載では、EU–US Data Privacy Framework：DPF（EU・米国データプライバシー枠組み）の参加組織を対象とする十分性認定があります。米国企業ならすべて対象になるわけではありません。参加状況・対象範囲と、適用する移転手段の有効性をその時点で確認します。</p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：歴史的な制度名を理解することと、その制度を現行の移転根拠として使うことを分けます。一般原則は、提供先を含む保護要求と説明責任を維持することです。</p>
+</blockquote>
+<p>出典：<a href="../references/domain2-sources.html#d2-s-transfer">越境移転と制度の更新</a>。</p>
+<h3 id="d2-04-maintenance" tabindex="-1">4.5 Data Maintenance（データの保守）と証拠としての品質</h3>
+<p>Data Maintenance（データの保守）は、保管済みのデータを正確で利用可能な状態に維持する活動です。誤記の訂正、版管理、形式移行、整合性確認、権限の見直し、バックアップの復旧確認を含みます。保存装置が正常でも、必要なアプリケーションや暗号鍵を失って記録を読めなければ、保持目的を満たせません。</p>
+<p>Hash（ハッシュ値）は内容の変化を検出する材料です。ただし、比較対象の正しいハッシュ値が保護されていなければ、改ざん者がデータとハッシュの両方を置き換えられます。変更履歴、アクセス制御、承認、信頼できる時刻・署名などと組み合わせて、真正性と追跡可能性を保ちます。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 14。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>確認したいこと</th>
+<th>手段の例</th>
+<th>単独では証明できないこと</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>内容が変化していないか</td>
+<td>信頼できる基準値とのハッシュ比較</td>
+<td>誰が承認したか、内容が事実か</td>
+</tr>
+<tr>
+<td>誰が何の意味で署名したか</td>
+<td>本人確認、署名、日時・承認内容との関連付け</td>
+<td>署名した内容が業務上正しいこと</td>
+</tr>
+<tr>
+<td>誰がどの変更を行ったか</td>
+<td>保護された監査証跡、版管理</td>
+<td>記録されない経路での操作まで網羅すること</td>
+</tr>
+<tr>
+<td>保存期間中に読めるか</td>
+<td>復元試験、形式移行、鍵の可用性</td>
+<td>保存しただけで将来も読み出せるという保証</td>
+</tr>
+</tbody></table></div>
+<p>FDAの21 CFR Part 11（電子記録・電子署名に関する規則）は、適用対象となる電子記録や署名の信頼性を扱います。署名には署名者、日時、承認・レビューなどの意味を関連付け、署名と記録の結び付きを維持します。Electronic Signature（電子署名）という広い概念を、公開鍵暗号によるDigital Signature（デジタル署名）一方式に限定しません。また、Part 11が全電子ファイルに一律の署名を要求するわけではありません。</p>
+<p>出典：<a href="../references/domain2-sources.html#d2-s-records">電子記録・電子署名</a>。</p>
+<h3 id="d2-04-retention" tabindex="-1">4.6 Retention・Archive・Backup・Legal Hold</h3>
+<p>Retention（保持）は、必要な期間、対象となる記録を管理し、期間終了後に承認された方法で処分することです。保存容量がある限り残す運用では、古い情報の誤用や不要な漏えい対象を増やします。一方、早く消せばよいとも限らず、法令・契約・業務・紛争対応の要求を満たす必要があります。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 15。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>主な目的</th>
+<th>決めること</th>
+<th>見分ける手掛かり</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Retention Policy / Schedule（保持方針・保持期間表）</td>
+<td>必要な期間の保持と適切な処分</td>
+<td>記録の種類、期間、起算点、保管責任、終了処置</td>
+<td>「いつまで、何を残すか」</td>
+</tr>
+<tr>
+<td>Archive（長期保管）</td>
+<td>記録の長期利用・証明</td>
+<td>検索性、可読性、改変防止、保存形式</td>
+<td>日常利用が減っても参照する</td>
+</tr>
+<tr>
+<td>Backup（バックアップ）</td>
+<td>障害・削除などからの復旧</td>
+<td>対象、頻度、世代、復元手順</td>
+<td>復旧が目的。保持方針と同一ではない</td>
+</tr>
+<tr>
+<td>Legal Hold（法的保全指示）</td>
+<td>訴訟・調査等で必要な情報の保全</td>
+<td>範囲、保全手段、通常削除の停止、解除権限</td>
+<td>通常の保存期限が来ても対象情報を保全</td>
+</tr>
+</tbody></table></div>
+<p>保持期間は、情報所有者だけで任意に決めず、記録管理・法務・業務部門などと適用要件を整理します。保存の起算点も「作成日」「契約終了」「取引完了」などで異なります。義務が衝突する場合は、単に最長期間を無制限に採用するのではなく、適用範囲と例外を確認します。</p>
+<p>GDPRのStorage Limitation（保存期間の制限）は、全データに共通の一年上限という規則ではありません。削除要求にも法的義務や権利の立証等に関する例外があり、無条件の即時削除とは限りません。定めた目的・根拠・保全指示を確認して処理します。</p>
+<p>バックアップから個々の記録を直ちに消せない設計では、世代の失効、利用制限、復元時の削除対象の再適用などを、適用要件と照合して定めます。主システムだけから消して、復元後に同じ情報が通常利用へ戻る状態を防ぎます。</p>
+<blockquote class="callout trap"><p><strong>Common Trap（よくあるひっかけ）</strong>：暗号化された古いコピーも保持・開示・消去の検討対象です。「読める鍵を今の担当者が知らない」ことと、組織として復旧できないことは異なります。</p>
+</blockquote>
+<h3 id="d2-04-remanence" tabindex="-1">4.7 Data Remanence（データ残留）</h3>
+<p>Data Remanence（データ残留）は、削除・上書きなどの処理後も情報の痕跡が残ることです。一般的なファイル削除やクイックフォーマットは、管理情報を変更するだけで、内容の復元を困難にする保証にはなりません。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 16。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>残る可能性のある場所</th>
+<th>理由</th>
+<th>対応の方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>未割当領域、ファイルの余り領域</td>
+<td>通常の削除では内容を処置しないことがある</td>
+<td>ファイル名だけでなく媒体上の対象データ範囲を評価</td>
+</tr>
+<tr>
+<td>再配置済み・不良とされた領域</td>
+<td>OSから通常の読み書きで到達できないことがある</td>
+<td>装置対応の消去機能、範囲、失敗時の処置を確認</td>
+</tr>
+<tr>
+<td>SSDの予備領域など</td>
+<td>Wear Leveling（書込みの平準化）等により論理位置と物理位置が一致しない</td>
+<td>単純な上書きを完全消去とみなさない</td>
+</tr>
+<tr>
+<td>一時ファイル、スワップ、ダンプ、キャッシュ</td>
+<td>使用中データが別の場所へ書き出される</td>
+<td>通常の保存先以外も設計・管理の対象にする</td>
+</tr>
+<tr>
+<td>複製、スナップショット、バックアップ、委託先</td>
+<td>一つのコピーを消しても他のコピーが残る</td>
+<td>コピーの一覧、保持方針、契約と消去確認を連携</td>
+</tr>
+</tbody></table></div>
+<p>揮発性のメモリも、電源断だけをすべての情報漏えい対策として扱えません。実装や状態による残留の問題に加え、スワップやクラッシュダンプとして非揮発性媒体へ書き出される可能性を確認します。Domain 2では、どこまで消去対象に含めるかという管理の判断へつなげます。</p>
+<h3 id="d2-04-sanitization" tabindex="-1">4.8 Clear・Purge・Destroyとサニタイズ</h3>
+<p>Media Sanitization（媒体のサニタイズ）は、所定の努力を費やしても対象データへのアクセスが実行困難となるよう処置することです。NIST SP 800-88 Rev.2ではClear（クリア）、Purge（パージ）、Destroy（破壊）を区別します。Sanitizationはこれらを含む上位の考え方であり、単に「上書きより強い別の一手法」という名称ではありません。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 17。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>達成する保護の考え方</th>
+<th>再利用</th>
+<th>選択時の確認</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Clear（クリア）</td>
+<td>通常のインターフェース等を用いる比較的単純な回復を困難にする</td>
+<td>媒体によって可能</td>
+<td>対象範囲、媒体種別、必要な保証水準</td>
+</tr>
+<tr>
+<td>Purge（パージ）</td>
+<td>高度な研究施設レベルの回復も困難にすることを目指す</td>
+<td>方法・装置によって可能</td>
+<td>対応する消去命令、暗号消去などの条件と信頼性</td>
+</tr>
+<tr>
+<td>Destroy（破壊）</td>
+<td>回復を困難にし、媒体として再利用できない状態にする</td>
+<td>原則不可</td>
+<td>媒体に合う破壊方式、処理範囲、証跡</td>
+</tr>
+</tbody></table></div>
+<p>選ぶ際は、情報の機微性、媒体の仕組み、次の利用先、組織が要求する保証、装置の機能、失敗時の扱いを確認します。「社内で再利用なら必ずClear」「社外へ出すなら常にDestroy」という固定対応では判断できません。パージを実施して再利用できる場合もあり、装置が故障して必要な処理を完了できなければ破壊が必要になる場合もあります。</p>
+<p>方法名と技術を区別することも必要です。Overwrite（上書き）、Degaussing（消磁）、Cryptographic Erase（暗号消去）などは具体的な技術です。同じ「上書き」という語でも、到達する範囲、装置の仕組み、承認された方式によって扱いが変わるため、名称だけで保証水準を決めません。</p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：最も破壊的な手段を無条件に選ぶのではなく、必要な消去結果を達成し、再利用・費用・運用の制約を満たす手段を判断します。再利用の価値より、検証や失敗対応を含む処理コストが大きい場合もあります。</p>
+</blockquote>
+<h3 id="d2-04-media" tabindex="-1">4.9 磁気媒体・SSD・暗号消去の違い</h3>
+<p>Degaussing（消磁）は磁気的な記録への処置です。磁気を用いないSSD・フラッシュメモリの情報は、消磁では消去できません。磁気媒体でも、磁場の強さと媒体の特性が合わなければ十分な効果を得られません。装置に必要な情報まで失われ、再利用できなくなる場合があるため、消磁後も必ず使用可能とは考えません。</p>
+<p>SSDでは、OSからの単純な全領域上書きで、予備領域や再配置された物理領域まで処置できるとは限りません。装置が提供する消去機能の対象範囲と実装への信頼を確認し、要求を満たす承認済み方式を選びます。SSDは必ず破壊しか選べない、という一般化も適切ではありません。</p>
+<p>Cryptographic Erase：CE（暗号消去）は、対象暗号文の復号を実行困難にするため、必要な暗号鍵をサニタイズする方式です。速く実施できる利点がありますが、成立条件の確認が不可欠です。</p>
+<ul>
+<li>対象データが適切な暗号方式・鍵管理で保護されていること。暗号化前の平文コピーを見落とさないこと。</li>
+<li>対象データを復号できる鍵や、鍵の復旧につながる複製・バックアップ・関連鍵を処置できること。</li>
+<li>暗号化の対象範囲と消去機能の実装が要求を満たし、実行結果を確認できること。</li>
+<li>同じ鍵を他の保持対象と共有している場合に、必要なデータまで読めなくしないこと。</li>
+</ul>
+<p>パスワードを変更しただけでは、暗号鍵が残っている可能性があります。外部へ流出した平文や第三者が持つ別コピーも、元の鍵の消去で回収できるわけではありません。</p>
+<p>紙・光学媒体・半導体・磁気媒体で有効な破壊手段は異なります。穴を開ける、ケースを壊す、読み書きできなくするといった処置だけでは、情報を保持している部分が残る場合があります。現行の承認標準で、媒体と情報の機微性に適合する手段・処理条件を確認します。</p>
+<h3 id="d2-04-validation" tabindex="-1">4.10 実施の確認・妥当性判断・処分記録</h3>
+<p>サニタイズを依頼したこと、装置が成功を表示したこと、目的の保護が達成されたと承認できることは、それぞれ異なります。NIST SP 800-88 Rev.2はVerification（実施結果の確認）とValidation（結果を有効と受け入れる妥当性判断）を区別しています。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 18。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>段階</th>
+<th>確認する内容</th>
+<th>異常があった場合</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>計画</td>
+<td>対象データ、媒体、手法、再利用先、要求</td>
+<td>手法・範囲を見直す</td>
+</tr>
+<tr>
+<td>実施</td>
+<td>承認された方法を対象媒体へ適用</td>
+<td>媒体を隔離し、未処理として扱う</td>
+</tr>
+<tr>
+<td>Verification（実施結果の確認）</td>
+<td>処理が完了したか、エラーや異常がないか</td>
+<td>再処理や調査の根拠にする</td>
+</tr>
+<tr>
+<td>Validation（妥当性判断）</td>
+<td>方法・範囲・結果が機密性の要求を満たしたか</td>
+<td>受入れを拒否し、別手法または強い方法で処置</td>
+</tr>
+<tr>
+<td>記録と引渡し</td>
+<td>媒体の識別、方法、ツール、担当者、結果、処分先</td>
+<td>台帳と実物を照合して未処置を残さない</td>
+</tr>
+</tbody></table></div>
+<p>消去証明書は追跡と説明責任を支える記録であり、署名があるだけで実際の消去を保証するものではありません。委託する場合は、相手へ渡すまでの露出、保管・輸送、消去能力、結果を確認する手段まで定めます。引渡し前に実施できる承認済み処置はリスク軽減になりますが、最終的な消去要求を満たすかは別途判断します。</p>
+<p><strong>版の違い</strong>：Rev.2は2025年公表の現行版で、旧Rev.1を置き換えています。消去プログラムの管理や方式の信頼性を重視し、具体的な媒体別方式はIEEE 2883等の標準を参照する構成です。旧版の手順や「毎回すべてを読み戻す」といった説明を一律の現行要件として採用しません。組織の要求を含めた確認・承認は引き続き必要です。</p>
+<p>Declassification（情報の機密指定解除）は、権限ある者による情報の取扱いに関する判断です。媒体を消去したことと、残る別コピーの情報まで公開可能になったことは同じではありません。媒体のラベルは、消去と検証・承認が済んでから次の状態へ合わせます。</p>
+<p>出典：<a href="../references/domain2-sources.html#d2-s-sanitization">媒体サニタイズの現行版</a>。</p>
+<h2 id="d2-05" tabindex="-1">5. 資産の保持と利用終了 — 公式2.5</h2>
+<p><strong>Core（中核）</strong></p>
+<h3 id="d2-05-eol" tabindex="-1">5.1 EOL・サポート終了・データ保持期間</h3>
+<p>Asset Retention（資産の保持）は、情報を支える装置・ソフトウェア・サービス等を、必要な期間、安全に維持する判断です。Data Retention（データ保持）とは対象が異なります。記録を長期間残す必要があっても、最初に使った装置やソフトウェアをその間ずっと稼働させる必要があるとは限りません。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 19。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>用語</th>
+<th>対象となる終了・期限</th>
+<th>確認すること</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>End of Life：EOL（ライフサイクルの終了）</td>
+<td>製品の販売・開発・提供・利用などの終了</td>
+<td>ベンダーがこの語で何を終了すると定義しているか</td>
+</tr>
+<tr>
+<td>End of Support（サポート終了）</td>
+<td>更新、障害対応、セキュリティ修正などの終了</td>
+<td>契約・製品版ごとの対象、延長保守の範囲</td>
+</tr>
+<tr>
+<td>Organizational Retirement（組織内の利用終了）</td>
+<td>組織が用途を終えて廃止する時点</td>
+<td>依存する業務・資産と残すデータ</td>
+</tr>
+<tr>
+<td>Data Retention Expiry（データ保持期限の到来）</td>
+<td>特定記録の保持期間の終了</td>
+<td>保全指示、法令、処分の承認</td>
+</tr>
+</tbody></table></div>
+<p>ベンダーによってEOLやEOSという略語の意味が違うため、略語だけで具体的な期限を決めません。まだ装置が動くことと、脆弱性に対処できることも別です。更新の提供が終わる前に、依存ソフトウェア、機器互換性、データの形式、切替時間を調べて移行計画を作ります。</p>
+<blockquote class="callout trap"><p><strong>Common Trap（よくあるひっかけ）</strong>：保守契約を更新できたとしても、セキュリティ修正が含まれているとは限りません。提供されるサービスの内容と、実際に残るリスクを確認します。</p>
+</blockquote>
+<h3 id="d2-05-retirement" tabindex="-1">5.2 移行・例外管理・安全な廃止</h3>
+<p>移行は、データをコピーした時点で完了しません。件数・形式・権限・分類・保持設定・鍵・検索性・監査証跡を確認し、業務として使えることを検証します。データを読める旧環境を不用意に消すと、長期保存の目的を失う場合があります。必要な可読性を新環境へ引き継いでから、旧環境の廃止を承認します。</p>
+<p>直ちに移行できない場合は、期限と責任者のある例外として扱います。ネットワーク分離、アクセス制限、監視、代替サポートなどを組み合わせ、残余リスクを権限ある責任者が承認します。「隔離したから永久に安全」とは考えず、再評価日と廃止計画を維持します。</p>
+<p>廃止時には、残すデータを確保し、アクセス権、サービスアカウント、証明書・鍵、接続、契約・ライセンスなどを用途に応じて整理します。消去・返却・破壊の結果を確認し、台帳を廃止済みへ変更します。クラウドサービスの契約終了でも、データの取得、保持対象、削除時期、バックアップの失効、再委託先での処置を確認します。</p>
+<p>例えば、施設予約システムを更新するなら、履歴の検索と監査に必要な情報を新環境へ移し、旧形式の記録を読めることを確かめます。その後、旧システムの連携鍵や夜間処理も停止し、不要になった媒体・コピーを承認済み手順で処置します。サーバーだけを撤去しても、動き続ける連携処理や残存する認証情報を見落とせません。</p>
+<p>出典：<a href="../references/domain2-sources.html#d2-s-lifecycle">非サポート資産とライフサイクル管理</a>。</p>
+<h2 id="d2-06" tabindex="-1">6. データ保護策と遵守要求 — 公式2.6</h2>
+<p><strong>Core（中核）／状態の比較・基準の調整はHigh Priority（重点）</strong></p>
+<h3 id="d2-06-states" tabindex="-1">6.1 Data at Rest・in Transit・in Use</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 20。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>状態</th>
+<th>意味</th>
+<th>主な脅威・失敗</th>
+<th>保護の例と限界</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Data at Rest（保存中データ）</td>
+<td>媒体に保存されているデータ</td>
+<td>不正閲覧、盗難、改ざん、破壊、鍵の喪失</td>
+<td>保存時暗号化、権限、完全性保護、復旧。利用中の不正操作には別の対策が必要</td>
+</tr>
+<tr>
+<td>Data in Transit / Motion（転送中データ）</td>
+<td>通信によって送受信されるデータ</td>
+<td>盗聴、なりすまし、途中での改ざん</td>
+<td>TLS、IPsec等と相手の認証。終端での取扱いを別途保護</td>
+</tr>
+<tr>
+<td>Data in Use（使用中データ）</td>
+<td>メモリ等で実際に処理・参照されるデータ</td>
+<td>不正プロセス、権限濫用、メモリからの露出</td>
+<td>プロセス分離、最小権限、端末保護、必要に応じた保護実行環境</td>
+</tr>
+</tbody></table></div>
+<p>状態は装置名だけでは決まりません。サーバーの保存ファイル、送受信中のパケット、処理中のメモリは異なる状態です。同じ情報について、複数の状態のコピーが同時に存在する場合もあります。</p>
+<p>物理的に媒体を搬送することと、電子データをネットワークで送受信することも区別します。媒体の物流としては輸送中でも、内部の情報は媒体上に保存されています。そのため、保存時暗号化と物理的な輸送管理が必要であり、通信プロトコルだけではその媒体を保護できません。</p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：保護対象のコピーと、対策が有効な境界を指定します。「暗号化済み」という言葉だけで、保存・通信・実行中のすべてが保護されたとは判断しません。</p>
+</blockquote>
+<h3 id="d2-06-encryption" tabindex="-1">6.2 暗号アルゴリズム・プロトコル・製品の粒度</h3>
+<p>AES：Advanced Encryption Standard（高度暗号化標準）は、データの暗号化に使うSymmetric Encryption（対称鍵暗号）のアルゴリズムです。TLS：Transport Layer Security（通信保護プロトコル）は、相手の認証、鍵の合意、暗号化、改ざん検知などを組み合わせて通信を保護する仕組みです。この二つは単純な代替候補ではなく、TLSの通信保護にAESが使われることもあります。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 21。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>対象</th>
+<th>選ぶものの例</th>
+<th>判断の要点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>大量データの機密性</td>
+<td>対称鍵暗号と適切なモード</td>
+<td>鍵、乱数、完全性保護、実装まで必要</td>
+</tr>
+<tr>
+<td>鍵の共有・署名・相手の確認</td>
+<td>非対称暗号、証明書、認証手段</td>
+<td>大量データの暗号化をすべて非対称暗号で行うわけではない</td>
+</tr>
+<tr>
+<td>通信セッション</td>
+<td>TLS、SSH、IPsecなど</td>
+<td>どこからどこまで保護するか、相手をどう確認するか</td>
+</tr>
+<tr>
+<td>保存装置・ファイル</td>
+<td>ボリューム暗号化、ファイル暗号化</td>
+<td>暗号化される範囲、解除後の利用、鍵の復旧</td>
+</tr>
+</tbody></table></div>
+<p>Full Disk Encryption：FDE（ディスク全体の暗号化）やボリューム暗号化は、紛失・盗難時などのオフラインの読取りに備える手段です。稼働中に正規権限で読み出した内容や、権限を奪った攻撃者による利用を、それだけで防ぐものではありません。</p>
+<p>WindowsのBitLocker（ドライブ暗号化機能）とEFS：Encrypting File System（暗号化ファイルシステム）も範囲が違います。BitLockerは対象ボリュームを保護し、EFSはユーザーに対応したファイル単位の暗号化を提供します。暗号アルゴリズムが同じでも、保護する単位・鍵の管理・運用上の意味は同一ではありません。</p>
+<p>**Key Management（鍵管理）**では、生成、配布、保存、利用権限、更新、復旧、失効、破棄を管理します。鍵をデータと同じ権限で無制限に読める場所へ置けば、暗号化による分離が弱くなります。鍵を失うことは可用性の問題にもなるため、保持期間と復旧要件に合う管理が必要です。<a href="#d2-04-media">暗号消去</a>では、逆に不要な鍵のコピーを残さないことが条件になります。</p>
+<p>出典：<a href="../references/domain2-sources.html#d2-s-encryption">暗号方式・BitLocker・EFS</a>。</p>
+<h3 id="d2-06-transit" tabindex="-1">6.3 通信区間と内容自体の保護</h3>
+<p>TLSは、適切に設定・認証された終端間で盗聴や改ざん等に備えます。サーバー証明書の検証を無視したり、信頼しない終端で復号されたりするなら、想定する保護を得られません。通信の暗号化だけから、送信先のアプリケーションや保存領域の安全まで導くことはできません。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 22。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>手段</th>
+<th>保護する境界・用途</th>
+<th>見落としやすい点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TLS（通信保護プロトコル）</td>
+<td>TLS接続の両端間</td>
+<td>中継サービスで終端する構成では、その場所で内容を扱える</td>
+</tr>
+<tr>
+<td>VPN：Virtual Private Network（仮想私設網）</td>
+<td>指定されたトンネルの両端間</td>
+<td>トンネル外の通信、端末、トンネル終端以降は別途評価</td>
+</tr>
+<tr>
+<td>SSH：Secure Shell（安全な遠隔操作プロトコル）</td>
+<td>遠隔管理などの通信</td>
+<td>サーバーのホスト鍵確認と利用権限も必要</td>
+</tr>
+<tr>
+<td>SFTP（SSHによるファイル転送）</td>
+<td>SSH上のファイル転送</td>
+<td>FTPS（TLSで保護したFTP）とは異なる方式</td>
+</tr>
+<tr>
+<td>OpenPGP / S/MIME（メール等の内容暗号化・署名方式）</td>
+<td>対象メッセージや内容そのもの</td>
+<td>受信者の鍵、終端、対象外のメタデータを別途評価</td>
+</tr>
+</tbody></table></div>
+<p>メール配送で各通信区間をTLSにしても、中継するメールサービスが内容を処理できる構成があります。中継者からも内容を保護する要求なら、受信者の鍵を使う内容自体の暗号化などを検討します。逆に、内容暗号化を施しても、宛先や通信の存在などのすべてが隠れるわけではありません。</p>
+<p>FTPやTelnetの平文通信に対し、適切な暗号化を用いる転送・遠隔管理方式を選ぶことは、認証情報や内容の露出を減らします。ただし、「SSL/TLS」という慣用的な呼称を見て、旧SSLを現在も安全な方式と考えないようにします。SSL 3.0は使用が禁止され、TLS 1.0・1.1も非推奨となっています。POODLE（SSL 3.0の脆弱性を利用する攻撃）は、旧方式やフォールバックの危険を理解する補足です。</p>
+<p>出典：<a href="../references/domain2-sources.html#d2-s-transit">通信とメール内容の保護</a>。</p>
+<h3 id="d2-06-baselines" tabindex="-1">6.4 Baseline・Scoping・Tailoring</h3>
+<p>Baseline（ベースライン／基準）は、管理策や設定を選ぶ出発点です。Security Control Baseline（管理策の基準集合）とConfiguration Baseline（構成・設定の基準）は関係しますが、同じ粒度ではありません。業界の遵守要求を、あるOSの設定集だけで満たせるとは限りません。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 23。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>主な問い</th>
+<th>例</th>
+<th>誰が判断するか</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Baseline（基準）</td>
+<td>最初にどの集合・状態を基準とするか</td>
+<td>影響度に応じた管理策集合、製品の基準設定</td>
+<td>組織の方針に沿い所有者・専門職が選ぶ</td>
+</tr>
+<tr>
+<td>Scoping（適用範囲の検討）</td>
+<td>どの境界・機能・条件へ適用するか</td>
+<td>対象外の技術にだけ関係する管理策の適用性を検討</td>
+<td>システム所有者等が根拠を確認</td>
+</tr>
+<tr>
+<td>Tailoring（個別調整）</td>
+<td>その環境の要求へどう適合させるか</td>
+<td>パラメーター、追加策、代替策、実装の具体化</td>
+<td>所有者・専門職が調整し、必要な承認を得る</td>
+</tr>
+<tr>
+<td>Compensating Control（代替管理策）</td>
+<td>本来の策を使えないとき同等の目的をどう満たすか</td>
+<td>制約を説明し、別手段の有効性を評価</td>
+<td>当該制度の条件と承認権限に従う</td>
+</tr>
+</tbody></table></div>
+<p>学習上は「Scoping＝適用性の絞込み」「Tailoring＝個別事情への調整」と比較すると理解しやすくなります。ただし、NISTではScopingの検討をTailoringの中に含めています。互いに無関係な工程ではありません。</p>
+<p>例えば、ある環境に無線機能が存在しないなら、その前提を確認して無線固有の管理策の適用性を検討します。一方、同じログ管理の要件でも、保存先や保持設定を業務と法令に合わせて具体化するのは調整です。「現状できていない」「費用がかかる」という理由だけで適用外へ変更すると、要求を満たしていない状態を隠してしまいます。</p>
+<blockquote class="callout trap"><p><strong>Common Trap（よくあるひっかけ）</strong>：基準を導入した事実と、適合を確認した事実は別です。GPO：Group Policy（グループポリシー）やMDM：Mobile Device Management（端末管理）による集中適用にも、設定失敗、対象漏れ、例外、変更による逸脱の確認が必要です。</p>
+</blockquote>
+<p>出典：<a href="../references/domain2-sources.html#d2-s-baselines">NISTの管理策選択と調整</a>。</p>
+<h3 id="d2-06-standards" tabindex="-1">6.5 Standards Selection（標準の選択）と遵守要求</h3>
+<p>標準は、扱うデータ、業界、契約、法的管轄、システムの性質から選びます。使っているOSだけでは、決済データや個人情報に対する要求は決まりません。複数の枠組みが適用される場合は、要求と管理策の対応を整理し、同じ実装で満たせる範囲と追加対応を区別します。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 24。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>資料・制度</th>
+<th>主な役割</th>
+<th>混同しないこと</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ISO/IEC 27001（情報セキュリティ管理システムの要求）</td>
+<td>組織のISMS（情報セキュリティ管理システム）への要求</td>
+<td>製品設定の手順書ではない</td>
+</tr>
+<tr>
+<td>ISO/IEC 27002（情報セキュリティ管理策の指針）</td>
+<td>管理策の実装・運用を検討する指針</td>
+<td>27001と役割が異なる</td>
+</tr>
+<tr>
+<td>NIST SP 800-53 / 800-53B</td>
+<td>管理策カタログ／基準集合と調整の指針</td>
+<td>カタログの全項目を全環境へ機械的に適用しない</td>
+</tr>
+<tr>
+<td>CIS Benchmarks（CISの製品別設定基準）</td>
+<td>OS・アプリケーション等の構成の強化</td>
+<td>組織全体の法令遵守を単独で保証しない</td>
+</tr>
+<tr>
+<td>PCI DSS（決済カード業界のデータセキュリティ標準）</td>
+<td>カード会員データ等を扱う環境への要求</td>
+<td>法律そのものではないが、契約等により遵守が要求される</td>
+</tr>
+<tr>
+<td>GDPR・HIPAA等</td>
+<td>適用対象のデータや処理に対する法的要求</td>
+<td>単一の暗号化製品を導入すれば完了とはならない</td>
+</tr>
+</tbody></table></div>
+<p>PCI DSSでは、データを保存・処理・伝送する構成と、それに影響するシステム等を含めて対象範囲を判断します。暗号化やトークン化を採用したというだけで、無条件に全対象から外れるわけではありません。必要なデータだけを保持し、保存を禁止されるデータや保護要件を現在の版で確認します。本版の確認時点ではPCI SSCにv4.0.1が掲載されています。</p>
+<p>GDPRのセキュリティ要求は、リスクに応じた適切な技術的・組織的措置を求めます。「あらゆる保存データに無条件で同じ暗号化を行う」という一文へ置き換えると、収集目的、アクセス、復旧、監視などが抜けます。</p>
+<p>CalOPPA：California Online Privacy Protection Act（カリフォルニア州オンラインプライバシー保護法）は、対象となる商用Webサイト・オンラインサービスのプライバシーポリシー掲示等を扱います。CCPA：California Consumer Privacy Act（カリフォルニア州消費者プライバシー法）とは別の法律です。名称の類似より、対象者・処理・要求される行為で見分けます。</p>
+<p>出典：<a href="../references/domain2-sources.html#d2-s-standards">標準・遵守要求の位置付け</a>。法制度の横断的な整理は<a href="../domain1/index.html#d1-04">Domain 1の法律・規制</a>を参照してください。</p>
+<h3 id="d2-06-protection" tabindex="-1">6.6 DLP・DRM・CASBを目的で選ぶ</h3>
+<div class="table-scroll" role="region" tabindex="0" aria-label="比較表 25。幅が足りない場合は横にスクロールできます"><table>
+<thead>
+<tr>
+<th>手段</th>
+<th>主な目的・適用箇所</th>
+<th>実現することの例</th>
+<th>限界</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DLP：Data Loss Prevention（情報漏えい防止）</td>
+<td>データの検出と不適切な利用・持出しへの対処</td>
+<td>内容・分類・利用状況に応じて警告、遮断、記録</td>
+<td>見えない経路、誤分類、誤検知、検査不能な内容を評価する必要</td>
+</tr>
+<tr>
+<td>DRM：Digital Rights Management（デジタル権利管理）</td>
+<td>配布後を含むコンテンツの利用権限</td>
+<td>閲覧、印刷、コピー、有効期限等の制御</td>
+<td>対応アプリや認証・ライセンス基盤に依存。画面撮影等を完全には防げない</td>
+</tr>
+<tr>
+<td>CASB：Cloud Access Security Broker（クラウド利用の保護を仲介する機能）</td>
+<td>クラウドサービス利用の可視化と方針の適用</td>
+<td>未承認利用の発見、共有制御、DLP、セッション制御</td>
+<td>対応サービス、連携方式、対象経路に依存</td>
+</tr>
+</tbody></table></div>
+<p>DLPは単に文字列を探す機能に限りません。ラベル、データの特徴、照合、利用者、端末、送信先などを組み合わせて判断します。Endpoint DLP（端末上の漏えい防止）は端末でのコピー等、Network DLP（ネットワーク上の漏えい防止）は観測できる通信、保存先やクラウドに連携するDLPは保管済み情報の発見・共有状態などを対象にできます。どこで内容を見られるかによって適用できる保護が変わります。</p>
+<p>導入時には、分類と許可する業務を先に整理し、監視・警告・遮断の段階、例外承認、誤検知の調整、検出後の担当者を決めます。すべての送信を止めればよいとは限らず、許可された業務を続けながら不適切な利用を扱えるルールが必要です。</p>
+<p>DRMは、利用者の権限をコンテンツに結び付けて、配布先でも一定の制限を維持するための手段です。暗号化だけなら「鍵を持つ者が読める」という保護が中心ですが、DRMでは対応する仕組みを通じて許可する操作も制御します。権利管理基盤の障害や失効によって必要な記録を読めなくしないよう、可用性と長期保存も検討します。</p>
+<p>CASBには、API連携で保存済み情報や設定を確認する方式や、プロキシ等で通信・セッションを制御する方式があります。API連携が必ず即時に送信を遮断するわけではなく、プロキシも通過しない経路まで自動的に保護しません。CASB、DLP、DRMは機能が重なることがあり、排他的な三製品として覚えないようにします。</p>
+<blockquote class="callout exam"><p><strong>Exam Perspective（試験での考え方）</strong>：機微情報の持出し制御ならDLP、配布後の許可操作ならDRM、クラウド利用の可視化と統制ならCASBが中心になります。ただし、要件と保護できる範囲を確認し、名前だけで万能な対策と判断しません。</p>
+</blockquote>
+<p>出典：<a href="../references/domain2-sources.html#d2-s-protection">データ保護機能の一次資料</a>。</p>
+<h3 id="d2-06-bridges" tabindex="-1">6.7 隣接Domainの知識と説明の境界</h3>
+<p><strong>Supporting（補完）</strong></p>
+<p>Domain 2では、暗号方式やアクセス制御を「何を保護し、どの限界があるか」まで理解します。暗号アルゴリズムの内部構造はDomain 3、通信方式の詳細はDomain 4、認証・認可の詳細はDomain 5、評価はDomain 6、日常運用・復旧はDomain 7へつながります。</p>
+<p>例えば、Encryption（暗号化）とPassword Hashing（パスワードのハッシュ化）は用途が異なります。前者は権限を持つ者が元の内容を読むための保護、後者は元のパスワードを復元して保管せず照合するための仕組みです。bcrypt（パスワードのハッシュ方式）はBlowfishを基にした処理を利用しますが、それを理由に保存データの暗号化と同じ用途にはしません。同名の古いファイル暗号化ツールもあるため、製品名・方式・用途のどれが示されているかを区別します。</p>
+<p>出典：<a href="../references/domain2-sources.html#d2-s-encryption">暗号とハッシュの補足資料</a>。</p>
+<h3 id="d2-06-application" tabindex="-1">6.8 適用して説明するための復習</h3>
+<p>次は本書独自の確認用場面です。回答の暗記ではなく、決める人、根拠、実施、確認を説明してください。</p>
+<p><strong>共同研究用の分析データを共有する場合</strong>：情報所有者が目的と共有範囲を承認します。個人との関連付けを減らせるかを検討し、処理者等の役割、地域、保持条件を整理します。管理担当者がアクセスと共有制限を設定し、変更・終了時の処置まで確認します。仮名化しても個人データの義務が自動的に消えるわけではありません。</p>
+<p><strong>長期保存記録を旧サービスから移す場合</strong>：保持要求と可読性を新サービスへ引き継ぎます。形式、件数、権限、監査証跡、暗号鍵、復旧を確認し、必要な記録を読めることを承認してから旧コピーを処置します。契約終了、記録保持の終了、媒体の廃棄は、それぞれ別の判断です。</p>
+<p><strong>持出し対策を選ぶ場合</strong>：問題となる情報、許可する利用者、経路、保存先を特定します。分類と利用条件を決め、DLPによる検出・遮断、DRMによる利用制限、CASBによるクラウド利用管理の適用範囲を比較します。検出後の対応と例外管理まで用意して、継続して評価します。</p>
+<p>各場面で、対象の価値・要求、責任、状態、ライフサイクルを説明できれば、用語を別の状況へ応用できます。範囲の点検には<a href="../coverage/domain2.html">Domain 2の網羅性確認表</a>を利用してください。</p>
+</article><footer class="page-footer">復習ノート 第1.1.0版 · 資料確認 2026-11-08<br>本文はMarkdown（正本）から生成しています。</footer></main></div><a class="back-top" href="#top" aria-label="ページの先頭へ戻る">↑ 先頭</a></body></html>
