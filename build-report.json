@@ -1,6 +1,6 @@
 {
-  "version": "1.1.0",
-  "reviewed": "2026-11-08",
+  "version": "1.1.1",
+  "reviewed": "2026-11-09",
   "pages": [
     {
       "source": "content/domain1/CISSP_Domain1_Master.md",
@@ -12,9 +12,9 @@
     {
       "source": "content/domain2/CISSP_Domain2_Master.md",
       "output": "domain2/index.html",
-      "headings": 40,
+      "headings": 42,
       "tables": 25,
-      "characters": 29064
+      "characters": 32772
     },
     {
       "source": "coverage/Domain1_Coverage.md",
@@ -26,9 +26,9 @@
     {
       "source": "coverage/Domain2_Coverage.md",
       "output": "coverage/domain2.html",
-      "headings": 3,
-      "tables": 1,
-      "characters": 4784
+      "headings": 4,
+      "tables": 2,
+      "characters": 6262
     },
     {
       "source": "references/Sources.md",
@@ -42,15 +42,15 @@
       "output": "references/domain2-sources.html",
       "headings": 14,
       "tables": 3,
-      "characters": 8128
+      "characters": 8504
     },
     {
       "source": "README.md",
       "output": "guide/index.html",
-      "headings": 7,
+      "headings": 8,
       "tables": 1,
-      "characters": 4846
+      "characters": 5281
     }
   ],
-  "localLinksChecked": 151
+  "localLinksChecked": 167
 }

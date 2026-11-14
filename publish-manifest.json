@@ -1,15 +1,15 @@
 {
   "format": 1,
   "source": "Google Drive: CISSP/CISSP_Study_Notes",
-  "contentVersion": "1.1.0",
+  "contentVersion": "1.1.1",
   "sourceFiles": [
     {
       "path": "README.md",
-      "sha256": "7bd3012fc9cec4d69bac14cc4d514ec762add6e5013b2c6f7de725ff23e2bcfd"
+      "sha256": "b977212b5fa17cca284f88bc024c5d1e98122c81aa7f96d931df2ac9bb4b0890"
     },
     {
       "path": "book.json",
-      "sha256": "fa58b832947d5105fbfd83d1419c75f98bf8cba4a66c931f67852175da60042b"
+      "sha256": "0f7ea04ebac7b16bbfa49d3b37735e46cbac95598abb9899b325bb9a994ef665"
     },
     {
       "path": "build/build.mjs",
@@ -21,7 +21,7 @@
     },
     {
       "path": "content/domain2/CISSP_Domain2_Master.md",
-      "sha256": "7c545c474de4c00d95ed8c8ca3e9c253e70b8e38f118fa24c32aad9462e005bd"
+      "sha256": "425eb9cba44a1005733e4977b442e8cac975e334d5361cf0b40fa8fed3188c16"
     },
     {
       "path": "coverage/Domain1_Coverage.md",
@@ -29,7 +29,7 @@
     },
     {
       "path": "coverage/Domain2_Coverage.md",
-      "sha256": "ac32ad3d10cd8153cd1c27ec8e2d727c4ff9369321fe0c53fafe68cefd3575fe"
+      "sha256": "55dc7e8213dd2e7e40d750770b367e9c7ea54bbf9cd19548df0fd41c88ede8ae"
     },
     {
       "path": "publishing/README_GitHub.md",
@@ -41,7 +41,7 @@
     },
     {
       "path": "references/Domain2_Sources.md",
-      "sha256": "37a3e6edd7a0f3ae9cb5eec9f7d7ea91399da09b6733619555a9b5e0afb937ac"
+      "sha256": "d42947098ce45aed1a0256693d38173ddf66aeca03ea1f48e8964b1bce5dcf8e"
     },
     {
       "path": "references/Sources.md",
@@ -68,42 +68,42 @@
     {
       "path": "index.html",
       "bytes": 4298,
-      "sha256": "c3b248ed52d93e9d53e887de946bda4116e37fb248128bd99a3adcdee9c048bd"
+      "sha256": "4936f48b776a01c947cf290506262d796fbcb4b84dbc422dd51c18237e97e9aa"
     },
     {
       "path": "domain1/index.html",
       "bytes": 172636,
-      "sha256": "b0876db4de94af9b7688adf2f0046c39e319df7b5b1a092baa7320a1d62181e1"
+      "sha256": "6cbbaa65e2283728d746dd68e48f1de2317c03df65f531bc0399548da0c2d4aa"
     },
     {
       "path": "domain2/index.html",
-      "bytes": 95270,
-      "sha256": "f16bc8db757e0bb070f0e669c52660017f2759b29904ae5ac8a9cc039b51ba2c"
+      "bytes": 107018,
+      "sha256": "1692580fd45981b1a69aa510d63cc0f80ec185c0b938357431c555a463c96409"
     },
     {
       "path": "coverage/domain1.html",
       "bytes": 16022,
-      "sha256": "d40dc204869d18d4162ff79087486caa767502adc0c0fa6ba774e25120f5df19"
+      "sha256": "34405f6e4ff7827f7f1d8dcaf6c04182641ead3a99ba14ae5e0879d9d071787a"
     },
     {
       "path": "coverage/domain2.html",
-      "bytes": 13368,
-      "sha256": "7cfd7a83b07ea1c150e237e09ad632a70954479ef81ba389b1ab9eeede0e9628"
+      "bytes": 16693,
+      "sha256": "043aa50172fbfcc40283b1c9dcce4130955f7a4c1e962b09486886f11ca6698f"
     },
     {
       "path": "references/sources.html",
       "bytes": 22847,
-      "sha256": "9e1238ade4703b03becfd574e8d4b6c4cc119cf2fd95c1e9f8a027cae21fdb54"
+      "sha256": "95a45820d0687df09c7747820069e415db3a84fa5e5c057d773338d135e66bbd"
     },
     {
       "path": "references/domain2-sources.html",
-      "bytes": 22608,
-      "sha256": "999094cf5be63a686d78e0a316e3b89d7493dbb7ae651c49197e2a335df7ec4d"
+      "bytes": 23465,
+      "sha256": "520ee8e59748045d5fac39ed055feabe2cbe5d5fdfc7e49023083d00c910e07b"
     },
     {
       "path": "guide/index.html",
-      "bytes": 16204,
-      "sha256": "d82fa00a5948c8300efc1f94b6a7ff020abbfc2a310954d5c8f8d238f6bb555a"
+      "bytes": 17739,
+      "sha256": "f40f80e20e1924f08c2dd8841b45d617dfda90c9609f6469aae584d7c743d8fa"
     },
     {
       "path": "assets/style.css",
@@ -118,7 +118,7 @@
     {
       "path": "build-report.json",
       "bytes": 1272,
-      "sha256": "c9fa453bf89534aecaffdf942e3203c09ff09f83fab0d3c5c7ac7a41de4a4e04"
+      "sha256": "7370da9e34f84d62494619673891270c8776758ae831336db350d46a954ca5bd"
     },
     {
       "path": ".nojekyll",
@@ -138,7 +138,7 @@
   ],
   "validation": {
     "htmlPages": 8,
-    "localLinks": 553,
+    "localLinks": 577,
     "rootRelativePaths": 0
   },
   "workflow": "Edit Drive sources, rebuild and sync, save changed source/site files to Drive, then commit/push generated files to a work branch, open a PR, and merge after required checks pass."
